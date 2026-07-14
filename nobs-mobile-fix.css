@@ -1,5 +1,5 @@
 /* ===================================================================
-   NOBS MOBILE APP-LIKE REDESIGN
+   NOBS MOBILE APP-LIKE REDESIGN v2
    Cargar via @import en stark-nobs.css, o como CSS externo aparte.
    NO poner ningun @import dentro de este archivo.
    =================================================================== */
@@ -17,6 +17,10 @@
         padding-left: 12px !important;
         padding-right: 12px !important;
         box-sizing: border-box !important;
+    }
+    /* espacio pa que la bottom nav no tape contenido */
+    body {
+        padding-bottom: 60px !important;
     }
 
     /* ---------- HEADER / LOGO ---------- */
@@ -37,7 +41,6 @@
     .top-nav__branding img {
         height: 24px !important;
     }
-    /* Titulo enorme -> oculto en movil, el icono ya identifica la marca */
     .top-nav__site-logo {
         display: none !important;
     }
@@ -59,7 +62,6 @@
         flex: 0 0 auto !important;
     }
 
-    /* Menu desplegable ocupa toda la pantalla, tipo drawer */
     .top-nav__main-menus {
         display: none !important;
     }
@@ -67,7 +69,6 @@
         display: flex !important;
         flex-direction: column !important;
         width: 100% !important;
-        background: inherit !important;
     }
     .top-nav__dropdown ul {
         position: static !important;
@@ -78,18 +79,30 @@
         display: block !important;
     }
 
-    /* Barra ratio en fila compacta 2 columnas, scroll si sobra */
+    /* ---------- RATIO BAR (stats arriba) ---------- */
+    /* fila unica scrolleable en vez de grid que se descuadra */
     .top-nav__ratio-bar {
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 4px !important;
-        font-size: 0.7rem !important;
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        gap: 10px !important;
         width: 100% !important;
+        font-size: 0.72rem !important;
+        padding-bottom: 4px !important;
+        scrollbar-width: thin !important;
     }
     .top-nav__ratio-bar li {
+        flex: 0 0 auto !important;
         white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 3px !important;
+    }
+    .top-nav__ratio-bar li a {
+        display: flex !important;
+        align-items: center !important;
+        gap: 3px !important;
     }
 
     .top-nav__icon-bar {
@@ -100,7 +113,7 @@
         height: 28px !important;
     }
 
-    /* ---------- SECONDARY NAV / TABS ---------- */
+    /* ---------- SECONDARY NAV / TABS (perfil, torrents propios, etc) ---------- */
     .secondary-nav {
         padding: 4px 8px !important;
     }
@@ -115,14 +128,13 @@
         -webkit-overflow-scrolling: touch !important;
         flex-wrap: nowrap !important;
         gap: 4px !important;
-        scrollbar-width: thin !important;
     }
     .nav-tab-menu {
         flex: 0 0 auto !important;
         font-size: 0.85rem !important;
     }
     .nav-tab-menu__items {
-        display: none !important; /* submenus se acceden entrando a la seccion */
+        display: none !important;
     }
 
     /* ---------- COUNTDOWN / EVENT BANNER ---------- */
@@ -141,7 +153,6 @@
     }
     .special-event-alert [x-data^="timer"] > div:first-child {
         font-size: 0.95rem !important;
-        letter-spacing: 0.5px !important;
         text-align: center !important;
     }
     .special-event-alert [x-data^="timer"] > div:nth-child(2) {
@@ -157,12 +168,39 @@
     .special-event-alert [x-data^="timer"] > div:nth-child(2) > div div:first-child {
         font-size: 1.3rem !important;
     }
-    /* ocultar separadores ":" sueltos que descuadran el grid */
     .special-event-alert [x-data^="timer"] > div:nth-child(2) > div[style*="opacity"] {
         display: none !important;
     }
 
-    /* ---------- BLOCKS: news / chat / featured / etc ---------- */
+    /* ---------- QUICK ACCESS GRID (Torrents/Comunidad/etc) ---------- */
+    /* Se inyecta con JS debajo del header, ver bloque script al final del css no aplica -> ver instrucciones */
+    .nobs-quick-access {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 8px !important;
+        margin: 10px 0 16px 0 !important;
+        padding: 0 4px !important;
+    }
+    .nobs-quick-access a {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 4px !important;
+        background: rgba(255,255,255,0.05) !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        border-radius: 10px !important;
+        padding: 10px 4px !important;
+        font-size: 0.68rem !important;
+        text-align: center !important;
+        color: inherit !important;
+        text-decoration: none !important;
+    }
+    .nobs-quick-access a i {
+        font-size: 1.1rem !important;
+    }
+
+    /* ---------- PANELS (news/chat/featured) ---------- */
     .panelV2 {
         margin: 0 0 12px 0 !important;
         border-radius: 8px !important;
@@ -172,21 +210,36 @@
         font-size: 0.9rem !important;
     }
 
-    /* Chat: evitar overflow de mensajes largos */
-    [class*="chat"] {
-        max-width: 100% !important;
-    }
-    [class*="chat"] * {
+    /* ---------- CHAT FIX ---------- */
+    /* mensaje: se puede partir libremente */
+    [class*="chat"] .message,
+    [class*="chat"] p,
+    [class*="chat-message"] {
         overflow-wrap: anywhere !important;
-        word-break: break-word !important;
-        max-width: 100% !important;
-    }
-    [class*="chat"] p, [class*="chat"] span, [class*="chat"] div {
+        word-break: normal !important;
         white-space: normal !important;
         font-size: 0.85rem !important;
     }
+    /* username / autor: nunca partir letra a letra */
+    [class*="chat"] a,
+    [class*="chat"] strong,
+    [class*="chat"] b,
+    [class*="username"] {
+        white-space: nowrap !important;
+        overflow-wrap: normal !important;
+        word-break: keep-all !important;
+        flex: 0 0 auto !important;
+    }
+    /* fila de mensaje en flex horizontal, con wrap solo del texto */
+    [class*="chat"] > div,
+    [class*="chatbox"] > div {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: baseline !important;
+        gap: 4px !important;
+    }
 
-    /* ---------- FORMS (settings, upload, etc) ---------- */
+    /* ---------- FORMS ---------- */
     .form__select,
     .form__text,
     .form__textarea,
@@ -213,7 +266,7 @@
         padding: 10px 6px !important;
     }
 
-    /* ---------- TORRENT TABLES / CARDS ---------- */
+    /* ---------- TABLES ---------- */
     table {
         display: block !important;
         overflow-x: auto !important;
@@ -239,5 +292,34 @@
     }
     .footer__copyright {
         font-size: 0.7rem !important;
+    }
+
+    /* ---------- BOTTOM APP NAV (tipo app movil) ---------- */
+    .nobs-bottom-nav {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 999 !important;
+        display: flex !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+        background: rgba(10,10,10,0.95) !important;
+        backdrop-filter: blur(8px) !important;
+        border-top: 1px solid rgba(255,255,255,0.1) !important;
+        padding: 8px 0 !important;
+    }
+    .nobs-bottom-nav a {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2px !important;
+        font-size: 0.65rem !important;
+        color: inherit !important;
+        text-decoration: none !important;
+        opacity: 0.85 !important;
+    }
+    .nobs-bottom-nav a i {
+        font-size: 1.2rem !important;
     }
 }
