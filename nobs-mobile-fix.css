@@ -66,14 +66,16 @@
        PANEL HAMBURGUESA COMPLETO
        Fusiona: icon-bar (perfil/correo/notis) + main-menus (Torrents,
        Comunidad, Soporte, Otro) en un unico panel a pantalla completa
-       con acordeon.
+       con acordeon. Usamos order sobre EL PROPIO .top-nav (flex
+       container) en vez de depender de :has(), que es mas fragil.
        ================================================================= */
 
     .top-nav__main-menus {
         display: none !important;
     }
 
-    .top-nav:has(.top-nav__main-menus.mobile) {
+    .top-nav.mobile,
+    .top-nav:has(> .top-nav__main-menus.mobile) {
         position: fixed !important;
         inset: 0 !important;
         height: 100vh !important;
@@ -88,10 +90,12 @@
         box-sizing: border-box !important;
         gap: 0 !important;
     }
-    .top-nav:has(.top-nav__main-menus.mobile) .top-nav__left {
+    .top-nav.mobile > .top-nav__left,
+    .top-nav:has(> .top-nav__main-menus.mobile) > .top-nav__left {
         display: none !important;
     }
-    .top-nav:has(.top-nav__main-menus.mobile) .top-nav__toggle {
+    .top-nav.mobile > .top-nav__toggle,
+    .top-nav:has(> .top-nav__main-menus.mobile) > .top-nav__toggle {
         position: fixed !important;
         top: 14px !important;
         right: 14px !important;
@@ -107,13 +111,14 @@
         justify-content: center !important;
     }
 
-    /* Reordenamos: .top-nav__right (ratio-bar + username + icon-bar)
-       primero como cabecera de perfil; .top-nav__main-menus (Torrents,
-       Comunidad...) despues como cuerpo del acordeon */
-    .top-nav:has(.top-nav__main-menus.mobile) .top-nav__right {
+    /* Orden explicito de los 3 hijos directos de .top-nav cuando esta
+       expandido: 1) perfil (top-nav__right), 2) menu principal
+       (top-nav__main-menus), 3) toggle (fixed, no cuenta en flow) */
+    .top-nav.mobile > .top-nav__right,
+    .top-nav:has(> .top-nav__main-menus.mobile) > .top-nav__right {
         order: 1 !important;
     }
-    .top-nav:has(.top-nav__main-menus.mobile) .top-nav__main-menus {
+    .top-nav__main-menus.mobile {
         order: 2 !important;
     }
 
@@ -133,8 +138,9 @@
 
     .top-nav__right.mobile {
         background: linear-gradient(180deg, rgba(191,85,236,0.10), rgba(191,85,236,0.02)) !important;
-        padding: 60px 16px 18px 16px !important;
+        padding: 60px 16px 14px 16px !important;
         border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+        flex-shrink: 0 !important;
     }
 
     .top-nav__ratio-bar {
@@ -173,66 +179,125 @@
         margin: 6px 0 14px 0 !important;
     }
 
+    /* correo + notificaciones: fila compacta, uno junto al otro, no
+       apiladas con hueco enorme entre medias */
     .top-nav__icon-bar {
         width: 100% !important;
-        flex-direction: column !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
         align-items: stretch !important;
-        gap: 0 !important;
+        gap: 8px !important;
+        margin-bottom: 10px !important;
     }
     .top-nav__icon-bar > li {
-        width: 100% !important;
-        border-top: 1px solid rgba(255,255,255,0.06) !important;
-    }
-    .top-nav__icon-bar > li:first-child {
         border-top: none !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
     }
     .top-nav__icon-bar .top-nav--right__icon-link {
+        position: relative !important;
         display: flex !important;
         align-items: center !important;
-        gap: 12px !important;
+        gap: 8px !important;
         width: 100% !important;
-        padding: 12px 4px !important;
-        font-size: 0.95rem !important;
+        padding: 9px 10px !important;
+        font-size: 0.82rem !important;
+        background: rgba(255,255,255,0.05) !important;
+        border-radius: 8px !important;
+        box-sizing: border-box !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
     .top-nav__icon-bar li:has(.fa-envelope) .top-nav--right__icon-link::after {
-        content: "Bandeja de entrada";
+        content: "Bandeja";
     }
     .top-nav__icon-bar li:has(.fa-bell) .top-nav--right__icon-link::after {
-        content: "Notificaciones";
+        content: "Notis";
+    }
+    /* punto/badge de actividad: pegado a la esquina del propio icono,
+       no flotando lejos a la derecha del bloque */
+    .top-nav__icon-bar .top-nav--right__icon-link i {
+        position: relative !important;
+        flex: 0 0 auto !important;
+    }
+    .top-nav__icon-bar .top-nav--right__icon-link i::after {
+        content: "" !important;
+    }
+    .top-nav__icon-bar .top-nav--right__icon-link > span,
+    .top-nav__icon-bar .top-nav--right__icon-link > .badge,
+    .top-nav__icon-bar .top-nav--right__icon-link > small {
+        position: absolute !important;
+        top: 4px !important;
+        left: 22px !important;
+        right: auto !important;
+        transform: none !important;
+        width: 8px !important;
+        height: 8px !important;
+        min-width: 8px !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+        font-size: 0 !important;
+        line-height: 0 !important;
     }
 
     .top-nav__icon-bar .top-nav__dropdown {
         position: static !important;
         width: 100% !important;
+        flex: 1 1 100% !important;
     }
     .top-nav__icon-bar .top-nav__dropdown > a.top-nav__dropdown--nontouch {
         display: none !important;
     }
     .top-nav__icon-bar .top-nav__dropdown > a.top-nav__dropdown--touch {
+        position: relative !important;
         display: flex !important;
         align-items: center !important;
+        justify-content: space-between !important;
         gap: 10px !important;
         width: 100% !important;
-        padding: 10px 4px !important;
+        padding: 10px 12px !important;
         font-weight: 600 !important;
+        background: rgba(255,255,255,0.04) !important;
+        border-radius: 10px !important;
+        box-sizing: border-box !important;
+    }
+    /* flecha acordeon tambien aqui, coherente con el menu principal */
+    .top-nav__icon-bar .top-nav__dropdown > a.top-nav__dropdown--touch::after {
+        content: "\f078";
+        font-family: "Font Awesome 5 Free", "Font Awesome 6 Free", FontAwesome;
+        font-weight: 900;
+        font-size: 0.7rem;
+        opacity: 0.5;
+        transition: transform 0.2s ease;
+        margin-left: auto;
+    }
+    .top-nav__icon-bar .top-nav__dropdown.open > a::after,
+    .top-nav__icon-bar .top-nav__dropdown:focus-within > a::after {
+        transform: rotate(180deg);
     }
     .top-nav__profile-image {
         width: 32px !important;
         height: 32px !important;
         border-radius: 50% !important;
+        flex: 0 0 auto !important;
     }
 
+    /* submenu del perfil: TARJETA que empuja el contenido hacia abajo,
+       nunca position:absolute flotando encima de otras cosas */
     .top-nav__icon-bar .top-nav__dropdown ul {
         position: static !important;
         width: 100% !important;
         max-width: 100% !important;
-        box-shadow: none !important;
-        border: none !important;
-        background: transparent !important;
+        box-sizing: border-box !important;
         display: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
         flex-direction: column !important;
+        margin: 6px 0 4px 0 !important;
+        padding: 6px !important;
+        background: rgba(255,255,255,0.045) !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+        border-radius: 12px !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.04) !important;
     }
     .top-nav__icon-bar .top-nav__dropdown.open ul,
     .top-nav__icon-bar .top-nav__dropdown:focus-within ul {
@@ -242,20 +307,30 @@
         width: 100% !important;
         border-top: 1px solid rgba(255,255,255,0.05) !important;
     }
+    .top-nav__icon-bar .top-nav__dropdown ul li:first-child {
+        border-top: none !important;
+    }
     .top-nav__icon-bar .top-nav__dropdown ul li a,
     .top-nav__icon-bar .top-nav__dropdown ul li button {
         display: flex !important;
         align-items: center !important;
         gap: 10px !important;
         width: 100% !important;
-        padding: 10px 6px 10px 14px !important;
-        font-size: 0.9rem !important;
+        padding: 10px 8px !important;
+        font-size: 0.88rem !important;
         opacity: 0.9 !important;
+        box-sizing: border-box !important;
+        border-radius: 6px !important;
+    }
+    .top-nav__icon-bar .top-nav__dropdown ul li a:active,
+    .top-nav__icon-bar .top-nav__dropdown ul li button:active {
+        background: rgba(255,255,255,0.06) !important;
     }
     .top-nav__icon-bar .top-nav__dropdown ul li i {
         width: 18px !important;
         text-align: center !important;
         opacity: 0.7 !important;
+        flex: 0 0 auto !important;
     }
 
     /* =================================================================
@@ -312,18 +387,21 @@
         position: static !important;
     }
 
+    /* TARJETA de submenu: caja bien delimitada con borde y fondo propio,
+       separada del titulo de arriba, en vez de texto suelto flotando */
     .top-nav__main-menus.mobile .top-nav__dropdown ul {
         position: static !important;
         display: none !important;
         flex-direction: column !important;
         width: 100% !important;
         max-width: 100% !important;
-        margin: 0 0 10px 0 !important;
-        padding: 4px 0 4px 6px !important;
-        background: rgba(255,255,255,0.03) !important;
-        border-radius: 8px !important;
-        box-shadow: none !important;
-        border: none !important;
+        box-sizing: border-box !important;
+        margin: 4px 0 14px 0 !important;
+        padding: 6px !important;
+        background: rgba(255,255,255,0.045) !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+        border-radius: 12px !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.04) !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown.open ul,
     .top-nav__main-menus.mobile .top-nav__dropdown:focus-within ul {
@@ -331,16 +409,24 @@
     }
     .top-nav__main-menus.mobile .top-nav__dropdown ul li {
         width: 100% !important;
+        border-top: 1px solid rgba(255,255,255,0.05) !important;
+    }
+    .top-nav__main-menus.mobile .top-nav__dropdown ul li:first-child {
+        border-top: none !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown ul li a {
         display: flex !important;
         align-items: center !important;
         gap: 10px !important;
         width: 100% !important;
-        padding: 9px 8px !important;
+        padding: 10px 8px !important;
         font-size: 0.88rem !important;
-        opacity: 0.85 !important;
+        opacity: 0.9 !important;
         box-sizing: border-box !important;
+        border-radius: 6px !important;
+    }
+    .top-nav__main-menus.mobile .top-nav__dropdown ul li a:active {
+        background: rgba(255,255,255,0.06) !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown ul li i {
         width: 18px !important;
