@@ -72,18 +72,37 @@
     .top-nav__main-menus {
         display: none !important;
     }
-    .top-nav.mobile .top-nav__main-menus {
+    /* OJO: Alpine pone la clase "mobile" directamente en este <ul>
+       (x-bind:class="expanded && 'mobile'"), no en un ancestro .top-nav */
+    .top-nav__main-menus.mobile {
         display: flex !important;
         flex-direction: column !important;
         width: 100% !important;
+        gap: 0 !important;
     }
-    .top-nav__dropdown ul {
+    .top-nav__main-menus.mobile > li {
+        width: 100% !important;
+        border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+    }
+    .top-nav__main-menus.mobile > li > a,
+    .top-nav__main-menus.mobile > li > button {
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        padding: 10px 6px !important;
+        font-size: 0.95rem !important;
+    }
+    /* submenus desplegables dentro de cada item del menu movil */
+    .top-nav__main-menus.mobile .top-nav__dropdown ul {
         position: static !important;
         display: none !important;
+        width: 100% !important;
+        padding-left: 12px !important;
     }
-    .top-nav__dropdown:focus-within ul,
-    .top-nav__dropdown.open ul {
-        display: block !important;
+    .top-nav__main-menus.mobile .top-nav__dropdown.open ul,
+    .top-nav__main-menus.mobile .top-nav__dropdown:focus-within ul {
+        display: flex !important;
+        flex-direction: column !important;
     }
 
     /* ---------- CONTENEDOR .top-nav__right (envuelve el ratio-bar) ---------- */
