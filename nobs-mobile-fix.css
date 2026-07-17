@@ -146,25 +146,23 @@
     .top-nav__ratio-bar {
         justify-content: flex-start !important;
         display: flex !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-        gap: 12px !important;
+        flex-wrap: wrap !important;
+        overflow-x: visible !important;
+        gap: 6px !important;
         width: 100% !important;
-        font-size: 0.72rem !important;
+        font-size: 0.7rem !important;
         padding-bottom: 8px !important;
         margin-bottom: 6px !important;
-        scrollbar-width: thin !important;
     }
     .top-nav__ratio-bar li {
-        flex: 0 0 auto !important;
+        flex: 0 1 auto !important;
         white-space: nowrap !important;
         display: flex !important;
         align-items: center !important;
         gap: 4px !important;
         background: rgba(255,255,255,0.05) !important;
         border-radius: 6px !important;
-        padding: 4px 8px !important;
+        padding: 4px 7px !important;
     }
     .top-nav__ratio-bar li a {
         display: flex !important;
@@ -215,30 +213,33 @@
     .top-nav__icon-bar li:has(.fa-bell) .top-nav--right__icon-link::after {
         content: "Notis";
     }
-    /* punto/badge de actividad: pegado a la esquina del propio icono,
-       no flotando lejos a la derecha del bloque */
-    .top-nav__icon-bar .top-nav--right__icon-link i {
+    /* punto/badge de actividad: pegado a la esquina del propio icono.
+       Cubrimos cualquier elemento hijo del link que no sea el icono <i>
+       principal, ya que el badge puede venir como span/small/em/dot
+       segun el tema */
+    .top-nav__icon-bar .top-nav--right__icon-link {
         position: relative !important;
-        flex: 0 0 auto !important;
     }
-    .top-nav__icon-bar .top-nav--right__icon-link i::after {
-        content: "" !important;
-    }
-    .top-nav__icon-bar .top-nav--right__icon-link > span,
-    .top-nav__icon-bar .top-nav--right__icon-link > .badge,
-    .top-nav__icon-bar .top-nav--right__icon-link > small {
+    .top-nav__icon-bar .top-nav--right__icon-link > *:not(:first-child) {
         position: absolute !important;
-        top: 4px !important;
-        left: 22px !important;
+        top: 2px !important;
+        left: 18px !important;
         right: auto !important;
+        bottom: auto !important;
         transform: none !important;
-        width: 8px !important;
-        height: 8px !important;
-        min-width: 8px !important;
+        width: 9px !important;
+        height: 9px !important;
+        min-width: 9px !important;
+        max-width: 9px !important;
         padding: 0 !important;
+        margin: 0 !important;
         border-radius: 50% !important;
         font-size: 0 !important;
         line-height: 0 !important;
+        overflow: hidden !important;
+        text-indent: -9999px !important;
+        border: 2px solid #0a0a0a !important;
+        box-sizing: content-box !important;
     }
 
     .top-nav__icon-bar .top-nav__dropdown {
@@ -344,6 +345,9 @@
         padding: 4px 16px 0 16px !important;
         box-sizing: border-box !important;
         gap: 0 !important;
+        overflow: visible !important;
+        min-height: min-content !important;
+        flex-shrink: 0 !important;
     }
     .top-nav__main-menus.mobile > li {
         width: 100% !important;
