@@ -200,9 +200,9 @@
         display: flex !important;
         flex-wrap: wrap !important;
         overflow-x: visible !important;
-        gap: 6px !important;
+        gap: 8px !important;
         width: 100% !important;
-        font-size: 0.7rem !important;
+        font-size: 1rem !important;
         padding-bottom: 8px !important;
         margin-bottom: 6px !important;
     }
@@ -211,10 +211,10 @@
         white-space: nowrap !important;
         display: flex !important;
         align-items: center !important;
-        gap: 4px !important;
+        gap: 5px !important;
         background: rgba(255,255,255,0.05) !important;
-        border-radius: 6px !important;
-        padding: 4px 7px !important;
+        border-radius: 8px !important;
+        padding: 8px 12px !important;
     }
     .top-nav__ratio-bar li a {
         display: flex !important;
@@ -491,9 +491,10 @@
         flex: 0 0 auto !important;
     }
 
-    /* ---------- SECONDARY NAV / TABS ---------- */
+    /* ---------- SECONDARY NAV / TABS (Perfil/Configuracion/Torrents...) ---------- */
     .secondary-nav {
         padding: 4px 8px !important;
+        overflow: visible !important;
     }
     .breadcrumbsV2 {
         font-size: 0.75rem !important;
@@ -502,17 +503,80 @@
     }
     .nav-tabsV2 {
         display: flex !important;
-        overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch !important;
+        flex-direction: column !important;
+        overflow: visible !important;
         flex-wrap: nowrap !important;
-        gap: 4px !important;
+        gap: 0 !important;
+        width: 100% !important;
     }
     .nav-tab-menu {
-        flex: 0 0 auto !important;
-        font-size: 0.85rem !important;
+        position: relative !important;
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        font-size: 0.95rem !important;
+        border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+    }
+    .nav-tab-menu:last-child {
+        border-bottom: none !important;
+    }
+    .nav-tab-menu > a {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        padding: 12px 8px !important;
+        box-sizing: border-box !important;
+    }
+    .nav-tab-menu > a::after {
+        content: "\f078";
+        font-family: "Font Awesome 5 Free", "Font Awesome 6 Free", FontAwesome;
+        font-weight: 900;
+        font-size: 0.7rem;
+        opacity: 0.5;
+        margin-left: 8px;
+        transition: transform 0.2s ease;
+    }
+    .nav-tab-menu:focus-within > a::after,
+    .nav-tab-menu.open > a::after {
+        transform: rotate(180deg);
     }
     .nav-tab-menu__items {
         display: none !important;
+    }
+    .nav-tab-menu:focus-within > .nav-tab-menu__items,
+    .nav-tab-menu.open > .nav-tab-menu__items {
+        display: flex !important;
+        flex-direction: column !important;
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin: 0 0 10px 0 !important;
+        padding: 6px !important;
+        background: rgba(255,255,255,0.045) !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+        border-radius: 10px !important;
+        box-shadow: none !important;
+    }
+    .nav-tab-menu__items li {
+        width: 100% !important;
+        border-top: 1px solid rgba(255,255,255,0.05) !important;
+    }
+    .nav-tab-menu__items li:first-child {
+        border-top: none !important;
+    }
+    .nav-tab-menu__items li a {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+        padding: 10px 8px !important;
+        font-size: 0.88rem !important;
+        opacity: 0.9 !important;
+        box-sizing: border-box !important;
+    }
+    .nav-tab-menu__items li a:active {
+        background: rgba(255,255,255,0.06) !important;
     }
 
     /* ---------- COUNTDOWN / EVENT BANNER ---------- */
