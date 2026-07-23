@@ -26,15 +26,26 @@
         display: flex !important;
         grid-template: none !important;
         flex-wrap: wrap !important;
+        align-items: center !important;
         padding: 8px 10px !important;
         gap: 8px !important;
     }
+    /* fila superior: hamburguesa + logo pequeño + titulo grande, todo
+       en la misma linea. .top-nav__toggle es hermano de .top-nav__left
+       dentro de .top-nav, asi que forzamos su orden aqui */
+    .top-nav__toggle {
+        order: 1 !important;
+        flex: 0 0 auto !important;
+    }
     .top-nav__left {
-        width: 100% !important;
+        order: 2 !important;
+        width: auto !important;
+        flex: 1 1 auto !important;
         display: flex !important;
         flex-wrap: wrap !important;
         align-items: center !important;
         gap: 8px !important;
+        min-width: 0 !important;
     }
     .top-nav__branding {
         flex: 0 0 auto !important;
@@ -45,22 +56,24 @@
     }
     .top-nav__site-logo {
         display: block !important;
-        order: 3 !important;
-        flex: 1 1 100% !important;
-        font-size: 1.4rem !important;
+        order: 2 !important;
+        flex: 0 1 auto !important;
+        min-width: 0 !important;
+        font-size: 1.15rem !important;
         font-weight: 900 !important;
-        letter-spacing: 0.03em !important;
+        letter-spacing: 0.02em !important;
         line-height: 1.15 !important;
         text-transform: uppercase !important;
-        margin: 6px 4px 4px 4px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        margin: 0 !important;
         background: linear-gradient(90deg, #d080ff, #00e5ff) !important;
         -webkit-background-clip: text !important;
         background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
     }
-    /* barra de busqueda: propia fila ancha, entre el logo pequeño de
-       arriba y el titulo grande de abajo, en vez de apretada junto
-       al logo en la misma linea */
+    /* buscador: propia fila ancha DEBAJO de la fila hamburguesa+titulo */
     .quick-search,
     .quick-search.sf-hidden,
     .quick-search__inputs,
@@ -68,7 +81,7 @@
         display: block !important;
     }
     .quick-search {
-        order: 2 !important;
+        order: 3 !important;
         flex: 1 1 100% !important;
         min-width: 0 !important;
         width: 100% !important;
@@ -89,9 +102,6 @@
        panel hamburguesa, ver seccion mas abajo */
     .top-nav__left > a[href*="/gaming"] {
         display: none !important;
-    }
-    .top-nav__toggle {
-        flex: 0 0 auto !important;
     }
 
     /* =================================================================
