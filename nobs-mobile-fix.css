@@ -41,15 +41,16 @@
         width: 0 !important;
         flex: 1 1 0% !important;
         display: flex !important;
-        flex-wrap: nowrap !important;
+        flex-wrap: wrap !important;
         align-items: center !important;
         gap: 8px !important;
         min-width: 0 !important;
-        overflow: hidden !important;
     }
     .top-nav__branding {
         flex: 0 0 auto !important;
         order: 1 !important;
+        display: flex !important;
+        align-items: center !important;
     }
     .top-nav__branding img {
         height: 24px !important;
@@ -57,6 +58,9 @@
     .top-nav__site-logo {
         display: block !important;
         order: 2 !important;
+        /* ocupa el resto de la PRIMERA fila (junto al logo pequeño),
+           nunca crece a 100% para no empujar al buscador a compartir
+           esa misma fila */
         flex: 1 1 auto !important;
         min-width: 0 !important;
         font-size: 1.1rem !important;
@@ -73,8 +77,8 @@
         background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
     }
-    /* buscador: propia fila ancha DEBAJO de la fila hamburguesa+titulo,
-       con margen a derecha e izquierda para que no toque los bordes */
+    /* buscador: SIEMPRE fuerza su propia fila completa, empujado por
+       flex-basis:100% dentro del contenedor con wrap */
     .quick-search,
     .quick-search.sf-hidden,
     .quick-search__inputs,
@@ -83,7 +87,7 @@
     }
     .quick-search {
         order: 3 !important;
-        flex: 1 1 100% !important;
+        flex: 0 0 100% !important;
         min-width: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
@@ -840,4 +844,4 @@
     .nobs-bottom-nav a i {
         font-size: 1.2rem !important;
     }
-       }
+                              }
