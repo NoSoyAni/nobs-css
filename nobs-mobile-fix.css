@@ -862,4 +862,23 @@
     .nobs-bottom-nav a i {
         font-size: 1.2rem !important;
     }
+
+    /* ---------- MARCADOR DE VERSION (debug/cache-check) ----------
+       Esquina inferior-izquierda, discreto. Sirve para confirmar que
+       el navegador esta cargando la version actualizada del CSS y no
+       una copia cacheada. Subir el numero en cada cambio futuro. */
+    body::before {
+        content: "nobs-mobile-fix v11" !important;
+        position: fixed !important;
+        bottom: 4px !important;
+        left: 4px !important;
+        z-index: 99999 !important;
+        font-family: monospace !important;
+        font-size: 9px !important;
+        color: rgba(255,255,255,0.35) !important;
+        background: rgba(0,0,0,0.4) !important;
+        padding: 2px 5px !important;
+        border-radius: 3px !important;
+        pointer-events: none !important;
+    }
 }
