@@ -1,5 +1,5 @@
 /* ===================================================================
-   NOBS MOBILE APP-LIKE REDESIGN v3
+   NOBS MOBILE APP-LIKE REDESIGN v12
    Cargar via @import en stark-nobs.css, o como CSS externo aparte.
    NO poner ningun @import dentro de este archivo.
    =================================================================== */
@@ -31,15 +31,22 @@
         gap: 8px !important;
     }
     /* fila superior: hamburguesa + logo pequeño + titulo grande, todo
-       en la misma linea, sin saltar a su propia fila. */
+       en la misma linea, sin saltar a su propia fila. El buscador
+       cae aparte, en su propia fila completa debajo. */
     .top-nav__toggle {
         order: 1 !important;
         flex: 0 0 auto !important;
     }
+    /* .top-nav__left es hermano del toggle dentro de .top-nav (flex).
+       branding+titulo van en su propia fila-hija (mediante wrapper
+       flex interno); el buscador, al pedir flex-basis:100%, hace que
+       TODO .top-nav__left salte de linea si no se le fija un ancho
+       explicito -> por eso separamos ambos grupos con flex-wrap en
+       el padre real (.top-nav) en vez de delegar en el hijo. */
     .top-nav__left {
         order: 2 !important;
-        width: 0 !important;
-        flex: 1 1 0% !important;
+        width: auto !important;
+        flex: 1 1 auto !important;
         display: flex !important;
         flex-wrap: wrap !important;
         align-items: center !important;
@@ -62,7 +69,7 @@
            nunca crece a 100% para no empujar al buscador a compartir
            esa misma fila */
         flex: 1 1 auto !important;
-        min-width: 0 !important;
+        min-width: 60px !important;
         font-size: 1.1rem !important;
         font-weight: 900 !important;
         letter-spacing: 0.02em !important;
@@ -77,8 +84,9 @@
         background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
     }
-    /* buscador: SIEMPRE fuerza su propia fila completa, empujado por
-       flex-basis:100% dentro del contenedor con wrap */
+    /* buscador: SIEMPRE fuerza su propia fila completa DENTRO de
+       .top-nav__left (no del .top-nav padre), asi el toggle -que
+       vive fuera de .top-nav__left- no se ve afectado */
     .quick-search,
     .quick-search.sf-hidden,
     .quick-search__inputs,
@@ -87,8 +95,8 @@
     }
     .quick-search {
         order: 3 !important;
-        flex: 0 0 100% !important;
-        min-width: 0 !important;
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
@@ -868,7 +876,7 @@
        el navegador esta cargando la version actualizada del CSS y no
        una copia cacheada. Subir el numero en cada cambio futuro. */
     body::before {
-        content: "nobs-mobile-fix v11" !important;
+        content: "nobs-mobile-fix v12" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
