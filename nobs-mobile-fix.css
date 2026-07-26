@@ -98,12 +98,21 @@
         box-sizing: border-box !important;
         justify-content: flex-start !important;
         text-align: left !important;
+        position: relative !important;
+        min-height: 46px !important;
     }
+    /* el tema pone .quick-search__inputs en position:absolute con
+       width fijo de 400px SOLO al enfocar, y sin left/right definidos
+       en reposo -> por eso "width:100%" no se notaba. Lo anclamos
+       explicitamente a todo el ancho del padre relativo. */
     .quick-search__inputs {
-        position: static !important;
-        width: 100% !important;
+        position: absolute !important;
+        left: 0 !important;
+        right: 0 !important;
+        top: 0 !important;
+        width: auto !important;
+        max-width: none !important;
         margin: 0 !important;
-        margin-left: 0 !important;
         justify-content: flex-start !important;
     }
     .quick-search__input {
