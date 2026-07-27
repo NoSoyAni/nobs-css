@@ -1,7 +1,22 @@
+/* ==UserStyle==
+@name           NOBS MOBILE APP-LIKE REDESIGN
+@namespace      nobs.local
+@version        12.0.0
+@description    Drawer scoped to mobile, no duplicate avatar/ghost, home banner removed, edge-to-edge blocks, readable chat.
+@author         NoSoyAni (Copyright (c) 2026)
+@license        Custom - Personal & Non-Commercial Use Only
+==/UserStyle== */
+
 /* ===================================================================
    NOBS MOBILE APP-LIKE REDESIGN v12
-   Cargar via @import en stark-nobs.css, o como CSS externo aparte.
-   NO poner ningun @import dentro de este archivo.
+   Copyright (c) 2026 NoSoyAni. Todos los derechos reservados.
+
+   LICENCIA Y CONDICIONES DE USO:
+   - Se concede permiso gratuito a los miembros de la comunidad de NOBS 
+     para instalar, ejecutar y utilizar este trabajo para uso personal.
+   - Queda estrictamente prohibida la copia, redistribución, modificación,
+     sublicencia o comercialización de este código fuente sin el 
+     consentimiento previo por escrito del autor original.
    =================================================================== */
 
 @media (max-width: 768px) {
