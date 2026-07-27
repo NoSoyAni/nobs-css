@@ -53,7 +53,8 @@
     .top-nav__toggle {
         order: 1 !important;
         flex: 0 0 auto !important;
-        align-self: center !important;
+        align-self: flex-start !important;
+        margin-top: 6px !important;
     }
     .top-nav__left {
         order: 2 !important;
@@ -61,7 +62,7 @@
         flex: 1 1 auto !important;
         display: flex !important;
         flex-wrap: wrap !important;
-        align-items: center !important;
+        align-items: flex-start !important;
         gap: 8px !important;
         min-width: 0 !important;
     }
@@ -889,7 +890,7 @@
        el navegador esta cargando la version actualizada del CSS y no
        una copia cacheada. Subir el numero en cada cambio futuro. */
     body::before {
-        content: "nobs-mobile-fix v14" !important;
+        content: "nobs-mobile-fix v15" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
@@ -902,4 +903,6 @@
         border-radius: 3px !important;
         pointer-events: none !important;
     }
+}
+
 }
