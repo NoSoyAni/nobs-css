@@ -20,7 +20,7 @@
    =================================================================== */
 
 @media (max-width: 768px) {
-
+ 
     /* ---------- BASE ---------- */
     html, body {
         overflow-x: hidden !important;
@@ -36,28 +36,24 @@
     body {
         padding-bottom: 60px !important;
     }
-
+ 
     .top-nav {
         display: flex !important;
         grid-template: none !important;
         flex-wrap: wrap !important;
         align-items: center !important;
-        padding: 8px 10px 8px 46px !important;
-        gap: 8px !important;
+        padding: 8px 10px !important;
+        gap: 10px !important;
         position: relative !important;
     }
-    /* el toggle es el ULTIMO hijo de .top-nav en el DOM real, hermano
-       de .top-nav__left y .top-nav__right. Jugar con "order" fallaba
-       porque .top-nav__left se estira a ocupar toda la fila (por el
-       buscador interno al 100%) y empuja al toggle a la siguiente
-       linea del wrap. Solucion robusta: sacarlo del flujo flex por
-       completo y anclarlo con position:absolute arriba a la izquierda. */
+    /* el toggle es hermano de .top-nav__left y .top-nav__right dentro
+       de .top-nav (flex). Lo dejamos fluir normal en la fila, alineado
+       por altura con el logo/titulo, en vez de sacarlo con
+       position:absolute (eso lo dejaba "flotando" en linea aparte). */
     .top-nav__toggle {
-        position: absolute !important;
-        top: 10px !important;
-        left: 10px !important;
-        z-index: 10 !important;
-        flex: none !important;
+        order: 1 !important;
+        flex: 0 0 auto !important;
+        align-self: center !important;
     }
     .top-nav__left {
         order: 2 !important;
@@ -152,7 +148,7 @@
     .top-nav__left > a[href*="/gaming"] {
         display: none !important;
     }
-
+ 
     /* =================================================================
        PANEL HAMBURGUESA COMPLETO
        Fusiona: icon-bar (perfil/correo/notis) + main-menus (Torrents,
@@ -160,11 +156,11 @@
        con acordeon. Usamos order sobre EL PROPIO .top-nav (flex
        container) en vez de depender de :has(), que es mas fragil.
        ================================================================= */
-
+ 
     .top-nav__main-menus {
         display: none !important;
     }
-
+ 
     .top-nav.mobile,
     .top-nav:has(> .top-nav__main-menus.mobile) {
         position: fixed !important;
@@ -221,7 +217,7 @@
         align-items: center !important;
         justify-content: center !important;
     }
-
+ 
     /* Orden explicito de los 3 hijos directos de .top-nav cuando esta
        expandido: 1) perfil (top-nav__right), 2) menu principal
        (top-nav__main-menus), 3) toggle (fixed, no cuenta en flow) */
@@ -232,7 +228,7 @@
     .top-nav__main-menus.mobile {
         order: 3 !important;
     }
-
+ 
     .top-nav__right {
         grid-area: unset !important;
         display: flex !important;
@@ -247,14 +243,14 @@
     .top-nav__left {
         grid-area: unset !important;
     }
-
+ 
     .top-nav__right.mobile {
         background: linear-gradient(180deg, rgba(191,85,236,0.10), rgba(191,85,236,0.02)) !important;
         padding: 60px 16px 14px 16px !important;
         border-bottom: 1px solid rgba(255,255,255,0.08) !important;
         flex-shrink: 0 !important;
     }
-
+ 
     .top-nav__ratio-bar {
         justify-content: flex-start !important;
         display: flex !important;
@@ -281,14 +277,14 @@
         align-items: center !important;
         gap: 4px !important;
     }
-
+ 
     .top-nav__username--highresolution {
         display: block !important;
         font-size: 1.15rem !important;
         font-weight: 700 !important;
         margin: 6px 0 14px 0 !important;
     }
-
+ 
     /* correo + notificaciones: fila compacta, uno junto al otro, no
        apiladas con hueco enorme entre medias */
     .top-nav__icon-bar {
@@ -353,7 +349,7 @@
         border: 2px solid #0a0a0a !important;
         box-sizing: content-box !important;
     }
-
+ 
     .top-nav__icon-bar .top-nav__dropdown {
         position: static !important;
         width: 100% !important;
@@ -395,7 +391,7 @@
         border-radius: 50% !important;
         flex: 0 0 auto !important;
     }
-
+ 
     /* submenu del perfil: TARJETA que empuja el contenido hacia abajo,
        nunca position:absolute flotando encima de otras cosas */
     .top-nav__icon-bar .top-nav__dropdown ul {
@@ -445,7 +441,7 @@
         opacity: 0.7 !important;
         flex: 0 0 auto !important;
     }
-
+ 
     /* =================================================================
        MENU PRINCIPAL (Torrents / Comunidad / Soporte / Otro)
        Acordeon a pantalla completa, sin superposiciones ni flotantes.
@@ -469,7 +465,7 @@
     .top-nav__main-menus.mobile > li:last-child {
         border-bottom: none !important;
     }
-
+ 
     .top-nav__main-menus.mobile > li > a.top-nav__dropdown--nontouch {
         display: none !important;
     }
@@ -498,11 +494,11 @@
     .top-nav__main-menus.mobile > li:focus-within > a::after {
         transform: rotate(180deg);
     }
-
+ 
     .top-nav__main-menus.mobile .top-nav__dropdown {
         position: static !important;
     }
-
+ 
     /* TARJETA de submenu: caja bien delimitada con borde y fondo propio,
        separada del titulo de arriba, en vez de texto suelto flotando */
     .top-nav__main-menus.mobile .top-nav__dropdown ul {
@@ -550,7 +546,7 @@
         opacity: 0.65 !important;
         flex: 0 0 auto !important;
     }
-
+ 
     /* ---------- SECONDARY NAV / TABS (Perfil/Configuracion/Torrents...) ---------- */
     .secondary-nav {
         padding: 4px 8px !important;
@@ -668,7 +664,7 @@
     .nav-tab-menu__items li a:active {
         background: rgba(255,255,255,0.06) !important;
     }
-
+ 
     /* ---------- COUNTDOWN / EVENT BANNER ---------- */
     .special-event-alert {
         grid-template-columns: 1fr !important;
@@ -703,7 +699,7 @@
     .special-event-alert [x-data^="timer"] > div:nth-child(2) > div[style*="opacity"] {
         display: none !important;
     }
-
+ 
     /* ---------- QUICK ACCESS GRID ---------- */
     .nobs-quick-access {
         display: grid !important;
@@ -730,7 +726,7 @@
     .nobs-quick-access a i {
         font-size: 1.1rem !important;
     }
-
+ 
     /* ---------- PANELS ---------- */
     .panelV2 {
         margin: 0 0 12px 0 !important;
@@ -740,7 +736,7 @@
         padding: 10px !important;
         font-size: 0.9rem !important;
     }
-
+ 
     /* ---------- CHAT FIX ---------- */
     .chatroom__messages {
         padding: 0 !important;
@@ -803,7 +799,7 @@
         flex-wrap: wrap !important;
         gap: 4px !important;
     }
-
+ 
     /* ---------- FORMS ---------- */
     .form__select,
     .form__text,
@@ -830,7 +826,7 @@
     .order__item {
         padding: 10px 6px !important;
     }
-
+ 
     /* ---------- TABLES ---------- */
     table {
         display: block !important;
@@ -839,7 +835,7 @@
         -webkit-overflow-scrolling: touch !important;
         max-width: 100% !important;
     }
-
+ 
     /* ---------- FOOTER ---------- */
     .footer__wrapper {
         grid-template-columns: 1fr !important;
@@ -858,7 +854,7 @@
     .footer__copyright {
         font-size: 0.7rem !important;
     }
-
+ 
     /* ---------- BOTTOM APP NAV ---------- */
     .nobs-bottom-nav {
         position: fixed !important;
@@ -887,13 +883,13 @@
     .nobs-bottom-nav a i {
         font-size: 1.2rem !important;
     }
-
+ 
     /* ---------- MARCADOR DE VERSION (debug/cache-check) ----------
        Esquina inferior-izquierda, discreto. Sirve para confirmar que
        el navegador esta cargando la version actualizada del CSS y no
        una copia cacheada. Subir el numero en cada cambio futuro. */
     body::before {
-        content: "nobs-mobile-fix v13" !important;
+        content: "nobs-mobile-fix v14" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
