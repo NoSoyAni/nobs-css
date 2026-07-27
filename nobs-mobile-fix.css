@@ -112,9 +112,14 @@
         min-width: 100% !important;
         width: 100% !important;
         max-width: 100% !important;
-        margin: 0 !important;
-        margin-left: 0 !important;
+        /* tira del buscador hacia la izquierda para que arranque
+           alineado con la hamburguesa, compensando el ancho+gap
+           que ocupa el toggle dentro de .top-nav */
+        margin-left: -38px !important;
         margin-right: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-left: 38px !important;
         padding-right: 12px !important;
         box-sizing: border-box !important;
         justify-content: flex-start !important;
@@ -890,7 +895,7 @@
        el navegador esta cargando la version actualizada del CSS y no
        una copia cacheada. Subir el numero en cada cambio futuro. */
     body::before {
-        content: "nobs-mobile-fix v15" !important;
+        content: "nobs-mobile-fix v16" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
@@ -903,6 +908,4 @@
         border-radius: 3px !important;
         pointer-events: none !important;
     }
-}
-
 }
