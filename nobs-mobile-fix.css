@@ -42,22 +42,23 @@
         grid-template: none !important;
         flex-wrap: wrap !important;
         align-items: center !important;
-        padding: 8px 10px !important;
+        padding: 8px 10px 8px 46px !important;
         gap: 8px !important;
+        position: relative !important;
     }
-    /* fila superior: hamburguesa + logo pequeño + titulo grande, todo
-       en la misma linea, sin saltar a su propia fila. El buscador
-       cae aparte, en su propia fila completa debajo. */
+    /* el toggle es el ULTIMO hijo de .top-nav en el DOM real, hermano
+       de .top-nav__left y .top-nav__right. Jugar con "order" fallaba
+       porque .top-nav__left se estira a ocupar toda la fila (por el
+       buscador interno al 100%) y empuja al toggle a la siguiente
+       linea del wrap. Solucion robusta: sacarlo del flujo flex por
+       completo y anclarlo con position:absolute arriba a la izquierda. */
     .top-nav__toggle {
-        order: 1 !important;
-        flex: 0 0 auto !important;
+        position: absolute !important;
+        top: 10px !important;
+        left: 10px !important;
+        z-index: 10 !important;
+        flex: none !important;
     }
-    /* .top-nav__left es hermano del toggle dentro de .top-nav (flex).
-       branding+titulo van en su propia fila-hija (mediante wrapper
-       flex interno); el buscador, al pedir flex-basis:100%, hace que
-       TODO .top-nav__left salte de linea si no se le fija un ancho
-       explicito -> por eso separamos ambos grupos con flex-wrap en
-       el padre real (.top-nav) en vez de delegar en el hijo. */
     .top-nav__left {
         order: 2 !important;
         width: auto !important;
@@ -241,9 +242,10 @@
         width: 100% !important;
         column-gap: 0 !important;
     }
+    /* NOTA: el order de .top-nav__left ya se define arriba (order:2),
+       aqui solo quitamos el grid-area heredado del layout desktop */
     .top-nav__left {
         grid-area: unset !important;
-        order: 1 !important;
     }
 
     .top-nav__right.mobile {
@@ -891,7 +893,7 @@
        el navegador esta cargando la version actualizada del CSS y no
        una copia cacheada. Subir el numero en cada cambio futuro. */
     body::before {
-        content: "nobs-mobile-fix v12" !important;
+        content: "nobs-mobile-fix v13" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
