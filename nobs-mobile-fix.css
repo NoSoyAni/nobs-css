@@ -7,7 +7,7 @@
 @license        Custom - Personal & Non-Commercial Use Only
 ==/UserStyle== */
 /* ===================================================================
-   NOBS MOBILE APP-LIKE REDESIGN v12
+   NOBS MOBILE APP-LIKE REDESIGN v19
    Copyright (c) 2026 NoSoyAni. Todos los derechos reservados.
    LICENCIA Y CONDICIONES DE USO:
    - Se concede permiso gratuito a los miembros de la comunidad de NOBS 
@@ -516,6 +516,12 @@
        de los items de la izquierda, haciendo que un tap en el submenu
        en realidad caiga sobre el link de abajo (navega a sitio erroneo). */
     .top-nav__main-menus.mobile .top-nav__dropdown ul {
+        /* NUCLEAR: anula TODO lo heredado del tema de escritorio
+           (incluyendo cualquier position:absolute/top/left que no
+           hemos podido localizar exactamente en el CSS base) antes
+           de reaplicar nuestros propios estilos de tarjeta estatica */
+        all: revert !important;
+        list-style: none !important;
         position: static !important;
         display: none !important;
         flex-direction: column !important;
@@ -915,7 +921,7 @@
        el navegador esta cargando la version actualizada del CSS y no
        una copia cacheada. Subir el numero en cada cambio futuro. */
     body::before {
-        content: "nobs-mobile-fix v18" !important;
+        content: "nobs-mobile-fix v19" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
