@@ -448,7 +448,11 @@
 
     /* =================================================================
        MENU PRINCIPAL (Torrents / Comunidad / Soporte / Otro)
-       Acordeon a pantalla completa, sin superposiciones ni flotantes.
+       El submenu se abre a la DERECHA del item (como en desktop),
+       no debajo. Anclamos position:absolute nosotros mismos con
+       coordenadas explicitas y seguras (top:0; left:100%), en vez de
+       depender del posicionamiento crudo del tema que lo hacia
+       superponerse mal en movil.
        ================================================================= */
     .top-nav__main-menus.mobile {
         display: flex !important;
@@ -463,7 +467,7 @@
     }
     .top-nav__main-menus.mobile > li {
         width: 100% !important;
-        position: static !important;
+        position: relative !important;
         border-bottom: 1px solid rgba(255,255,255,0.08) !important;
     }
     .top-nav__main-menus.mobile > li:last-child {
@@ -486,7 +490,7 @@
     }
     .top-nav__main-menus.mobile > li > a.top-nav__dropdown--touch::after,
     .top-nav__main-menus.mobile > li > a:not(.top-nav__dropdown--nontouch):not(.top-nav__dropdown--touch)::after {
-        content: "\f078";
+        content: "\f054"; /* fa-chevron-right, apunta hacia donde se abre */
         font-family: "Font Awesome 5 Free", "Font Awesome 6 Free", FontAwesome;
         font-weight: 900;
         font-size: 0.75rem;
@@ -496,60 +500,59 @@
     }
     .top-nav__main-menus.mobile > li.open > a::after,
     .top-nav__main-menus.mobile > li:focus-within > a::after {
-        transform: rotate(180deg);
+        transform: rotate(90deg);
     }
 
-    .top-nav__main-menus.mobile > li {
-        position: static !important;
-    }
     .top-nav__main-menus.mobile .top-nav__dropdown {
         position: static !important;
-        display: block !important;
         width: 100% !important;
     }
 
-    /* TARJETA de submenu: caja bien delimitada con borde y fondo propio,
-       separada del titulo de arriba, en vez de texto suelto flotando.
-       NO usar all:revert aqui: revert restaura el position:absolute
-       ORIGINAL del tema de escritorio (que es justo lo que causaba la
-       superposicion), asi que hay que forzar static directamente. */
+    /* submenu como FLYOUT a la derecha: posicion absoluta explicita
+       y segura, anclada al li (que es position:relative), con
+       max-height + scroll propio para que nunca se salga de pantalla
+       ni se superponga mal con el resto de items */
     .top-nav__main-menus.mobile .top-nav__dropdown ul {
-        position: static !important;
-        list-style: none !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 100% !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
         display: none !important;
         flex-direction: column !important;
-        width: 100% !important;
-        max-width: 100% !important;
+        width: 220px !important;
+        max-width: 70vw !important;
+        max-height: 60vh !important;
+        overflow-y: auto !important;
         box-sizing: border-box !important;
-        margin: 4px 0 14px 0 !important;
+        margin: 0 !important;
         padding: 6px !important;
         background: rgba(10,10,10,0.98) !important;
         border: 1px solid rgba(255,255,255,0.08) !important;
         border-radius: 12px !important;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.04) !important;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04) !important;
+        z-index: 50 !important;
+        list-style: none !important;
+    }
+    /* si el item esta pegado al borde derecho y el submenu se saliera
+       de pantalla, lo volcamos a la izquierda del item en su lugar */
+    .top-nav__main-menus.mobile .top-nav__dropdown ul.flip-left {
         left: auto !important;
-        right: auto !important;
-        top: auto !important;
-        bottom: auto !important;
-        transform: none !important;
-        z-index: auto !important;
-        float: none !important;
+        right: 100% !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown.open ul,
     .top-nav__main-menus.mobile .top-nav__dropdown:focus-within ul {
         display: flex !important;
-        position: static !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown ul li {
         width: 100% !important;
-        position: relative !important;
         border-top: 1px solid rgba(255,255,255,0.05) !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown ul li:first-child {
         border-top: none !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown ul li a {
-        position: relative !important;
         display: flex !important;
         align-items: center !important;
         gap: 10px !important;
@@ -559,8 +562,7 @@
         opacity: 0.9 !important;
         box-sizing: border-box !important;
         border-radius: 6px !important;
-        z-index: 2 !important;
-        pointer-events: auto !important;
+        white-space: nowrap !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown ul li a:active {
         background: rgba(255,255,255,0.06) !important;
@@ -570,7 +572,6 @@
         text-align: center !important;
         opacity: 0.65 !important;
         flex: 0 0 auto !important;
-        pointer-events: none !important;
     }
 
     /* ---------- SECONDARY NAV / TABS (Perfil/Configuracion/Torrents...) ---------- */
@@ -915,7 +916,7 @@
        el navegador esta cargando la version actualizada del CSS y no
        una copia cacheada. Subir el numero en cada cambio futuro. */
     body::before {
-        content: "nobs-mobile-fix v20" !important;
+        content: "nobs-mobile-fix v21" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
