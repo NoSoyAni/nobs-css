@@ -7,7 +7,7 @@
 @license        Custom - Personal & Non-Commercial Use Only
 ==/UserStyle== */
 /* ===================================================================
-   NOBS MOBILE APP-LIKE REDESIGN v19
+   NOBS MOBILE APP-LIKE REDESIGN v12
    Copyright (c) 2026 NoSoyAni. Todos los derechos reservados.
    LICENCIA Y CONDICIONES DE USO:
    - Se concede permiso gratuito a los miembros de la comunidad de NOBS 
@@ -500,7 +500,7 @@
     }
 
     .top-nav__main-menus.mobile > li {
-        position: relative !important;
+        position: static !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown {
         position: static !important;
@@ -510,19 +510,12 @@
 
     /* TARJETA de submenu: caja bien delimitada con borde y fondo propio,
        separada del titulo de arriba, en vez de texto suelto flotando.
-       Forzamos position:static con maxima prioridad porque en iOS
-       Safari/Chrome (WebKit) el position:absolute del tema de escritorio
-       puede sobrevivir y hacer que el submenu quede flotando ENCIMA
-       de los items de la izquierda, haciendo que un tap en el submenu
-       en realidad caiga sobre el link de abajo (navega a sitio erroneo). */
+       NO usar all:revert aqui: revert restaura el position:absolute
+       ORIGINAL del tema de escritorio (que es justo lo que causaba la
+       superposicion), asi que hay que forzar static directamente. */
     .top-nav__main-menus.mobile .top-nav__dropdown ul {
-        /* NUCLEAR: anula TODO lo heredado del tema de escritorio
-           (incluyendo cualquier position:absolute/top/left que no
-           hemos podido localizar exactamente en el CSS base) antes
-           de reaplicar nuestros propios estilos de tarjeta estatica */
-        all: revert !important;
-        list-style: none !important;
         position: static !important;
+        list-style: none !important;
         display: none !important;
         flex-direction: column !important;
         width: 100% !important;
@@ -540,6 +533,7 @@
         bottom: auto !important;
         transform: none !important;
         z-index: auto !important;
+        float: none !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown.open ul,
     .top-nav__main-menus.mobile .top-nav__dropdown:focus-within ul {
@@ -921,7 +915,7 @@
        el navegador esta cargando la version actualizada del CSS y no
        una copia cacheada. Subir el numero en cada cambio futuro. */
     body::before {
-        content: "nobs-mobile-fix v19" !important;
+        content: "nobs-mobile-fix v20" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
