@@ -490,7 +490,7 @@
     }
     .top-nav__main-menus.mobile > li > a.top-nav__dropdown--touch::after,
     .top-nav__main-menus.mobile > li > a:not(.top-nav__dropdown--nontouch):not(.top-nav__dropdown--touch)::after {
-        content: "\f054"; /* fa-chevron-right, apunta hacia donde se abre */
+        content: "\f078"; /* fa-chevron-down */
         font-family: "Font Awesome 5 Free", "Font Awesome 6 Free", FontAwesome;
         font-weight: 900;
         font-size: 0.75rem;
@@ -500,7 +500,7 @@
     }
     .top-nav__main-menus.mobile > li.open > a::after,
     .top-nav__main-menus.mobile > li:focus-within > a::after {
-        transform: rotate(90deg);
+        transform: rotate(180deg);
     }
 
     .top-nav__main-menus.mobile .top-nav__dropdown {
@@ -508,38 +508,24 @@
         width: 100% !important;
     }
 
-    /* submenu como FLYOUT a la derecha: posicion absoluta explicita
-       y segura, anclada al li (que es position:relative), con
-       max-height + scroll propio para que nunca se salga de pantalla
-       ni se superponga mal con el resto de items */
+    /* submenu como TARJETA vertical que empuja contenido hacia abajo,
+       position:static (v18-v19). Nunca absolute: el padre .top-nav
+       tiene overflow-y:auto y recorta cualquier hijo absolute que se
+       salga horizontalmente. */
     .top-nav__main-menus.mobile .top-nav__dropdown ul {
-        position: absolute !important;
-        top: 0 !important;
-        left: 100% !important;
-        right: auto !important;
-        bottom: auto !important;
-        transform: none !important;
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
         display: none !important;
         flex-direction: column !important;
-        width: 220px !important;
-        max-width: 70vw !important;
-        max-height: 60vh !important;
-        overflow-y: auto !important;
         box-sizing: border-box !important;
-        margin: 0 !important;
+        margin: 6px 0 4px 0 !important;
         padding: 6px !important;
-        background: rgba(10,10,10,0.98) !important;
+        background: rgba(255,255,255,0.045) !important;
         border: 1px solid rgba(255,255,255,0.08) !important;
         border-radius: 12px !important;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04) !important;
-        z-index: 50 !important;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.04) !important;
         list-style: none !important;
-    }
-    /* si el item esta pegado al borde derecho y el submenu se saliera
-       de pantalla, lo volcamos a la izquierda del item en su lugar */
-    .top-nav__main-menus.mobile .top-nav__dropdown ul.flip-left {
-        left: auto !important;
-        right: 100% !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown.open ul,
     .top-nav__main-menus.mobile .top-nav__dropdown:focus-within ul {
@@ -916,7 +902,7 @@
        el navegador esta cargando la version actualizada del CSS y no
        una copia cacheada. Subir el numero en cada cambio futuro. */
     body::before {
-        content: "nobs-mobile-fix v21" !important;
+        content: "nobs-mobile-fix v22" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
