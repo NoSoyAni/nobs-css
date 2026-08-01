@@ -1,13 +1,13 @@
 /* ==UserStyle==
 @name           NOBS MOBILE APP-LIKE REDESIGN
 @namespace      nobs.local
-@version        22.0.0
+@version        23.0.0
 @description    Drawer scoped to mobile, no duplicate avatar/ghost, home banner removed, edge-to-edge blocks, readable chat.
 @author         NoSoyAni (Copyright (c) 2026)
 @license        Custom - Personal & Non-Commercial Use Only
 ==/UserStyle== */
 /* ===================================================================
-   NOBS MOBILE APP-LIKE REDESIGN v22
+   NOBS MOBILE APP-LIKE REDESIGN v23
    Copyright (c) 2026 NoSoyAni. Todos los derechos reservados.
    LICENCIA Y CONDICIONES DE USO:
    - Se concede permiso gratuito a los miembros de la comunidad de NOBS 
@@ -448,11 +448,12 @@
 
     /* =================================================================
        MENU PRINCIPAL (Torrents / Comunidad / Soporte / Otro)
-       El submenu se abre a la DERECHA del item (como en desktop),
-       no debajo. Anclamos position:absolute nosotros mismos con
-       coordenadas explicitas y seguras (top:0; left:100%), en vez de
-       depender del posicionamiento crudo del tema que lo hacia
-       superponerse mal en movil.
+       Acordeon vertical: el submenu empuja el contenido hacia abajo.
+       NO usar position:absolute/flyout lateral aqui: el panel padre
+       tiene overflow-y:auto para el scroll general del menu, y eso
+       RECORTA cualquier hijo absoluto que se salga hacia los lados
+       (por eso el flyout a la derecha no se veia -> quedaba fuera del
+       area recortada por el overflow del contenedor scrollable).
        ================================================================= */
     .top-nav__main-menus.mobile {
         display: flex !important;
@@ -467,7 +468,7 @@
     }
     .top-nav__main-menus.mobile > li {
         width: 100% !important;
-        position: relative !important;
+        position: static !important;
         border-bottom: 1px solid rgba(255,255,255,0.08) !important;
     }
     .top-nav__main-menus.mobile > li:last-child {
@@ -490,7 +491,7 @@
     }
     .top-nav__main-menus.mobile > li > a.top-nav__dropdown--touch::after,
     .top-nav__main-menus.mobile > li > a:not(.top-nav__dropdown--nontouch):not(.top-nav__dropdown--touch)::after {
-        content: "\f078"; /* fa-chevron-down */
+        content: "\f078"; /* fa-chevron-down: apunta hacia donde se abre (abajo) */
         font-family: "Font Awesome 5 Free", "Font Awesome 6 Free", FontAwesome;
         font-weight: 900;
         font-size: 0.75rem;
@@ -508,24 +509,29 @@
         width: 100% !important;
     }
 
-    /* submenu como TARJETA vertical que empuja contenido hacia abajo,
-       position:static (v18-v19). Nunca absolute: el padre .top-nav
-       tiene overflow-y:auto y recorta cualquier hijo absolute que se
-       salga horizontalmente. */
+    /* submenu como TARJETA que empuja el contenido de abajo hacia
+       abajo, en vez de flotar encima o a un lado */
     .top-nav__main-menus.mobile .top-nav__dropdown ul {
         position: static !important;
-        width: 100% !important;
-        max-width: 100% !important;
+        list-style: none !important;
         display: none !important;
         flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
         box-sizing: border-box !important;
-        margin: 6px 0 4px 0 !important;
+        margin: 4px 0 14px 0 !important;
         padding: 6px !important;
-        background: rgba(255,255,255,0.045) !important;
+        background: rgba(10,10,10,0.98) !important;
         border: 1px solid rgba(255,255,255,0.08) !important;
         border-radius: 12px !important;
         box-shadow: inset 0 1px 0 rgba(255,255,255,0.04) !important;
-        list-style: none !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+        z-index: auto !important;
+        float: none !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown.open ul,
     .top-nav__main-menus.mobile .top-nav__dropdown:focus-within ul {
@@ -548,7 +554,6 @@
         opacity: 0.9 !important;
         box-sizing: border-box !important;
         border-radius: 6px !important;
-        white-space: nowrap !important;
     }
     .top-nav__main-menus.mobile .top-nav__dropdown ul li a:active {
         background: rgba(255,255,255,0.06) !important;
@@ -902,7 +907,7 @@
        el navegador esta cargando la version actualizada del CSS y no
        una copia cacheada. Subir el numero en cada cambio futuro. */
     body::before {
-        content: "nobs-mobile-fix v22" !important;
+        content: "nobs-mobile-fix v23" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
