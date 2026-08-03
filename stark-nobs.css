@@ -4,7 +4,7 @@
    Selectores confirmados a partir del HTML real
    del sitio (settings/general-edit page).
    ============================================ */
-@import url("https://nosoyani.github.io/nobs-css/nobs-mobile-fix.css");
+
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
 
 /* ── VARIABLES ──
@@ -77,8 +77,14 @@ h1, h2, h3, h4, h5,
   text-shadow: 0 0 12px var(--arc-glow);
 }
 
-a { color: var(--arc) !important; text-decoration: none !important; transition: color .2s, text-shadow .2s; }
-a:hover { color: var(--arc-bright) !important; text-shadow: 0 0 8px var(--arc-glow); }
+a:not(.user-tag__link) { color: var(--arc) !important; text-decoration: none !important; transition: color .2s, text-shadow .2s; }
+a:not(.user-tag__link):hover { color: var(--arc-bright) !important; text-shadow: 0 0 8px var(--arc-glow); }
+
+/* Color de grupo/rango: UNIT3D lo pone inline (style="color: #hex")
+   segun el rango real de cada usuario (Administrator, VIP, etc.).
+   No lo tocamos, solo dejamos que respire un pelin en hover. */
+.user-tag__link { text-decoration: none !important; transition: filter .2s; }
+.user-tag__link:hover { filter: brightness(1.25); }
 
 /* ── HEADER / TOP NAV ── */
 header, nav.top-nav {
@@ -363,6 +369,26 @@ tbody td { padding: 9px 12px !important; font-family: 'Rajdhani', sans-serif !im
 
 .seeders, .seed, [class*="seed"]   { color: var(--success) !important; }
 .leechers, .leech, [class*="leech"] { color: var(--danger) !important; }
+
+/* ── CELDAS DE STATS EN LISTA DE TORRENTS (confirmado por HTML real) ── */
+td[class*="torrent-search--list__seeders"],
+td[class*="torrent-search--list__leechers"],
+td[class*="torrent-search--list__completed"] {
+  padding: 4px 8px !important;
+  text-align: center !important;
+}
+.torrent__times-completed-count,
+[class*="torrent-search--list__seeders"] a,
+[class*="torrent-search--list__leechers"] a {
+  display: inline-block !important;
+  padding: 2px 6px !important;
+  min-width: 22px !important;
+  font-family: 'Share Tech Mono', monospace !important;
+  font-size: 12px !important;
+  border-radius: 2px !important;
+  border: 1px solid var(--border) !important;
+  background: rgba(0,217,255,0.04) !important;
+}
 
 .pagination a, .pages a, [class*="page"] a {
   font-family: 'Orbitron', monospace !important;
