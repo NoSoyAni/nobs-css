@@ -371,26 +371,32 @@ tbody td { padding: 9px 12px !important; font-family: 'Rajdhani', sans-serif !im
 .leechers, .leech, [class*="leech"] { color: var(--danger) !important; }
 
 /* ── CELDAS DE STATS EN LISTA DE TORRENTS (confirmado por HTML real) ── */
-td[class*="torrent-search--list__seeders"],
-td[class*="torrent-search--list__leechers"],
-td[class*="torrent-search--list__completed"] {
+td.torrent-search--list__seeders,
+td.torrent-search--list__leechers,
+td.torrent-search--list__completed {
   padding: 4px 8px !important;
   text-align: center !important;
 }
 .torrent__times-completed-count,
-[class*="torrent-search--list__seeders"] a,
-[class*="torrent-search--list__leechers"] a {
-  display: inline-block !important;
+.torrent__seeder-count,
+.torrent__leecher-count {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   padding: 2px 6px !important;
   min-width: 22px !important;
+  height: 20px !important;
+  line-height: 1 !important;
   font-family: 'Share Tech Mono', monospace !important;
   font-size: 12px !important;
   border-radius: 2px !important;
   border: 1px solid var(--border) !important;
   background: rgba(0,217,255,0.04) !important;
 }
+.torrent__seeder-count  { color: var(--success) !important; }
+.torrent__leecher-count { color: var(--danger) !important; }
 
-.pagination a, .pages a, [class*="page"] a {
+.pagination a, .pages a, .pagination__link, [class*="pagination"] a {
   font-family: 'Orbitron', monospace !important;
   font-size: 10px !important;
   background: transparent !important;
@@ -398,8 +404,16 @@ td[class*="torrent-search--list__completed"] {
   color: var(--text-dim) !important;
   padding: 5px 10px !important;
 }
-.pagination a:hover, .pagination .active {
+.pagination a:hover, .pagination .active,
+.pagination__link:hover, [class*="pagination"] a:hover {
   border-color: var(--arc) !important;
   color: var(--arc-bright) !important;
   background: rgba(0,217,255,0.08) !important;
+}
+
+/* ── BLINDAJE FINAL: el color de rango (admin, VIP, etc.) manda
+   siempre, pase lo que pase arriba. Va al final del archivo para
+   ganar por orden de cascada ademas de por especificidad. ── */
+a.user-tag__link[style] {
+  color: unset !important;
 }
