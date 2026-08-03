@@ -420,3 +420,15 @@ td.torrent-search--list__completed {
 a.user-tag__link[style] {
   text-decoration: none !important;
 }
+
+/* ── EFECTO SPARKLE DE RANGO (Owner/Admin) MAS VISIBLE ──
+   El tema pone un GIF de fondo (sparkels.gif) vía
+   style="background-image: url(/img/sparkels.gif)" en el
+   .user-tag. Lo hacemos mas grande y le sumamos un glow
+   para que no se pierda contra el fondo oscuro. */
+.user-tag[style*="sparkels"] {
+  background-size: 200% 200% !important;
+  background-position: center !important;
+  filter: brightness(1.6) contrast(1.3) saturate(1.4) drop-shadow(0 0 6px rgba(249,38,114,0.5)) !important;
+  padding: 4px 2px !important;
+}
