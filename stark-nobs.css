@@ -412,8 +412,11 @@ td.torrent-search--list__completed {
 }
 
 /* ── BLINDAJE FINAL: el color de rango (admin, VIP, etc.) manda
-   siempre, pase lo que pase arriba. Va al final del archivo para
-   ganar por orden de cascada ademas de por especificidad. ── */
+   siempre. No declaramos "color" aqui a proposito: cualquier
+   valor (incluido unset, que aqui heredaria del padre en vez de
+   volver al style inline) rompe el rosa/rojo/etc. del rango.
+   Dejar sin "color" es lo que permite que gane el style="" del
+   HTML, que es justamente lo que queremos. ── */
 a.user-tag__link[style] {
-  color: unset !important;
+  text-decoration: none !important;
 }
