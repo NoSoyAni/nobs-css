@@ -358,6 +358,13 @@
         position: static !important;
         width: 100% !important;
         flex: 1 1 100% !important;
+        /* el <li> hereda flex-row + alto fijo de la barra desktop; con el
+           submenu siempre visible eso apila header+submenu en horizontal
+           y los superpone. Forzamos bloque de alto libre. */
+        display: block !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
     }
     .top-nav__icon-bar .top-nav__dropdown > a.top-nav__dropdown--nontouch {
         display: none !important;
@@ -458,6 +465,13 @@
     .top-nav__main-menus.mobile > li {
         width: 100% !important;
         position: static !important;
+        /* mismo motivo: <li> flex-row + alto fijo de escritorio, con
+           submenu siempre visible desbordaba y se superponia sobre el
+           siguiente item del menu (Torrents, Comunidad...). */
+        display: block !important;
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
         border-bottom: 1px solid rgba(255,255,255,0.08) !important;
     }
     .top-nav__main-menus.mobile > li:last-child {
