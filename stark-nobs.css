@@ -5,7 +5,84 @@
    del sitio (settings/general-edit page).
    ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+@import url('https://nosoyani.github.io/nobs-css/nobs-mobile-fix.css');
+
+/* ── FUENTES AUTO-HOSPEDADAS ──
+   fonts.googleapis.com esta bloqueado por la CSP del sitio
+   (solo permite self/github.io/gitcdn.xyz/github.com), asi
+   que servimos los .woff2 desde tu propio repo de GitHub Pages.
+   Sube la carpeta /fonts (contenido en el zip que te pasé) a
+   la raiz de tu repo stark-nobs-css antes de que esto funcione. */
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://yosoyanikilador.github.io/stark-nobs-css/fonts/orbitron-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('https://yosoyanikilador.github.io/stark-nobs-css/fonts/orbitron-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://yosoyanikilador.github.io/stark-nobs-css/fonts/orbitron-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Orbitron';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('https://yosoyanikilador.github.io/stark-nobs-css/fonts/orbitron-900.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('https://yosoyanikilador.github.io/stark-nobs-css/fonts/rajdhani-300.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://yosoyanikilador.github.io/stark-nobs-css/fonts/rajdhani-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('https://yosoyanikilador.github.io/stark-nobs-css/fonts/rajdhani-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://yosoyanikilador.github.io/stark-nobs-css/fonts/rajdhani-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Rajdhani';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://yosoyanikilador.github.io/stark-nobs-css/fonts/rajdhani-700.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Share Tech Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://yosoyanikilador.github.io/stark-nobs-css/fonts/share-tech-mono-400.woff2') format('woff2');
+}
 
 /* ── VARIABLES ──
    Forzamos --accent / --color-blue / --color-light-blue
