@@ -4,7 +4,7 @@
    Selectores confirmados a partir del HTML real
    del sitio (settings/general-edit page).
    ============================================ */
-@import url("https://nosoyani.github.io/nobs-css/nobs-mobile-fix.css");
+
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
 
 /* ── VARIABLES ──
@@ -77,8 +77,8 @@ h1, h2, h3, h4, h5,
   text-shadow: 0 0 12px var(--arc-glow);
 }
 
-a:not(.user-tag__link) { color: var(--arc) !important; text-decoration: none !important; transition: color .2s, text-shadow .2s; }
-a:not(.user-tag__link):hover { color: var(--arc-bright) !important; text-shadow: 0 0 8px var(--arc-glow); }
+a:not(.user-tag__link) { color: var(--arc) !important; text-decoration: none !important; transition: color .25s cubic-bezier(.4,0,.2,1), text-shadow .25s cubic-bezier(.4,0,.2,1); }
+a:not(.user-tag__link):hover { color: var(--arc-bright) !important; text-shadow: 0 0 10px var(--arc-glow); }
 
 /* Color de grupo/rango: UNIT3D lo pone inline (style="color: #hex")
    segun el rango real de cada usuario (Administrator, VIP, etc.).
@@ -263,8 +263,11 @@ input[type="text"], input[type="password"], input[type="email"], input[type="url
   padding: 9px 20px !important;
   border-radius: 1px !important;
   cursor: pointer !important;
-  transition: all .2s !important;
+  transition: background .3s cubic-bezier(.4,0,.2,1), box-shadow .3s cubic-bezier(.4,0,.2,1), color .3s cubic-bezier(.4,0,.2,1), transform .15s ease-out !important;
+  position: relative;
+  overflow: hidden;
 }
+.form__button:active { transform: scale(0.97); }
 .form__button--filled {
   background: linear-gradient(135deg, #032336 0%, #04405e 50%, #032336 100%) !important;
   border: 1px solid var(--arc) !important;
@@ -272,7 +275,7 @@ input[type="text"], input[type="password"], input[type="email"], input[type="url
 }
 .form__button--filled:hover {
   background: linear-gradient(135deg, #04405e 0%, var(--arc) 50%, #04405e 100%) !important;
-  box-shadow: 0 0 14px var(--arc-glow) !important;
+  box-shadow: 0 0 18px var(--arc-glow), 0 0 4px var(--arc-glow-2) !important;
   color: #001a26 !important;
 }
 .form__button--outlined {
@@ -351,8 +354,8 @@ thead th, table th {
   padding: 10px 12px !important;
   border: none !important;
 }
-tbody tr { border-bottom: 1px solid rgba(0,217,255,0.06) !important; transition: background .15s !important; }
-tbody tr:hover { background: rgba(0,217,255,0.06) !important; }
+tbody tr { border-bottom: 1px solid rgba(0,217,255,0.06) !important; transition: background .25s cubic-bezier(.4,0,.2,1), box-shadow .25s cubic-bezier(.4,0,.2,1) !important; }
+tbody tr:hover { background: rgba(0,217,255,0.06) !important; box-shadow: inset 0 0 20px rgba(0,217,255,0.04) !important; }
 tbody td { padding: 9px 12px !important; font-family: 'Rajdhani', sans-serif !important; color: var(--text) !important; border: none !important; }
 
 .freeleech, .fl, [class*="freeleech"] {
@@ -419,4 +422,122 @@ td.torrent-search--list__completed {
    HTML, que es justamente lo que queremos. ── */
 a.user-tag__link[style] {
   text-decoration: none !important;
+}
+
+/* ============================================
+   ANIMACIONES HUD — notorias pero elegantes
+   ============================================ */
+
+/* Entrada de paneles: se "encienden" al aparecer */
+@keyframes hud-panel-in {
+  0%   { opacity: 0; transform: translateY(6px); box-shadow: 0 0 0 rgba(0,217,255,0); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0); box-shadow: 0 0 0 1px rgba(0,0,0,0.5), inset 0 1px 0 rgba(0,217,255,0.05); }
+}
+.panelV2 {
+  animation: hud-panel-in .5s cubic-bezier(.2,.9,.3,1) both;
+  transition: box-shadow .3s cubic-bezier(.4,0,.2,1), border-color .3s cubic-bezier(.4,0,.2,1) !important;
+}
+.panelV2:hover {
+  border-color: var(--border-hot) !important;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.5), 0 0 24px rgba(0,217,255,0.08), inset 0 1px 0 rgba(0,217,255,0.08) !important;
+}
+
+/* Barrido de luz recorriendo el borde superior del panel al hacer hover,
+   en vez de la linea estatica fija de antes */
+@keyframes hud-edge-sweep {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.panelV2::before {
+  background: linear-gradient(90deg, transparent, var(--arc), var(--white-hot), var(--arc), transparent) !important;
+  background-size: 200% 100% !important;
+  opacity: .6;
+}
+.panelV2:hover::before {
+  animation: hud-edge-sweep 1.6s linear infinite;
+  opacity: 1;
+}
+
+/* Logo del sitio: pulso tipo arc reactor, respiracion continua y suave */
+@keyframes arc-reactor-pulse {
+  0%, 100% { text-shadow: 0 0 14px var(--arc-glow-2), 0 0 26px rgba(0,217,255,0.2); }
+  50%      { text-shadow: 0 0 22px var(--arc-glow-2), 0 0 42px rgba(0,217,255,0.35), 0 0 60px rgba(0,217,255,0.15); }
+}
+.top-nav__site-logo {
+  animation: arc-reactor-pulse 3.2s ease-in-out infinite;
+}
+
+/* Borde del header: glow respirante en vez de sombra fija */
+@keyframes hud-header-breathe {
+  0%, 100% { box-shadow: 0 2px 20px var(--arc-glow), 0 1px 0 rgba(0,217,255,0.5); }
+  50%      { box-shadow: 0 2px 30px var(--arc-glow-2), 0 1px 0 rgba(0,217,255,0.7); }
+}
+header, nav.top-nav {
+  animation: hud-header-breathe 4s ease-in-out infinite;
+}
+
+/* Avatar de perfil: anillo pulsante */
+@keyframes hud-ring-pulse {
+  0%, 100% { box-shadow: 0 0 8px var(--arc-glow); }
+  50%      { box-shadow: 0 0 16px var(--arc-glow-2); }
+}
+.top-nav__profile-image {
+  animation: hud-ring-pulse 2.4s ease-in-out infinite;
+}
+
+/* Botones filled: barrido de brillo diagonal al pasar el raton */
+.form__button--filled::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -60%;
+  width: 40%; height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left .5s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+}
+.form__button--filled:hover::after { left: 130%; }
+
+/* Inputs: glow que crece progresivamente al enfocar */
+.form__select, .form__text,
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], textarea {
+  transition: border-color .3s cubic-bezier(.4,0,.2,1), box-shadow .35s cubic-bezier(.4,0,.2,1) !important;
+}
+
+/* Freeleech badge: parpadeo tenue tipo indicador de sistema activo */
+@keyframes hud-badge-blink {
+  0%, 100% { box-shadow: 0 0 8px rgba(0,230,138,0.3); }
+  50%      { box-shadow: 0 0 14px rgba(0,230,138,0.55); }
+}
+.freeleech, .fl, [class*="freeleech"] {
+  animation: hud-badge-blink 2s ease-in-out infinite;
+}
+
+/* Stats de seeders/leechers/completed: pequeño realce al hover */
+.torrent__times-completed-count,
+.torrent__seeder-count,
+.torrent__leecher-count {
+  transition: border-color .2s cubic-bezier(.4,0,.2,1), box-shadow .2s cubic-bezier(.4,0,.2,1), transform .15s ease-out !important;
+}
+.torrent__seeder-count:hover  { border-color: var(--success) !important; box-shadow: 0 0 8px rgba(0,230,138,0.35) !important; transform: translateY(-1px); }
+.torrent__leecher-count:hover { border-color: var(--danger) !important; box-shadow: 0 0 8px rgba(255,77,94,0.35) !important; transform: translateY(-1px); }
+
+/* Dropdowns de navegacion: pequeña caida suave al abrir */
+@keyframes hud-dropdown-in {
+  0%   { opacity: 0; transform: translateY(-4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.top-nav__dropdown ul,
+.quick-search__results {
+  animation: hud-dropdown-in .18s cubic-bezier(.2,.9,.3,1) both;
+}
+
+/* Respeta a quien prefiera menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .panelV2, .panelV2::before, .top-nav__site-logo, header, nav.top-nav,
+  .top-nav__profile-image, .freeleech, .fl, [class*="freeleech"],
+  .top-nav__dropdown ul, .quick-search__results {
+    animation: none !important;
+  }
 }
