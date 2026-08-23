@@ -702,7 +702,14 @@
     }
 .special-event-alert > div:first-child,
 .special-event-alert > div:last-child {
-    display: flex !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.special-event-alert > div:first-child img,
+.special-event-alert > div:last-child img {
+    display: block !important;
+    visibility: visible !important;
 }
     .special-event-alert [x-data^="timer"] {
         padding: 14px 8px !important;
