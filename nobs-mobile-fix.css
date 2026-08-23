@@ -700,10 +700,10 @@
         min-height: auto !important;
         border-radius: 10px !important;
     }
-    .special-event-alert > div:first-child,
-    .special-event-alert > div:last-child {
-        display: none !important;
-    }
+.special-event-alert > div:first-child,
+.special-event-alert > div:last-child {
+    display: flex !important;
+}
     .special-event-alert [x-data^="timer"] {
         padding: 14px 8px !important;
         gap: 10px !important;
