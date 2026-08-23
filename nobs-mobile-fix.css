@@ -1,21 +1,11 @@
 /* ==UserStyle==
 @name           NOBS MOBILE APP-LIKE REDESIGN
 @namespace      nobs.local
-@version        23.0.0
-@description    Drawer scoped to mobile, no duplicate avatar/ghost, home banner removed, edge-to-edge blocks, readable chat.
+@version        23.1.0
+@description    Drawer scoped to mobile, no duplicate avatar/ghost, home banner removed, edge-to-edge blocks, readable chat. FIX: banner side images visible.
 @author         NoSoyAni (Copyright (c) 2026)
 @license        Custom - Personal & Non-Commercial Use Only
 ==/UserStyle== */
-/* ===================================================================
-   NOBS MOBILE APP-LIKE REDESIGN v23
-   Copyright (c) 2026 NoSoyAni. Todos los derechos reservados.
-   LICENCIA Y CONDICIONES DE USO:
-   - Se concede permiso gratuito a los miembros de la comunidad de NOBS 
-     para instalar, ejecutar y utilizar este trabajo para uso personal.
-   - Queda estrictamente prohibida la copia, redistribución, modificación,
-     sublicencia o comercialización de este código fuente sin el 
-     consentimiento previo por escrito del autor original.
-   =================================================================== */
 @media (max-width: 768px) {
 
     article.sidebar2 {
@@ -55,10 +45,6 @@
         gap: 10px !important;
         position: relative !important;
     }
-    /* el toggle es hermano de .top-nav__left y .top-nav__right dentro
-       de .top-nav (flex). Lo dejamos fluir normal en la fila, alineado
-       por altura con el logo/titulo, en vez de sacarlo con
-       position:absolute (eso lo dejaba "flotando" en linea aparte). */
     .top-nav__toggle {
         order: 1 !important;
         flex: 0 0 auto !important;
@@ -87,9 +73,6 @@
     .top-nav__site-logo {
         display: block !important;
         order: 2 !important;
-        /* ocupa el resto de la PRIMERA fila (junto al logo pequeño),
-           nunca crece a 100% para no empujar al buscador a compartir
-           esa misma fila */
         flex: 1 1 auto !important;
         min-width: 60px !important;
         font-size: 1.1rem !important;
@@ -106,9 +89,6 @@
         background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
     }
-    /* buscador: SIEMPRE fuerza su propia fila completa DENTRO de
-       .top-nav__left (no del .top-nav padre), asi el toggle -que
-       vive fuera de .top-nav__left- no se ve afectado */
     .quick-search,
     .quick-search.sf-hidden,
     .quick-search__inputs,
@@ -121,9 +101,6 @@
         min-width: 100% !important;
         width: 100% !important;
         max-width: 100% !important;
-        /* tira del buscador hacia la izquierda para que arranque
-           alineado con la hamburguesa, dejando un pequeño respiro
-           en vez de tocar el borde de la pantalla */
         margin-left: -28px !important;
         margin-right: 0 !important;
         margin-top: 0 !important;
@@ -136,10 +113,6 @@
         position: relative !important;
         min-height: 46px !important;
     }
-    /* el tema pone .quick-search__inputs en position:absolute con
-       width fijo de 400px SOLO al enfocar, y sin left/right definidos
-       en reposo -> por eso "width:100%" no se notaba. Lo anclamos
-       explicitamente a todo el ancho del padre relativo. */
     .quick-search__inputs {
         position: absolute !important;
         left: 0 !important;
@@ -158,19 +131,9 @@
         padding: 10px 14px !important;
         border-radius: 8px !important;
     }
-    /* boton Arcade sale de la barra superior; se reubica dentro del
-       panel hamburguesa, ver seccion mas abajo */
     .top-nav__left > a[href*="/gaming"] {
         display: none !important;
     }
-
-    /* =================================================================
-       PANEL HAMBURGUESA COMPLETO
-       Fusiona: icon-bar (perfil/correo/notis) + main-menus (Torrents,
-       Comunidad, Soporte, Otro) en un unico panel a pantalla completa
-       con acordeon. Usamos order sobre EL PROPIO .top-nav (flex
-       container) en vez de depender de :has(), que es mas fragil.
-       ================================================================= */
 
     .top-nav__main-menus {
         display: none !important;
@@ -201,8 +164,6 @@
         box-sizing: border-box !important;
         margin: 4px 0 8px 0 !important;
     }
-    /* dentro del panel expandido, ocultamos todo lo que NO sea el
-       boton Arcade (logo, buscador ya estan arriba en su propio sitio) */
     .top-nav.mobile > .top-nav__left > *:not(a[href*="/gaming"]),
     .top-nav:has(> .top-nav__main-menus.mobile) > .top-nav__left > *:not(a[href*="/gaming"]) {
         display: none !important;
@@ -233,9 +194,6 @@
         justify-content: center !important;
     }
 
-    /* Orden explicito de los 3 hijos directos de .top-nav cuando esta
-       expandido: 1) perfil (top-nav__right), 2) menu principal
-       (top-nav__main-menus), 3) toggle (fixed, no cuenta en flow) */
     .top-nav.mobile > .top-nav__right,
     .top-nav:has(> .top-nav__main-menus.mobile) > .top-nav__right {
         order: 1 !important;
@@ -253,8 +211,6 @@
         width: 100% !important;
         column-gap: 0 !important;
     }
-    /* NOTA: el order de .top-nav__left ya se define arriba (order:2),
-       aqui solo quitamos el grid-area heredado del layout desktop */
     .top-nav__left {
         grid-area: unset !important;
     }
@@ -300,8 +256,6 @@
         margin: 6px 0 14px 0 !important;
     }
 
-    /* correo + notificaciones: fila compacta, uno junto al otro, no
-       apiladas con hueco enorme entre medias */
     .top-nav__icon-bar {
         width: 100% !important;
         flex-direction: row !important;
@@ -336,10 +290,6 @@
     .top-nav__icon-bar li:has(.fa-bell) .top-nav--right__icon-link::after {
         content: "Notis";
     }
-    /* punto/badge de actividad: pegado a la esquina del propio icono.
-       Cubrimos cualquier elemento hijo del link que no sea el icono <i>
-       principal, ya que el badge puede venir como span/small/em/dot
-       segun el tema */
     .top-nav__icon-bar .top-nav--right__icon-link {
         position: relative !important;
     }
@@ -386,7 +336,6 @@
         border-radius: 10px !important;
         box-sizing: border-box !important;
     }
-    /* flecha acordeon tambien aqui, coherente con el menu principal */
     .top-nav__icon-bar .top-nav__dropdown > a.top-nav__dropdown--touch::after {
         content: "\f078";
         font-family: "Font Awesome 5 Free", "Font Awesome 6 Free", FontAwesome;
@@ -407,8 +356,6 @@
         flex: 0 0 auto !important;
     }
 
-    /* submenu del perfil: TARJETA que empuja el contenido hacia abajo,
-       nunca position:absolute flotando encima de otras cosas */
     .top-nav__icon-bar .top-nav__dropdown ul {
         position: static !important;
         width: 100% !important;
@@ -457,15 +404,6 @@
         flex: 0 0 auto !important;
     }
 
-    /* =================================================================
-       MENU PRINCIPAL (Torrents / Comunidad / Soporte / Otro)
-       Acordeon vertical: el submenu empuja el contenido hacia abajo.
-       NO usar position:absolute/flyout lateral aqui: el panel padre
-       tiene overflow-y:auto para el scroll general del menu, y eso
-       RECORTA cualquier hijo absoluto que se salga hacia los lados
-       (por eso el flyout a la derecha no se veia -> quedaba fuera del
-       area recortada por el overflow del contenedor scrollable).
-       ================================================================= */
     .top-nav__main-menus.mobile {
         display: flex !important;
         flex-direction: column !important;
@@ -502,7 +440,7 @@
     }
     .top-nav__main-menus.mobile > li > a.top-nav__dropdown--touch::after,
     .top-nav__main-menus.mobile > li > a:not(.top-nav__dropdown--nontouch):not(.top-nav__dropdown--touch)::after {
-        content: "\f078"; /* fa-chevron-down: apunta hacia donde se abre (abajo) */
+        content: "\f078";
         font-family: "Font Awesome 5 Free", "Font Awesome 6 Free", FontAwesome;
         font-weight: 900;
         font-size: 0.75rem;
@@ -520,8 +458,6 @@
         width: 100% !important;
     }
 
-    /* submenu como TARJETA que empuja el contenido de abajo hacia
-       abajo, en vez de flotar encima o a un lado */
     .top-nav__main-menus.mobile .top-nav__dropdown ul {
         position: static !important;
         list-style: none !important;
@@ -576,7 +512,7 @@
         flex: 0 0 auto !important;
     }
 
-    /* ---------- SECONDARY NAV / TABS (Perfil/Configuracion/Torrents...) ---------- */
+    /* ---------- SECONDARY NAV / TABS ---------- */
     .secondary-nav {
         padding: 4px 8px !important;
         overflow: visible !important;
@@ -609,10 +545,6 @@
     .nav-tab-menu:last-child {
         border-bottom: none !important;
     }
-    /* flecha en el LI, no en el link: apunta a la derecha cuando esta
-       cerrado (sugiere "toca aqui para desplegar") y rota hacia abajo
-       al abrirse. Cubre visualmente toda la fila aunque el <a> real
-       solo ocupe el ancho de su texto a la izquierda */
     .nav-tab-menu::before {
         content: "";
         position: absolute !important;
@@ -626,7 +558,7 @@
         pointer-events: none !important;
     }
     .nav-tab-menu::after {
-        content: "\f054"; /* fa-chevron-right */
+        content: "\f054";
         font-family: "Font Awesome 5 Free", "Font Awesome 6 Free", FontAwesome;
         font-weight: 900;
         font-size: 0.75rem;
@@ -694,26 +626,52 @@
         background: rgba(255,255,255,0.06) !important;
     }
 
-    /* ---------- COUNTDOWN / EVENT BANNER ---------- */
+    /* ---------- COUNTDOWN / EVENT BANNER ----------
+       FIX v23.1: se restauran las imágenes laterales
+       (antes ocultas con display:none en primer/último hijo).
+       Ahora se mantienen visibles, apiladas detrás/alrededor
+       del bloque central del cronómetro en layout de móvil. */
     .special-event-alert {
-        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: none !important;
         min-height: auto !important;
         border-radius: 10px !important;
+        position: relative !important;
+        overflow: hidden !important;
+        padding: 0 !important;
     }
-.special-event-alert > div:first-child,
-.special-event-alert > div:last-child {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-.special-event-alert > div:first-child img,
-.special-event-alert > div:last-child img {
-    display: block !important;
-    visibility: visible !important;
-}
+    .special-event-alert > div:first-child,
+    .special-event-alert > div:last-child {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: absolute !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 50% !important;
+        height: 100% !important;
+        z-index: 1 !important;
+    }
+    .special-event-alert > div:first-child {
+        left: 0 !important;
+    }
+    .special-event-alert > div:last-child {
+        right: 0 !important;
+    }
+    .special-event-alert > div:first-child img,
+    .special-event-alert > div:last-child img {
+        display: block !important;
+        visibility: visible !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
     .special-event-alert [x-data^="timer"] {
+        position: relative !important;
+        z-index: 2 !important;
         padding: 14px 8px !important;
         gap: 10px !important;
+        width: 100% !important;
     }
     .special-event-alert [x-data^="timer"] > div:first-child {
         font-size: 0.95rem !important;
@@ -920,12 +878,9 @@
         font-size: 1.2rem !important;
     }
 
-    /* ---------- MARCADOR DE VERSION (debug/cache-check) ----------
-       Esquina inferior-izquierda, discreto. Sirve para confirmar que
-       el navegador esta cargando la version actualizada del CSS y no
-       una copia cacheada. Subir el numero en cada cambio futuro. */
+    /* ---------- MARCADOR DE VERSION ---------- */
     body::before {
-        content: "nobs-mobile-fix v23" !important;
+        content: "nobs-mobile-fix v23.1" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
