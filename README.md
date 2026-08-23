@@ -23,7 +23,9 @@
 
 ## ⚡ Descripción General
 
-**Stark-nobs** es un tema personalizado completo. Diseñado con un enfoque futurista tipo HUD táctico/ciberpunk, ofrece una interfaz limpia, estilizada y moderna sin alterar el rendimiento ni la funcionalidad original de la web. Esta versión también incluye el mobile fix
+**Stark-nobs** es un tema personalizado completo. Diseñado con un enfoque futurista tipo HUD táctico/ciberpunk, ofrece una interfaz limpia, estilizada y moderna sin alterar el rendimiento ni la funcionalidad original de la web. Mejora las animaciones y añade muchas nuevas. Esta versión también incluye el parche para móviles.
+
+**Better-nobs** este archivo mejora las animaciones generales de NOBS y además incluye el parche para móviles.
 
 **Nobs-mobile-fix** es un archivo css que solo modifica la distribución original de la web para adaptarla a dispositivos móviles con pantallas más pequeñas.
 
