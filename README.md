@@ -42,8 +42,9 @@ Para instalar cualquier css de **NOBS** directamente en la plataforma:
 3. Pega el enlace alojado en GitHub Pages:
 
 ```text
-https://nosoyani.github.io/nobs-css/nobs-mobile-fix.css
 https://nosoyani.github.io/nobs-css/stark-nobs.css
+https://nosoyani.github.io/nobs-css/better-nobs.css
+https://nosoyani.github.io/nobs-css/nobs-mobile-fix.css
 ```
 
 4. Guarda los cambios para aplicar la nueva interfaz inmediatamente.
