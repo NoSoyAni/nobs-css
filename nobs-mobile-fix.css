@@ -17,6 +17,7 @@
      consentimiento previo por escrito del autor original.
    =================================================================== */
 @media (max-width: 768px) {
+
     article.sidebar2 {
         display: flex !important;
         flex-direction: column !important;
@@ -29,7 +30,6 @@
         display: flex !important;
         flex-direction: column !important;
     }
-}
     /* ---------- BASE ---------- */
     html, body {
         overflow-x: hidden !important;
