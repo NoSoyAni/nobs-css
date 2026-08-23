@@ -18,7 +18,14 @@
    =================================================================== */
 
 @media (max-width: 768px) {
-
+    aside {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    aside section.panelV2:has(form[action*="mass-update"]) {
+        order: -1 !important;
+    }
+}
     /* ---------- BASE ---------- */
     html, body {
         overflow-x: hidden !important;
