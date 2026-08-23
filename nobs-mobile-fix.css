@@ -16,7 +16,6 @@
      sublicencia o comercialización de este código fuente sin el 
      consentimiento previo por escrito del autor original.
    =================================================================== */
-
 @media (max-width: 768px) {
     article.sidebar2 {
         display: flex !important;
@@ -26,13 +25,9 @@
         order: 2 !important;
     }
     article.sidebar2 > aside {
-        order: 3 !important;
+        order: 1 !important;
         display: flex !important;
         flex-direction: column !important;
-    }
-    article.sidebar2 aside section.panelV2:has(form[action*="mass-update"]) {
-        position: absolute !important;
-        order: 1 !important;
     }
 }
     /* ---------- BASE ---------- */
