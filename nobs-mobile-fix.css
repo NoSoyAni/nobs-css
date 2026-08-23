@@ -18,12 +18,21 @@
    =================================================================== */
 
 @media (max-width: 768px) {
-    aside {
+    article.sidebar2 {
         display: flex !important;
         flex-direction: column !important;
     }
-    aside section.panelV2:has(form[action*="mass-update"]) {
-        order: -1 !important;
+    article.sidebar2 > div {
+        order: 2 !important;
+    }
+    article.sidebar2 > aside {
+        order: 3 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    article.sidebar2 aside section.panelV2:has(form[action*="mass-update"]) {
+        position: absolute !important;
+        order: 1 !important;
     }
 }
     /* ---------- BASE ---------- */
