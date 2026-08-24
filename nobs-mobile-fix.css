@@ -7,7 +7,7 @@
 @license        Custom - Personal & Non-Commercial Use Only
 ==/UserStyle== */
     
-    @media (max-width: 768px)
+@media (max-width: 768px) {
 
     /* ---------- BASE ---------- */
     html, body {
