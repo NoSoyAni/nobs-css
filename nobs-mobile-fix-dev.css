@@ -888,7 +888,7 @@
     .top-nav__username--highresolution {
         position: relative !important;
         z-index: 10 !important;
-        margin-top: -50px !important;
-        margin-left: 16px !important;
+        margin-top: 260px !important;
+        margin-left: 60px !important;
     }
 }
