@@ -886,9 +886,22 @@
 
 @media (max-width: 768px) {
     .top-nav__username--highresolution {
+        display: none !important;
+    }
+
+    .top-nav__icon-bar .top-nav__dropdown {
         position: relative !important;
+    }
+
+    .top-nav__icon-bar .top-nav__dropdown::after {
+        content: "NoSoyAni" !important;
+        position: absolute !important;
+        left: 70px !important;
+        top: 12px !important;
+        color: #ff2d78 !important;
+        font-weight: 700 !important;
+        font-size: 1rem !important;
         z-index: 10 !important;
-        margin-top: 260px !important;
-        margin-left: 60px !important;
+        pointer-events: none !important;
     }
 }
