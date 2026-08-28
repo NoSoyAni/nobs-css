@@ -886,18 +886,9 @@
 
 @media (max-width: 768px) {
     .top-nav__username--highresolution {
-        order: 2 !important;
         position: relative !important;
         z-index: 10 !important;
-        margin: 0 0 -34px 16px !important;
-    }
-
-    .top-nav__icon-bar {
-        order: 1 !important;
-    }
-
-    .top-nav__icon-bar .top-nav__dropdown {
-        order: 3 !important;
-        margin-top: 40px !important;
+        margin-top: -50px !important;
+        margin-left: 16px !important;
     }
 }
