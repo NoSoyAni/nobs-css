@@ -885,16 +885,19 @@
 }
 
 @media (max-width: 768px) {
-    .top-nav__icon-bar .top-nav__dropdown {
+    .top-nav__right.mobile {
         position: relative !important;
-        margin-top: 26px !important;
+    }
+
+    .top-nav__icon-bar .top-nav__dropdown {
+        margin-top: 30px !important;
     }
 
     .top-nav__username--highresolution {
         position: absolute !important;
-        top: -26px !important;
-        left: 0 !important;
-        z-index: 5 !important;
+        top: 320px !important;
+        left: 16px !important;
+        z-index: 10 !important;
         order: unset !important;
     }
 }
