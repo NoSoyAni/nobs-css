@@ -895,12 +895,12 @@
     }
 
     .top-nav__icon-bar .top-nav__dropdown::after {
-        content: "NoSoyAni" !important;
+        content: "Mi perfil" !important;
         position: absolute !important;
         left: 70px !important;
         top: 50% !important;
         transform: translateY(-50%) !important;
-        color: #f92672 !important;
+        color: #fff !important;
         font-weight: 700 !important;
         font-size: 1rem !important;
         z-index: 10 !important;
