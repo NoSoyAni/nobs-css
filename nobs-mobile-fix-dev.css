@@ -907,3 +907,26 @@
         pointer-events: none !important;
     }
 }
+
+@media (max-width: 768px) {
+    .top-nav__icon-bar .top-nav__dropdown ul li ul,
+    .top-nav__main-menus.mobile .top-nav__dropdown ul li ul {
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        float: none !important;
+        margin: 4px 0 0 0 !important;
+        display: none !important;
+    }
+    .top-nav__icon-bar .top-nav__dropdown ul li:focus-within ul,
+    .top-nav__icon-bar .top-nav__dropdown ul li.open ul,
+    .top-nav__main-menus.mobile .top-nav__dropdown ul li:focus-within ul,
+    .top-nav__main-menus.mobile .top-nav__dropdown ul li.open ul {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+}
