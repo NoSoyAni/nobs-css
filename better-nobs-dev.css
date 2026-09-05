@@ -240,7 +240,7 @@ nav.top-nav {
   overflow: visible !important; /* los dropdowns necesitan poder salir del nav */
 }
 
-/* --- Fila 1: logo + Arcade + search --- */
+/* --- Fila 1: logo + Arcade + Torrents/Comunidad/Soporte/Otro --- */
 .top-nav__left {
   order: 1 !important;
   display: flex !important;
@@ -260,20 +260,18 @@ a[href*="/gaming"] {
 }
 a[href*="/gaming"] i { font-size: 1.1rem !important; }
 
-.quick-search {
+/* Torrents/Comunidad/Soporte/Otro ahora en fila 1, junto a logo/Arcade
+   (antes estaba aquí la search bar) */
+ul.top-nav__main-menus {
   order: 5 !important;
-  flex: 1 1 180px !important;
-  min-width: 150px !important;
-  max-width: 340px !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 5px !important;
+  flex: 0 0 auto !important;
+  white-space: nowrap !important;
 }
-.quick-search__inputs { width: 100% !important; }
-.quick-search__input {
-  width: 100% !important;
-  min-width: 160px !important;
-  font-size: 14px !important;
-  padding: 11px 14px !important;
-  box-sizing: border-box !important;
-}
+.top-nav--left__container { font-size: 13px !important; padding: 6px 10px !important; white-space: nowrap !important; }
 
 /* --- Icon-bar de perfil: fijo arriba a la derecha --- */
 .top-nav__icon-bar {
@@ -323,7 +321,7 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
-  flex: 0 1 auto !important;
+  flex: 1 1 auto !important;
   min-width: 0 !important;
 }
 
@@ -340,27 +338,33 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
 .top-nav__ratio-bar li { flex: 0 0 auto !important; }
 .top-nav__ratio-bar i { font-size: 14px !important; }
 
-/* Si la ratio-bar + tabs no caben del todo, dejamos que la propia
-   ratio-bar reduzca su tamaño de texto en vez de generar scroll */
+/* Si la ratio-bar no cabe del todo, reduce texto en vez de ocultar
+   elementos (queremos ver siempre todas las stats, incluidas
+   thanks/tokens) */
 @media (max-width: 1400px) {
-  .top-nav__ratio-bar { font-size: 10px !important; gap: 7px !important; }
+  .top-nav__ratio-bar { font-size: 12px !important; gap: 9px !important; }
 }
 @media (max-width: 1150px) {
-  .top-nav__ratio-bar li:nth-last-child(-n+2) { display: none !important; } /* oculta thanks/tokens si no cabe */
+  .top-nav__ratio-bar { font-size: 11px !important; gap: 7px !important; }
 }
 
-ul.top-nav__main-menus {
+/* Search bar: ahora en fila 2 (donde antes estaban los tabs),
+   se alarga hacia la derecha para ocupar el hueco libre */
+.quick-search {
   order: 3 !important;
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  align-items: center !important;
-  gap: 5px !important;
-  flex: 0 0 auto !important;
+  flex: 1 1 260px !important;
+  min-width: 200px !important;
+  max-width: 520px !important;
   margin-left: 16px !important;
-  margin-right: auto !important;
-  white-space: nowrap !important;
 }
-.top-nav--left__container { font-size: 13px !important; padding: 6px 10px !important; white-space: nowrap !important; }
+.quick-search__inputs { width: 100% !important; }
+.quick-search__input {
+  width: 100% !important;
+  min-width: 160px !important;
+  font-size: 14px !important;
+  padding: 11px 14px !important;
+  box-sizing: border-box !important;
+}
 
 /* Los <ul> de los submenús (dropdowns) deben mantenerse tal cual
    los define el theme base, con posición absoluta normal, NUNCA
