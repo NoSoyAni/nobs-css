@@ -723,11 +723,12 @@ tbody tr:hover { transform: translateX(2px) !important; }
 }
 
 /* ============================================
-   PARCHE v5 — vuelve a la disposición del v3
-   (logo/Arcade/search en fila 1, icon-bar de perfil
-   en fila propia) y coloca la ratio-bar EXACTAMENTE
-   a la izquierda de Torrents, en la misma fila.
-   Sustituye COMPLETO al v4 (y al v3).
+   PARCHE v6
+   - Fila 1: logo + Arcade + search + icon-bar de perfil
+     (icon-bar a la derecha del todo, misma altura que search)
+   - Fila 2: ratio-bar + Torrents/Comunidad/Soporte/Otro
+     TODO EN UNA SOLA LÍNEA, ratio-bar primero
+   Sustituye COMPLETO al v5.
    ============================================ */
 
 .user-tag.top-nav__username--highresolution {
@@ -735,6 +736,7 @@ tbody tr:hover { transform: translateX(2px) !important; }
 }
 
 nav.top-nav {
+  position: relative !important;
   display: flex !important;
   flex-wrap: wrap !important;
   align-items: center !important;
@@ -750,6 +752,7 @@ nav.top-nav {
   align-items: center !important;
   gap: 10px !important;
   flex: 1 1 auto !important;
+  padding-right: 190px !important; /* deja hueco para el icon-bar absoluto */
 }
 .top-nav__branding { display: flex !important; align-items: center !important; gap: 8px !important; flex: 0 0 auto !important; }
 .top-nav__branding img { height: 34px !important; }
@@ -763,33 +766,41 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
 
 .quick-search {
   order: 5 !important;
-  flex: 1 1 260px !important;
-  min-width: 220px !important;
-  max-width: 480px !important;
+  flex: 1 1 220px !important;
+  min-width: 180px !important;
+  max-width: 420px !important;
 }
 .quick-search__inputs { width: 100% !important; }
 .quick-search__input {
   width: 100% !important;
-  min-width: 200px !important;
+  min-width: 160px !important;
   font-size: 12px !important;
   padding: 6px 10px !important;
   box-sizing: border-box !important;
 }
 
-/* --- Fila 2: ratio-bar pegada a la izquierda de Torrents/Comunidad/etc --- */
+/* --- Icon-bar de perfil: fijo arriba a la derecha, misma altura
+   que logo/Arcade/search (fila 1) --- */
+.top-nav__icon-bar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  position: absolute !important;
+  top: 6px !important;
+  right: 14px !important;
+}
+.top-nav--right__icon-link { font-size: 14px !important; }
+.top-nav__profile-image { width: 27px !important; height: 27px !important; }
 
-/* .top-nav__right envuelve ratio-bar + icon-bar. Lo ponemos en la MISMA
-   fila que ul.top-nav__main-menus (order 2 vs order 3), y dentro de
-   .top-nav__right ocultamos visualmente el hueco del icon-bar en esta
-   fila moviéndolo aparte con flex-basis:100% (se va a la fila 3). */
+/* --- Fila 2: .top-nav__right (solo queda la ratio-bar, el icon-bar ya
+   se sacó con position:absolute) + ul.top-nav__main-menus,
+   EN LA MISMA LÍNEA, sin que ninguno se rompa a otra fila --- */
 .top-nav__right {
   order: 2 !important;
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
-  gap: 0 !important;
   flex: 0 0 auto !important;
-  width: auto !important;
 }
 
 .top-nav__ratio-bar {
@@ -803,29 +814,20 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
 }
 .top-nav__ratio-bar i { font-size: 12px !important; }
 
-/* Torrents/Comunidad/Soporte/Otro: hermano directo de .top-nav__right,
-   justo a su derecha, en la MISMA fila */
 ul.top-nav__main-menus {
   order: 3 !important;
   display: flex !important;
+  flex-wrap: nowrap !important;
   align-items: center !important;
   gap: 4px !important;
-  flex: 0 1 auto !important;
-  margin-left: 20px !important;
+  flex: 0 0 auto !important;
+  margin-left: 24px !important;
 }
-.top-nav--left__container { font-size: 10px !important; padding: 4px 8px !important; }
+.top-nav--left__container { font-size: 10px !important; padding: 4px 8px !important; white-space: nowrap !important; }
 
-/* El icon-bar de perfil se rompe a su propia fila (fila 3), a la derecha.
-   IMPORTANTE: lo sacamos de dentro de .top-nav__right poniéndole
-   position para que no afecte al nowrap del hermano ratio-bar. */
-.top-nav__icon-bar {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  position: absolute !important;
-  right: 14px !important;
-  margin-top: 44px !important;
+/* Aseguramos que fila 2 (ratio-bar + tabs) no se corte por falta de
+   espacio: si no caben todos los elementos, permitimos scroll horizontal
+   en vez de que Torrents se vaya a otra línea */
+nav.top-nav {
+  overflow-x: hidden !important; /* estético; cambia a auto si prefieres scroll */
 }
-nav.top-nav { position: relative !important; }
-.top-nav--right__icon-link { font-size: 14px !important; }
-.top-nav__profile-image { width: 27px !important; height: 27px !important; }
