@@ -723,22 +723,20 @@ tbody tr:hover { transform: translateX(2px) !important; }
 }
 
 /* ============================================
-   PARCHE v3 — corrige lo que quedó pendiente:
-   1) search bar se veía colapsada -> forzamos min-width/flex
-   2) intercambio de bloques no se aplicaba -> usamos
-      "order" en el padre directo (nav.top-nav) sobre
-      TODOS sus hijos directos a la vez, no solo en un par
-   3) título + Arcade un poco más grandes
-   Pega esto AL FINAL de stark-nobs.css, después del v2
-   (o sustituye el v2 entero por este archivo)
+   PARCHE v4 — ratio-bar comparte fila con
+   Torrents/Comunidad/Soporte/Otro, a su izquierda.
+   El icon-bar de perfil se separa a su propia fila.
+   Sustituye COMPLETO al v3.
    ============================================ */
 
 .user-tag.top-nav__username--highresolution {
   display: none !important;
 }
 
-/* nav.top-nav tiene 3 hijos directos: .top-nav__left, ul.top-nav__main-menus,
-   div.top-nav__right. Ordenamos los 3 explícitamente. */
+/* nav.top-nav tiene 3 hijos directos:
+   1) .top-nav__left      (logo + Arcade + search)
+   2) ul.top-nav__main-menus (Torrents/Comunidad/Soporte/Otro)
+   3) .top-nav__right     (ratio-bar + icon-bar de perfil) */
 nav.top-nav {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -747,7 +745,7 @@ nav.top-nav {
   gap: 6px 14px !important;
 }
 
-/* Hijo 1: logo + Arcade + search -> fila 1 izquierda, orden 1 */
+/* --- Fila 1: logo + Arcade + search --- */
 .top-nav__left {
   order: 1 !important;
   display: flex !important;
@@ -756,8 +754,6 @@ nav.top-nav {
   gap: 10px !important;
   flex: 1 1 auto !important;
 }
-
-/* Logo y Arcade un poco más grandes que antes */
 .top-nav__branding { display: flex !important; align-items: center !important; gap: 8px !important; flex: 0 0 auto !important; }
 .top-nav__branding img { height: 34px !important; }
 .top-nav__site-logo { font-size: 1rem !important; letter-spacing: 0.09em !important; }
@@ -768,8 +764,6 @@ a[href*="/gaming"] {
 }
 a[href*="/gaming"] i { font-size: 1.1rem !important; }
 
-/* Search: dentro de .top-nav__left pero forzada a su propia línea
-   con ancho decente (antes se colapsaba a ~35px por falta de flex-basis) */
 .quick-search {
   order: 5 !important;
   flex: 1 1 260px !important;
@@ -785,46 +779,58 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
   box-sizing: border-box !important;
 }
 
-/* Hijo 2: ul de Torrents/Comunidad/Soporte/Otro -> orden 3 (al final, fila 1) */
-ul.top-nav__main-menus {
+/* --- Fila 2: ratio-bar (dentro de .top-nav__right) + Torrents/Comunidad/etc,
+   EN LA MISMA LÍNEA, ratio-bar a la izquierda ---
+
+   Truco: .top-nav__right contiene ratio-bar + icon-bar. Lo partimos
+   visualmente en dos "capas" con la propia estructura interna:
+   - dejamos que .top-nav__right ocupe solo el hueco de la ratio-bar
+     (display:contents no sirve bien aquí porque el username oculto
+     y el icon-bar están dentro), así que usamos flex normal y
+     mandamos el icon-bar fuera de esta fila con position/order,
+     tratando ambos (.top-nav__right y ul.top-nav__main-menus)
+     como columnas de la MISMA fila flex de nav.top-nav. */
+
+.top-nav__right {
   order: 3 !important;
   display: flex !important;
   align-items: center !important;
-  gap: 4px !important;
-  flex: 0 0 auto !important;
-  margin-left: auto !important;
-}
-.top-nav--left__container { font-size: 10px !important; padding: 4px 8px !important; }
-
-/* Hijo 3: div.top-nav__right (contiene ratio-bar + icon-bar + username oculto)
-   -> orden 2, pasa a su propia fila completa, ANTES que main-menus visualmente
-   porque main-menus tiene margin-left:auto y flota a la derecha de esta fila 2 */
-.top-nav__right {
-  order: 2 !important;
-  flex-basis: 100% !important;
-  display: flex !important;
   flex-wrap: wrap !important;
-  align-items: center !important;
   gap: 10px !important;
+  flex: 0 0 auto !important;
 }
 
 .top-nav__ratio-bar {
   order: 1 !important;
-  font-size: 11px !important;
-  gap: 12px !important;
-  flex: 1 1 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  font-size: 12px !important;
+  flex: 0 0 auto !important;
 }
-.top-nav__ratio-bar i { font-size: 11px !important; }
+.top-nav__ratio-bar i { font-size: 12px !important; }
 
-/* El icon-bar de perfil se va al final de la fila de .top-nav__right,
-   pegado a la derecha del todo */
+/* El icon-bar de perfil se manda a su PROPIA fila (fila 3, debajo),
+   pegado a la derecha, para que no compita por espacio en la fila
+   de ratio-bar + tabs */
 .top-nav__icon-bar {
-  order: 2 !important;
+  order: 100 !important;
   display: flex !important;
   align-items: center !important;
   gap: 10px !important;
-  margin-left: auto !important;
-  flex: 0 0 auto !important;
+  flex-basis: 100% !important;
+  justify-content: flex-end !important;
 }
 .top-nav--right__icon-link { font-size: 14px !important; }
 .top-nav__profile-image { width: 27px !important; height: 27px !important; }
+
+/* Torrents/Comunidad/Soporte/Otro: mismo nivel que .top-nav__right,
+   justo a su derecha, en la misma fila (orden 4, después de ratio-bar) */
+ul.top-nav__main-menus {
+  order: 4 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  flex: 1 1 auto !important;
+}
+.top-nav--left__container { font-size: 10px !important; padding: 4px 8px !important; }
