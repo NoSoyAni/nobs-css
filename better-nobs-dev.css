@@ -368,7 +368,7 @@ ul.top-nav__main-menus {
   max-width: 520px !important;
   margin-left: 16px !important;
   align-self: center !important;
-  margin-top: -9px !important;
+  transform: translateY(-10px) !important;
 }
 .quick-search__inputs { width: 100% !important; }
 .quick-search__input {
