@@ -723,20 +723,17 @@ tbody tr:hover { transform: translateX(2px) !important; }
 }
 
 /* ============================================
-   PARCHE v4 — ratio-bar comparte fila con
-   Torrents/Comunidad/Soporte/Otro, a su izquierda.
-   El icon-bar de perfil se separa a su propia fila.
-   Sustituye COMPLETO al v3.
+   PARCHE v5 — vuelve a la disposición del v3
+   (logo/Arcade/search en fila 1, icon-bar de perfil
+   en fila propia) y coloca la ratio-bar EXACTAMENTE
+   a la izquierda de Torrents, en la misma fila.
+   Sustituye COMPLETO al v4 (y al v3).
    ============================================ */
 
 .user-tag.top-nav__username--highresolution {
   display: none !important;
 }
 
-/* nav.top-nav tiene 3 hijos directos:
-   1) .top-nav__left      (logo + Arcade + search)
-   2) ul.top-nav__main-menus (Torrents/Comunidad/Soporte/Otro)
-   3) .top-nav__right     (ratio-bar + icon-bar de perfil) */
 nav.top-nav {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -779,25 +776,20 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
   box-sizing: border-box !important;
 }
 
-/* --- Fila 2: ratio-bar (dentro de .top-nav__right) + Torrents/Comunidad/etc,
-   EN LA MISMA LÍNEA, ratio-bar a la izquierda ---
+/* --- Fila 2: ratio-bar pegada a la izquierda de Torrents/Comunidad/etc --- */
 
-   Truco: .top-nav__right contiene ratio-bar + icon-bar. Lo partimos
-   visualmente en dos "capas" con la propia estructura interna:
-   - dejamos que .top-nav__right ocupe solo el hueco de la ratio-bar
-     (display:contents no sirve bien aquí porque el username oculto
-     y el icon-bar están dentro), así que usamos flex normal y
-     mandamos el icon-bar fuera de esta fila con position/order,
-     tratando ambos (.top-nav__right y ul.top-nav__main-menus)
-     como columnas de la MISMA fila flex de nav.top-nav. */
-
+/* .top-nav__right envuelve ratio-bar + icon-bar. Lo ponemos en la MISMA
+   fila que ul.top-nav__main-menus (order 2 vs order 3), y dentro de
+   .top-nav__right ocultamos visualmente el hueco del icon-bar en esta
+   fila moviéndolo aparte con flex-basis:100% (se va a la fila 3). */
 .top-nav__right {
-  order: 3 !important;
+  order: 2 !important;
   display: flex !important;
+  flex-wrap: nowrap !important;
   align-items: center !important;
-  flex-wrap: wrap !important;
-  gap: 10px !important;
+  gap: 0 !important;
   flex: 0 0 auto !important;
+  width: auto !important;
 }
 
 .top-nav__ratio-bar {
@@ -807,30 +799,33 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
   gap: 14px !important;
   font-size: 12px !important;
   flex: 0 0 auto !important;
+  white-space: nowrap !important;
 }
 .top-nav__ratio-bar i { font-size: 12px !important; }
 
-/* El icon-bar de perfil se manda a su PROPIA fila (fila 3, debajo),
-   pegado a la derecha, para que no compita por espacio en la fila
-   de ratio-bar + tabs */
-.top-nav__icon-bar {
-  order: 100 !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  flex-basis: 100% !important;
-  justify-content: flex-end !important;
-}
-.top-nav--right__icon-link { font-size: 14px !important; }
-.top-nav__profile-image { width: 27px !important; height: 27px !important; }
-
-/* Torrents/Comunidad/Soporte/Otro: mismo nivel que .top-nav__right,
-   justo a su derecha, en la misma fila (orden 4, después de ratio-bar) */
+/* Torrents/Comunidad/Soporte/Otro: hermano directo de .top-nav__right,
+   justo a su derecha, en la MISMA fila */
 ul.top-nav__main-menus {
-  order: 4 !important;
+  order: 3 !important;
   display: flex !important;
   align-items: center !important;
   gap: 4px !important;
-  flex: 1 1 auto !important;
+  flex: 0 1 auto !important;
+  margin-left: 20px !important;
 }
 .top-nav--left__container { font-size: 10px !important; padding: 4px 8px !important; }
+
+/* El icon-bar de perfil se rompe a su propia fila (fila 3), a la derecha.
+   IMPORTANTE: lo sacamos de dentro de .top-nav__right poniéndole
+   position para que no afecte al nowrap del hermano ratio-bar. */
+.top-nav__icon-bar {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  position: absolute !important;
+  right: 14px !important;
+  margin-top: 44px !important;
+}
+nav.top-nav { position: relative !important; }
+.top-nav--right__icon-link { font-size: 14px !important; }
+.top-nav__profile-image { width: 27px !important; height: 27px !important; }
