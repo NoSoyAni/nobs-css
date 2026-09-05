@@ -752,7 +752,7 @@ nav.top-nav {
   align-items: center !important;
   gap: 10px !important;
   flex: 1 1 auto !important;
-  padding-right: 190px !important; /* deja hueco para el icon-bar absoluto */
+  padding-right: 230px !important; /* deja hueco para el icon-bar absoluto */
 }
 .top-nav__branding { display: flex !important; align-items: center !important; gap: 8px !important; flex: 0 0 auto !important; }
 .top-nav__branding img { height: 34px !important; }
@@ -766,9 +766,9 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
 
 .quick-search {
   order: 5 !important;
-  flex: 1 1 220px !important;
-  min-width: 180px !important;
-  max-width: 420px !important;
+  flex: 1 1 180px !important;
+  min-width: 150px !important;
+  max-width: 340px !important;
 }
 .quick-search__inputs { width: 100% !important; }
 .quick-search__input {
@@ -784,10 +784,11 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
 .top-nav__icon-bar {
   display: flex !important;
   align-items: center !important;
-  gap: 10px !important;
+  gap: 12px !important;
   position: absolute !important;
   top: 6px !important;
   right: 14px !important;
+  z-index: 5 !important;
 }
 .top-nav--right__icon-link { font-size: 14px !important; }
 .top-nav__profile-image { width: 27px !important; height: 27px !important; }
