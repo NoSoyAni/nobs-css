@@ -807,7 +807,7 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
-  flex: 1 1 auto !important;
+  flex: 0 1 auto !important;
   min-width: 0 !important;
 }
 
@@ -815,9 +815,9 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
   order: 1 !important;
   display: flex !important;
   align-items: center !important;
-  gap: 10px !important;
+  gap: 8px !important;
   font-size: 11px !important;
-  flex: 1 1 auto !important;
+  flex: 0 0 auto !important;
   min-width: 0 !important;
   white-space: nowrap !important;
 }
@@ -841,6 +841,7 @@ ul.top-nav__main-menus {
   gap: 3px !important;
   flex: 0 0 auto !important;
   margin-left: 12px !important;
+  margin-right: auto !important;
   white-space: nowrap !important;
 }
 .top-nav--left__container { font-size: 10px !important; padding: 4px 6px !important; white-space: nowrap !important; }
