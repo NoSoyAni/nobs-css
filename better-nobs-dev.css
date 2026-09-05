@@ -265,7 +265,9 @@ a[href*="/gaming"] {
 }
 a[href*="/gaming"] i { font-size: 1.1rem !important; }
 
-/* Torrents/Comunidad/Soporte/Otro: fila 1, a la derecha de Arcade */
+/* Torrents/Comunidad/Soporte/Otro: fila 1, a la derecha de Arcade,
+   pero dejando hueco a la izquierda del icon-bar de perfil (que está
+   en position:absolute a la derecha del todo) para que no se solapen */
 ul.top-nav__main-menus {
   order: 4 !important;
   display: flex !important;
@@ -274,15 +276,10 @@ ul.top-nav__main-menus {
   gap: 5px !important;
   flex: 0 0 auto !important;
   margin-left: auto !important;
+  margin-right: 190px !important;
   white-space: nowrap !important;
 }
 .top-nav--left__container { font-size: 13px !important; padding: 6px 10px !important; white-space: nowrap !important; }
-
-/* Fuerza el salto a fila 2 justo después de main-menus (order:4),
-   antes de ratio-bar (order:5) y search (order:6) */
-.top-nav__right {
-  flex-basis: 100% !important;
-}
 
 /* --- Icon-bar de perfil: fijo arriba a la derecha --- */
 .top-nav__icon-bar {
@@ -329,6 +326,7 @@ ul.top-nav__main-menus {
    desplegarse fuera de la caja sin ser cortados. --- */
 .top-nav__right {
   order: 5 !important;
+  flex-basis: 100% !important;
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
