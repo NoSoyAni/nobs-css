@@ -270,8 +270,8 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
 .quick-search__input {
   width: 100% !important;
   min-width: 160px !important;
-  font-size: 13px !important;
-  padding: 9px 12px !important;
+  font-size: 14px !important;
+  padding: 11px 14px !important;
   box-sizing: border-box !important;
 }
 
@@ -290,22 +290,28 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
 
 /* Dropdown del avatar de perfil: al bajar el cursor desde el avatar hasta
    el propio dropdown se perdía el hover y se cerraba antes de poder
-   clicar. Le damos un puente invisible (padding-top negativo compensado
-   con margin) y lo pegamos justo debajo del avatar sin salto. */
+   clicar. Forzamos position:relative real en el <li>, el <ul> pegado
+   justo debajo (top:100%, sin gap) y un puente invisible que cubre
+   cualquier hueco residual. */
 .top-nav__icon-bar .top-nav__dropdown {
   position: relative !important;
 }
 .top-nav__icon-bar .top-nav__dropdown > ul {
-  margin-top: 0 !important;
-  padding-top: 10px !important;
+  position: absolute !important;
+  top: 100% !important;
+  right: 0 !important;
+  left: auto !important;
+  margin: 0 !important;
+  padding-top: 0 !important;
 }
-.top-nav__icon-bar .top-nav__dropdown::after {
+.top-nav__icon-bar .top-nav__dropdown::before {
   content: '';
   position: absolute;
   top: 100%;
-  left: 0;
-  right: 0;
-  height: 12px; /* puente invisible para que el hover no se pierda */
+  left: -20px;
+  right: -20px;
+  height: 16px;
+  z-index: 4;
 }
 
 /* --- Fila 2: .top-nav__right (ratio-bar) + ul.top-nav__main-menus,
@@ -325,14 +331,14 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
   order: 1 !important;
   display: flex !important;
   align-items: center !important;
-  gap: 10px !important;
-  font-size: 13px !important;
+  gap: 12px !important;
+  font-size: 14px !important;
   flex: 0 0 auto !important;
   min-width: 0 !important;
   white-space: nowrap !important;
 }
 .top-nav__ratio-bar li { flex: 0 0 auto !important; }
-.top-nav__ratio-bar i { font-size: 13px !important; }
+.top-nav__ratio-bar i { font-size: 14px !important; }
 
 /* Si la ratio-bar + tabs no caben del todo, dejamos que la propia
    ratio-bar reduzca su tamaño de texto en vez de generar scroll */
@@ -354,7 +360,7 @@ ul.top-nav__main-menus {
   margin-right: auto !important;
   white-space: nowrap !important;
 }
-.top-nav--left__container { font-size: 12px !important; padding: 5px 8px !important; white-space: nowrap !important; }
+.top-nav--left__container { font-size: 13px !important; padding: 6px 10px !important; white-space: nowrap !important; }
 
 /* Los <ul> de los submenús (dropdowns) deben mantenerse tal cual
    los define el theme base, con posición absoluta normal, NUNCA
