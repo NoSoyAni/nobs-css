@@ -722,12 +722,18 @@ tbody tr:hover { transform: translateX(2px) !important; }
   }
 }
 /* ============================================
-   PARCHE v6
-   - Fila 1: logo + Arcade + search + icon-bar de perfil
-     (icon-bar a la derecha del todo, misma altura que search)
-   - Fila 2: ratio-bar + Torrents/Comunidad/Soporte/Otro
-     TODO EN UNA SOLA LÍNEA, ratio-bar primero
-   Sustituye COMPLETO al v5.
+   PARCHE v7 — corrige el "popup/scroll flotante"
+   Causa real: overflow:hidden en los contenedores de
+   la fila 2 cortaba los <ul> de los dropdowns
+   (Torrents/Comunidad/Soporte/Otro), y el navegador
+   generaba una caja de scroll extra en vez de encajar
+   todo en una línea. Solución: quitamos overflow:hidden
+   de esos contenedores, dejamos que el propio nav.top-nav
+   sea el único con overflow controlado, y usamos
+   flex-shrink en los <li>/<a> de texto (no en los <ul>
+   de submenú) para que el texto se comprima antes de
+   desbordar.
+   Sustituye COMPLETO al v6.
    ============================================ */
 
 .user-tag.top-nav__username--highresolution {
@@ -741,6 +747,7 @@ nav.top-nav {
   align-items: center !important;
   padding: 6px 14px !important;
   gap: 6px 14px !important;
+  overflow: visible !important; /* los dropdowns necesitan poder salir del nav */
 }
 
 /* --- Fila 1: logo + Arcade + search --- */
@@ -751,7 +758,7 @@ nav.top-nav {
   align-items: center !important;
   gap: 10px !important;
   flex: 1 1 auto !important;
-  padding-right: 230px !important; /* deja hueco para el icon-bar absoluto */
+  padding-right: 230px !important;
 }
 .top-nav__branding { display: flex !important; align-items: center !important; gap: 8px !important; flex: 0 0 auto !important; }
 .top-nav__branding img { height: 34px !important; }
@@ -778,8 +785,7 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
   box-sizing: border-box !important;
 }
 
-/* --- Icon-bar de perfil: fijo arriba a la derecha, misma altura
-   que logo/Arcade/search (fila 1) --- */
+/* --- Icon-bar de perfil: fijo arriba a la derecha --- */
 .top-nav__icon-bar {
   display: flex !important;
   align-items: center !important;
@@ -793,9 +799,9 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
 .top-nav__profile-image { width: 27px !important; height: 27px !important; }
 
 /* --- Fila 2: .top-nav__right (ratio-bar) + ul.top-nav__main-menus,
-   EN LA MISMA LÍNEA. Los forzamos dentro de un contenedor con
-   ancho completo y nowrap real, reduciendo tamaños si hace falta
-   en vez de romper a otra línea. --- */
+   EN LA MISMA LÍNEA. Nada de overflow:hidden aquí: los <li> de
+   top-nav__main-menus contienen dropdowns (<ul>) que deben poder
+   desplegarse fuera de la caja sin ser cortados. --- */
 .top-nav__right {
   order: 2 !important;
   display: flex !important;
@@ -811,13 +817,21 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
   align-items: center !important;
   gap: 10px !important;
   font-size: 11px !important;
-  flex: 0 1 auto !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
+  flex: 1 1 auto !important;
   min-width: 0 !important;
+  white-space: nowrap !important;
 }
-.top-nav__ratio-bar i { font-size: 11px !important; }
 .top-nav__ratio-bar li { flex: 0 0 auto !important; }
+.top-nav__ratio-bar i { font-size: 11px !important; }
+
+/* Si la ratio-bar + tabs no caben del todo, dejamos que la propia
+   ratio-bar reduzca su tamaño de texto en vez de generar scroll */
+@media (max-width: 1400px) {
+  .top-nav__ratio-bar { font-size: 10px !important; gap: 7px !important; }
+}
+@media (max-width: 1150px) {
+  .top-nav__ratio-bar li:nth-last-child(-n+2) { display: none !important; } /* oculta thanks/tokens si no cabe */
+}
 
 ul.top-nav__main-menus {
   order: 3 !important;
@@ -825,22 +839,15 @@ ul.top-nav__main-menus {
   flex-wrap: nowrap !important;
   align-items: center !important;
   gap: 3px !important;
-  flex: 0 1 auto !important;
-  min-width: 0 !important;
+  flex: 0 0 auto !important;
   margin-left: 12px !important;
   white-space: nowrap !important;
-  overflow: hidden !important;
 }
-.top-nav--left__container { font-size: 9px !important; padding: 4px 5px !important; white-space: nowrap !important; }
-.top-nav__dropdown { flex: 0 1 auto !important; min-width: 0 !important; }
+.top-nav--left__container { font-size: 10px !important; padding: 4px 6px !important; white-space: nowrap !important; }
 
-/* Aseguramos que fila 2 (ratio-bar + tabs) no desborde el ancho del nav,
-   generando ese scroll horizontal "flotante" que se veía como un popup */
-nav.top-nav {
-  overflow-x: hidden !important;
-  max-width: 100% !important;
-}
-.top-nav__right {
-  max-width: 100% !important;
-  overflow: hidden !important;
+/* Los <ul> de los submenús (dropdowns) deben mantenerse tal cual
+   los define el theme base, con posición absoluta normal, NUNCA
+   con overflow:hidden en un ancestro que los recorte */
+.top-nav__dropdown > ul {
+  overflow: visible !important;
 }
