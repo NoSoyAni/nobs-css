@@ -824,16 +824,23 @@ ul.top-nav__main-menus {
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
-  gap: 4px !important;
-  flex: 0 0 auto !important;
-  margin-left: 16px !important;
+  gap: 3px !important;
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  margin-left: 12px !important;
   white-space: nowrap !important;
+  overflow: hidden !important;
 }
-.top-nav--left__container { font-size: 10px !important; padding: 4px 6px !important; white-space: nowrap !important; }
+.top-nav--left__container { font-size: 9px !important; padding: 4px 5px !important; white-space: nowrap !important; }
+.top-nav__dropdown { flex: 0 1 auto !important; min-width: 0 !important; }
 
-/* Aseguramos que fila 2 (ratio-bar + tabs) no se corte por falta de
-   espacio: si no caben todos los elementos, permitimos scroll horizontal
-   en vez de que Torrents se vaya a otra línea */
+/* Aseguramos que fila 2 (ratio-bar + tabs) no desborde el ancho del nav,
+   generando ese scroll horizontal "flotante" que se veía como un popup */
 nav.top-nav {
-  overflow-x: hidden !important; /* estético; cambia a auto si prefieres scroll */
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+.top-nav__right {
+  max-width: 100% !important;
+  overflow: hidden !important;
 }
