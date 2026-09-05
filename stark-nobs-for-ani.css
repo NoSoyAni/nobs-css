@@ -723,19 +723,21 @@ tbody tr:hover { transform: translateX(2px) !important; }
 }
 
 /* FIX pantalla alta resolución/escalado, portátil de NoSoyAni no muestra correctamente la web desde actualizaciones recientes, este fix lo soluciona. */
-nav.top-nav, header {
-  min-height: 60px !important;
+nav.top-nav {
+  display: flex !important;
+  align-items: center !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  flex-wrap: nowrap !important;
+  gap: 12px !important;
 }
 .top-nav__branding,
 .top-nav--left__container,
-.top-nav--right__icon-link,
-.top-nav__ratio-bar {
-  flex-shrink: 0 !important;
-  white-space: nowrap !important;
+.top-nav--right__icon-link {
+  flex-shrink: 1 !important;
+  min-width: 0 !important;
 }
 .top-nav__site-logo {
-  font-size: 0.85rem !important;
-}
-@media (min-resolution: 1.5dppx) {
-  html { font-size: 15px !important; }
+  font-size: 0.75rem !important;
+  white-space: nowrap !important;
 }
