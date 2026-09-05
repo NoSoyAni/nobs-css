@@ -721,7 +721,6 @@ tbody tr:hover { transform: translateX(2px) !important; }
     animation: none !important;
   }
 }
-
 /* ============================================
    PARCHE v6
    - Fila 1: logo + Arcade + search + icon-bar de perfil
@@ -793,27 +792,32 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
 .top-nav--right__icon-link { font-size: 14px !important; }
 .top-nav__profile-image { width: 27px !important; height: 27px !important; }
 
-/* --- Fila 2: .top-nav__right (solo queda la ratio-bar, el icon-bar ya
-   se sacó con position:absolute) + ul.top-nav__main-menus,
-   EN LA MISMA LÍNEA, sin que ninguno se rompa a otra fila --- */
+/* --- Fila 2: .top-nav__right (ratio-bar) + ul.top-nav__main-menus,
+   EN LA MISMA LÍNEA. Los forzamos dentro de un contenedor con
+   ancho completo y nowrap real, reduciendo tamaños si hace falta
+   en vez de romper a otra línea. --- */
 .top-nav__right {
   order: 2 !important;
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
-  flex: 0 0 auto !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
 }
 
 .top-nav__ratio-bar {
   order: 1 !important;
   display: flex !important;
   align-items: center !important;
-  gap: 14px !important;
-  font-size: 12px !important;
-  flex: 0 0 auto !important;
+  gap: 10px !important;
+  font-size: 11px !important;
+  flex: 0 1 auto !important;
   white-space: nowrap !important;
+  overflow: hidden !important;
+  min-width: 0 !important;
 }
-.top-nav__ratio-bar i { font-size: 12px !important; }
+.top-nav__ratio-bar i { font-size: 11px !important; }
+.top-nav__ratio-bar li { flex: 0 0 auto !important; }
 
 ul.top-nav__main-menus {
   order: 3 !important;
@@ -822,9 +826,10 @@ ul.top-nav__main-menus {
   align-items: center !important;
   gap: 4px !important;
   flex: 0 0 auto !important;
-  margin-left: 24px !important;
+  margin-left: 16px !important;
+  white-space: nowrap !important;
 }
-.top-nav--left__container { font-size: 10px !important; padding: 4px 8px !important; white-space: nowrap !important; }
+.top-nav--left__container { font-size: 10px !important; padding: 4px 6px !important; white-space: nowrap !important; }
 
 /* Aseguramos que fila 2 (ratio-bar + tabs) no se corte por falta de
    espacio: si no caben todos los elementos, permitimos scroll horizontal
