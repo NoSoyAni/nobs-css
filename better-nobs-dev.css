@@ -240,38 +240,49 @@ nav.top-nav {
   overflow: visible !important; /* los dropdowns necesitan poder salir del nav */
 }
 
-/* --- Fila 1: logo + Arcade + Torrents/Comunidad/Soporte/Otro --- */
+/* --- Fila 1: logo + Arcade + Torrents/Comunidad/Soporte/Otro ---
+   .top-nav__left contiene branding + quick-search + botón Arcade en
+   el HTML. Con display:contents, sus hijos pasan a comportarse como
+   hijos directos del flex de nav.top-nav, así podemos darles "order"
+   real e independiente de la search (que también es hijo suyo). */
 .top-nav__left {
+  display: contents !important;
+}
+.top-nav__branding {
   order: 1 !important;
   display: flex !important;
-  flex-wrap: wrap !important;
   align-items: center !important;
-  gap: 10px !important;
-  flex: 1 1 auto !important;
-  padding-right: 230px !important;
+  gap: 8px !important;
+  flex: 0 0 auto !important;
 }
-.top-nav__branding { display: flex !important; align-items: center !important; gap: 8px !important; flex: 0 0 auto !important; }
 .top-nav__branding img { height: 34px !important; }
 .top-nav__site-logo { font-size: 1rem !important; letter-spacing: 0.09em !important; }
 a[href*="/gaming"] {
+  order: 3 !important;
   padding: 5px 14px !important;
   font-size: 1.3rem !important;
   flex: 0 0 auto !important;
 }
 a[href*="/gaming"] i { font-size: 1.1rem !important; }
 
-/* Torrents/Comunidad/Soporte/Otro ahora en fila 1, junto a logo/Arcade
-   (antes estaba aquí la search bar) */
+/* Torrents/Comunidad/Soporte/Otro: fila 1, a la derecha de Arcade */
 ul.top-nav__main-menus {
-  order: 5 !important;
+  order: 4 !important;
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
   gap: 5px !important;
   flex: 0 0 auto !important;
+  margin-left: auto !important;
   white-space: nowrap !important;
 }
 .top-nav--left__container { font-size: 13px !important; padding: 6px 10px !important; white-space: nowrap !important; }
+
+/* Fuerza el salto a fila 2 justo después de main-menus (order:4),
+   antes de ratio-bar (order:5) y search (order:6) */
+.top-nav__right {
+  flex-basis: 100% !important;
+}
 
 /* --- Icon-bar de perfil: fijo arriba a la derecha --- */
 .top-nav__icon-bar {
@@ -317,11 +328,11 @@ ul.top-nav__main-menus {
    top-nav__main-menus contienen dropdowns (<ul>) que deben poder
    desplegarse fuera de la caja sin ser cortados. --- */
 .top-nav__right {
-  order: 2 !important;
+  order: 5 !important;
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
-  flex: 1 1 auto !important;
+  flex: 0 0 auto !important;
   min-width: 0 !important;
 }
 
@@ -348,10 +359,12 @@ ul.top-nav__main-menus {
   .top-nav__ratio-bar { font-size: 11px !important; gap: 7px !important; }
 }
 
-/* Search bar: ahora en fila 2 (donde antes estaban los tabs),
-   se alarga hacia la derecha para ocupar el hueco libre */
+/* Search bar: ahora en fila 2, a la derecha de la ratio-bar
+   (order:6, después de .top-nav__right order:5). Gracias al
+   display:contents de .top-nav__left, este <div> hijo suyo se
+   coloca de forma independiente en el flex de nav.top-nav. */
 .quick-search {
-  order: 3 !important;
+  order: 6 !important;
   flex: 1 1 260px !important;
   min-width: 200px !important;
   max-width: 520px !important;
