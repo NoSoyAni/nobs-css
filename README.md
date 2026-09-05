@@ -29,6 +29,8 @@
 
 **Nobs-mobile-fix** es un archivo css que solo modifica la distribución original de la web para adaptarla a dispositivos móviles con pantallas más pequeñas.
 
+Los que tienen -dev al final son versiones de desarrollo pensadas para realizar pruebas y cambios y si son exitosos lanzarlos a las versiones normales.
+
 El código se encuentra **finalizado y 100% funcional**, aunque actualmente está marcado como versión **BETA** para recibir feedback y corregir posibles detalles visuales menores.
 
 ---
