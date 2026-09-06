@@ -954,12 +954,14 @@
 @media (max-width: 768px) {
   .top-nav.mobile > .top-nav__left,
   .top-nav:has(> .top-nav__main-menus.mobile) > .top-nav__left {
-    margin: 4px 0 0 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    align-content: flex-start !important;
   }
-  .quick-search__results {
-    display: none !important;
-  }
-  .top-nav__main-menus.mobile {
-    margin-top: 4px !important;
+  .top-nav.mobile > .top-nav__left > *,
+  .top-nav:has(> .top-nav__main-menus.mobile) > .top-nav__left > * {
+    height: auto !important;
+    min-height: 0 !important;
+    flex: 0 0 auto !important;
   }
 }
