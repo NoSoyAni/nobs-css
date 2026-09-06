@@ -813,7 +813,27 @@ tbody tr:hover { transform: translateX(2px) !important; }
       box-shadow 0.2s ease,
       transform 0.15s ease !important;
   }
+/* Solo compacta las tabs si aparece Donar */
+nav.top-nav:has(
+  ul.top-nav__main-menus a:is(
+    [href*="donate"],
+    [href*="donacion"],
+    [href*="donar"]
+  )
+) ul.top-nav__main-menus {
+  gap: 0 !important;
+  margin-left: 4px !important;
+}
 
+nav.top-nav:has(
+  ul.top-nav__main-menus a:is(
+    [href*="donate"],
+    [href*="donacion"],
+    [href*="donar"]
+  )
+) .top-nav--left__container {
+  padding: 7px 6px !important;
+}
   ul.top-nav__main-menus > li:hover .top-nav--left__container,
   ul.top-nav__main-menus > li.top-nav__dropdown:hover > a .top-nav--left__container {
     background: rgba(0, 217, 255, 0.14) !important;
