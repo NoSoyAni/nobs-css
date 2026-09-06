@@ -951,3 +951,15 @@
         flex-direction: column !important;
     }
 }
+@media (max-width: 768px) {
+  .top-nav.mobile > .top-nav__left,
+  .top-nav:has(> .top-nav__main-menus.mobile) > .top-nav__left {
+    margin: 4px 0 0 0 !important;
+  }
+  .quick-search__results {
+    display: none !important;
+  }
+  .top-nav__main-menus.mobile {
+    margin-top: 4px !important;
+  }
+}
