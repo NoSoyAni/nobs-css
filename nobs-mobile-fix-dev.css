@@ -944,7 +944,7 @@
 
     /* ---------- MARCADOR DE VERSION ---------- */
     body::before {
-        content: "nobs-mobile-fix vBETA24.3" !important;
+        content: "nobs-mobile-fix vBETA24.4" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
@@ -957,47 +957,53 @@
         border-radius: 3px !important;
         pointer-events: none !important;
     }
-}
-/* Menú móvil: el contenido largo debe crecer y permitir scroll */
+/* NOBS: submenús principales dentro del drawer, nunca laterales */
 @media (max-width: 768px) {
-  .top-nav.mobile,
-  .top-nav:has(> .top-nav__main-menus.mobile) {
-    height: 100dvh !important;
-    max-height: 100dvh !important;
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    overscroll-behavior: contain !important;
-  }
-
-  .top-nav__main-menus.mobile {
+  .top-nav.mobile > .top-nav__main-menus.mobile {
     display: flex !important;
-    flex: 0 0 auto !important;
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  .top-nav__main-menus.mobile > li.top-nav__dropdown {
-    display: block !important;
-    flex: 0 0 auto !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
-
-  .top-nav__main-menus.mobile > li.top-nav__dropdown > ul {
-    position: static !important;
-    display: none !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
     width: 100% !important;
     height: auto !important;
     max-height: none !important;
     overflow: visible !important;
-    margin: 6px 0 12px !important;
-    transform: none !important;
   }
 
-  .top-nav__main-menus.mobile > li.top-nav__dropdown:focus-within > ul,
-  .top-nav__main-menus.mobile > li.top-nav__dropdown.open > ul {
-    display: flex !important;
+  .top-nav.mobile > .top-nav__main-menus.mobile > li.top-nav__dropdown {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+    flex: 0 0 auto !important;
+  }
+
+  .top-nav.mobile > .top-nav__main-menus.mobile > li.top-nav__dropdown > ul {
+    position: relative !important;
+    inset: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    z-index: auto !important;
+    float: none !important;
+    clear: both !important;
+    transform: none !important;
+
+    display: none !important;
     flex-direction: column !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    margin: 6px 0 12px !important;
+  }
+
+  .top-nav.mobile > .top-nav__main-menus.mobile > li.top-nav__dropdown:focus-within > ul,
+  .top-nav.mobile > .top-nav__main-menus.mobile > li.top-nav__dropdown.open > ul {
+    display: flex !important;
   }
 }
