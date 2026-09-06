@@ -971,3 +971,21 @@ ul.top-nav__main-menus > li.top-nav__dropdown > ul {
 }
 
 } /* fin @media (min-width: 901px) */
+@media (min-width: 901px) {
+  nav.top-nav > ul.top-nav__main-menus {
+    width: max-content !important;
+    flex: 0 0 max-content !important;
+    justify-content: flex-start !important;
+    gap: 2px !important;
+    margin-left: 10px !important;
+  }
+
+  nav.top-nav > ul.top-nav__main-menus > li {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  nav.top-nav > ul.top-nav__main-menus .top-nav--left__container {
+    padding: 7px 9px !important;
+  }
+}
