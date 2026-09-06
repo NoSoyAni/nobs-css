@@ -413,9 +413,8 @@ ul.top-nav__main-menus > li.top-nav__dropdown:hover > a .top-nav--left__containe
   order: 6 !important;
   flex: 1 1 260px !important;
   min-width: 200px !important;
-  max-width: 400px !important;
+  max-width: 520px !important;
   margin-left: 16px !important;
-  margin-right: 230px !important;
   align-self: center !important;
   transform: translateY(-10px) !important;
 }
