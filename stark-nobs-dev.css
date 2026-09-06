@@ -789,6 +789,7 @@ ul.top-nav__main-menus {
   margin: 0 0 0 -6px !important;
   padding: 0 !important;
   white-space: nowrap !important;
+  transform: translateX(-12px) !important;
 }
 
 /* El tema añade separación por margen, no por gap */
@@ -962,7 +963,7 @@ nav.top-nav ul.top-nav__main-menus > li {
     order: 6 !important;
     flex: 0 0 700px !important;
     width: 250px !important;
-    max-width: 250px !important;
+    max-width: 400px !important;
     min-width: 0 !important;
     margin-left: -12px !important;
     align-self: center !important;
