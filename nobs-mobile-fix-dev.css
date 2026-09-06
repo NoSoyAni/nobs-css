@@ -982,3 +982,10 @@
     flex-direction: column !important;
   }
 }
+
+@media (max-width: 768px) {
+  .top-nav__icon-bar > li.top-nav__dropdown {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+  }
+}
