@@ -954,14 +954,7 @@
 @media (max-width: 768px) {
   .top-nav.mobile > .top-nav__left,
   .top-nav:has(> .top-nav__main-menus.mobile) > .top-nav__left {
-    height: auto !important;
-    min-height: 0 !important;
-    align-content: flex-start !important;
-  }
-  .top-nav.mobile > .top-nav__left > *,
-  .top-nav:has(> .top-nav__main-menus.mobile) > .top-nav__left > * {
-    height: auto !important;
-    min-height: 0 !important;
     flex: 0 0 auto !important;
+    align-self: flex-start !important;
   }
 }
