@@ -212,263 +212,274 @@ tbody tr:hover { transform: translateX(2px) !important; }
   }
 }
 /* ============================================
-   PARCHE v7 — corrige el "popup/scroll flotante"
-   Causa real: overflow:hidden en los contenedores de
-   la fila 2 cortaba los <ul> de los dropdowns
-   (Torrents/Comunidad/Soporte/Otro), y el navegador
-   generaba una caja de scroll extra en vez de encajar
-   todo en una línea. Solución: quitamos overflow:hidden
-   de esos contenedores, dejamos que el propio nav.top-nav
-   sea el único con overflow controlado, y usamos
-   flex-shrink en los <li>/<a> de texto (no en los <ul>
-   de submenú) para que el texto se comprima antes de
-   desbordar.
-
-   IMPORTANTE: este parche está pensado solo para escritorio.
-   En móvil ya existe nobs-mobile-fix.css que resuelve el layout,
-   así que todo lo de aquí abajo va envuelto en un @media que
-   solo activa desde 901px de ancho en adelante. Por debajo de
-   ese umbral, el nav vuelve a comportarse como el theme base
-   (o como lo deje nobs-mobile-fix.css).
+   PARCHE v7 FUSIONADO — escritorio (901px+)
+   Cards + layout de navegación + dropdowns
    ============================================ */
 
 @media (min-width: 901px) {
 
-.user-tag.top-nav__username--highresolution {
-  display: none !important;
-}
+  .user-tag.top-nav__username--highresolution {
+    display: none !important;
+  }
 
-nav.top-nav {
-  position: relative !important;
-  display: flex !important;
-  flex-wrap: wrap !important;
-  align-items: center !important;
-  padding: 6px 14px !important;
-  gap: 6px 14px !important;
-  overflow: visible !important; /* los dropdowns necesitan poder salir del nav */
-}
+  nav.top-nav {
+    position: relative !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    padding: 6px 14px !important;
+    gap: 6px 14px !important;
+    overflow: visible !important;
+  }
 
-/* --- Fila 1: logo + Arcade + Torrents/Comunidad/Soporte/Otro ---
-   .top-nav__left contiene branding + quick-search + botón Arcade en
-   el HTML. Con display:contents, sus hijos pasan a comportarse como
-   hijos directos del flex de nav.top-nav, así podemos darles "order"
-   real e independiente de la search (que también es hijo suyo). */
-.top-nav__left {
-  display: contents !important;
-}
-.top-nav__branding {
-  order: 1 !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  flex: 0 0 auto !important;
-}
-.top-nav__branding img { height: 34px !important; }
-.top-nav__site-logo { font-size: 1rem !important; letter-spacing: 0.09em !important; }
-a[href*="/gaming"] {
-  order: 3 !important;
-  padding: 5px 14px !important;
-  font-size: 1.3rem !important;
-  flex: 0 0 auto !important;
-}
-a[href*="/gaming"] i { font-size: 1.1rem !important; }
+  /* ── Fila 1: logo, Arcade y menú ── */
 
-/* Torrents/Comunidad/Soporte/Otro: fila 1, a la derecha de Arcade,
-   pero dejando hueco a la izquierda del icon-bar de perfil (que está
-   en position:absolute a la derecha del todo) para que no se solapen */
-ul.top-nav__main-menus {
-  order: 4 !important;
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  align-items: center !important;
-  gap: 8px !important;
-  flex: 0 0 auto !important;
-  margin-left: 4px !important;
-  margin-right: 0 !important;
-  white-space: nowrap !important;
-}
-.top-nav--left__container {
-  font-size: 9px !important;
-  padding: 7px 14px !important;
-  white-space: nowrap !important;
-}
+  .top-nav__left {
+    display: contents !important;
+  }
 
-/* --- Icon-bar de perfil: fijo a la derecha, ocupando la altura
-   completa de ambas filas (fila 1: logo/Arcade/tabs; fila 2:
-   ratio-bar/search), para que nunca quede tapado ni tape nada */
-.top-nav__icon-bar {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  position: absolute !important;
-  top: 4px !important;
-  bottom: 4px !important;
-  right: 14px !important;
-  height: auto !important;
-  z-index: 5 !important;
-  padding: 6px 12px !important;
-  border-radius: 12px !important;
-  background: rgba(6, 14, 24, 0.7) !important;
-  border: 1px solid rgba(0, 217, 255, 0.22) !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.03) !important;
-}
-.top-nav--right__icon-link {
-  font-size: 14px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 30px !important;
-  height: 30px !important;
-  border-radius: 8px !important;
-  background: rgba(0, 217, 255, 0.05) !important;
-  border: 1px solid rgba(0, 217, 255, 0.15) !important;
-  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .15s ease !important;
-}
-.top-nav--right__icon-link:hover {
-  background: rgba(0, 217, 255, 0.16) !important;
-  border-color: rgba(0, 217, 255, 0.55) !important;
-  box-shadow: 0 2px 10px rgba(0, 217, 255, 0.25) !important;
-  transform: translateY(-1px) !important;
-}
-.top-nav__profile-image {
-  width: 30px !important;
-  height: 30px !important;
-  border-radius: 8px !important;
-  border: 1px solid rgba(0, 217, 255, 0.4) !important;
-  box-shadow: 0 0 8px rgba(0, 217, 255, 0.3) !important;
-}
+  .top-nav__branding {
+    order: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex: 0 0 auto !important;
+  }
 
-/* Dropdown del avatar de perfil: al bajar el cursor desde el avatar hasta
-   el propio dropdown se perdía el hover y se cerraba antes de poder
-   clicar. Forzamos position:relative real en el <li>, el <ul> pegado
-   justo debajo (top:100%, sin gap) y un puente invisible que cubre
-   cualquier hueco residual. */
-.top-nav__icon-bar .top-nav__dropdown {
-  position: relative !important;
-}
-.top-nav__icon-bar .top-nav__dropdown > ul {
-  position: absolute !important;
-  top: 100% !important;
-  right: 0 !important;
-  left: auto !important;
-  margin: 0 !important;
-  padding-top: 0 !important;
-}
-.top-nav__icon-bar .top-nav__dropdown::before {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: -20px;
-  right: -20px;
-  height: 16px;
-  z-index: 4;
-}
+  .top-nav__branding img {
+    height: 34px !important;
+  }
 
-/* --- Fila 2: .top-nav__right (ratio-bar) + ul.top-nav__main-menus,
-   EN LA MISMA LÍNEA. Nada de overflow:hidden aquí: los <li> de
-   top-nav__main-menus contienen dropdowns (<ul>) que deben poder
-   desplegarse fuera de la caja sin ser cortados. --- */
-.top-nav__right {
-  order: 5 !important;
-  flex-basis: 100% !important;
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  flex: 0 0 auto !important;
-  min-width: 0 !important;
-}
+  .top-nav__site-logo {
+    font-size: 1rem !important;
+    letter-spacing: 0.09em !important;
+  }
 
-.top-nav__ratio-bar {
-  order: 1 !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 12px !important;
-  font-size: 14px !important;
-  flex: 0 0 auto !important;
-  min-width: 0 !important;
-  white-space: nowrap !important;
-}
-.top-nav__ratio-bar li { flex: 0 0 auto !important; }
-.top-nav__ratio-bar i { font-size: 14px !important; }
+  a[href*="/gaming"] {
+    order: 3 !important;
+    padding: 5px 14px !important;
+    font-size: 1.3rem !important;
+    flex: 0 0 auto !important;
+  }
 
-/* Si la ratio-bar no cabe del todo, reduce texto en vez de ocultar
-   elementos (queremos ver siempre todas las stats, incluidas
-   thanks/tokens) */
-@media (max-width: 1400px) {
-  .top-nav__ratio-bar { font-size: 12px !important; gap: 9px !important; }
-}
+  a[href*="/gaming"] i {
+    font-size: 1.1rem !important;
+  }
 
-/* Search bar: ahora en fila 2, a la derecha de la ratio-bar
-   (order:6, después de .top-nav__right order:5). Gracias al
-   display:contents de .top-nav__left, este <div> hijo suyo se
-   coloca de forma independiente en el flex de nav.top-nav. */
-.quick-search {
-  order: 6 !important;
-  flex: 0 0 700px !important;
-  width: 250px !important;
-  max-width: 250px !important;
-  min-width: 0 !important;
-  margin-left: -12px !important;
-  align-self: center !important;
-  transform: translateY(-12px) !important; /* antes -16px */
-}
+  /* Cards de Torrents, Comunidad, Soporte y Otro */
 
-.quick-search__input {
-  width: 100% !important;
-  min-width: 160px !important;
-  font-size: 15px !important;
-  padding: 16px !important; /* antes 13px 16px */
-  box-sizing: border-box !important;
-}
-.quick-search__input:focus {
-  border-color: rgba(0, 217, 255, 0.75) !important;
-  box-shadow:
-    0 2px 14px rgba(0, 217, 255, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
-  outline: none !important;
-}
-
-/* Los <ul> de los submenús (dropdowns) deben mantenerse tal cual
-   los define el theme base, con posición absoluta normal, NUNCA
-   con overflow:hidden en un ancestro que los recorte */
-.top-nav__dropdown > ul {
-  overflow: visible !important;
-}
-
-/* Bug: al reordenar la fila con flex "order", los dropdowns de
-   Torrents/Comunidad/Soporte/Otro (que usan position:absolute con
-   top calculado respecto al <li>) se desplegaban hacia arriba en vez
-   de hacia abajo, porque su <li> pasó a estar en una fila distinta
-   a la que el theme original esperaba. Forzamos que cuelguen siempre
-   debajo de su propio <li>. */
-ul.top-nav__main-menus > li.top-nav__dropdown {
-  position: relative !important;
-}
-ul.top-nav__main-menus > li.top-nav__dropdown > ul {
-  position: absolute !important;
-  top: 100% !important;
-  bottom: auto !important;
-  left: 0 !important;
-  margin-top: 0 !important;
-}
-
-} /* fin @media (min-width: 901px) */
-@media (min-width: 901px) {
-  nav.top-nav > ul.top-nav__main-menus {
+  ul.top-nav__main-menus {
+    order: 4 !important;
+    display: flex !important;
     width: max-content !important;
     flex: 0 0 max-content !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
     justify-content: flex-start !important;
     gap: 2px !important;
-    margin-left: 10px !important;
+    margin: 0 0 0 10px !important;
+    padding: 0 !important;
+    white-space: nowrap !important;
   }
 
-  nav.top-nav > ul.top-nav__main-menus > li {
+  ul.top-nav__main-menus > li {
+    position: relative !important;
     margin: 0 !important;
     padding: 0 !important;
+    flex: 0 0 auto !important;
   }
 
-  nav.top-nav > ul.top-nav__main-menus .top-nav--left__container {
+  .top-nav--left__container {
+    font-size: 13px !important;
     padding: 7px 9px !important;
+    white-space: nowrap !important;
+    border-radius: 8px !important;
+    background: rgba(0, 217, 255, 0.05) !important;
+    border: 1px solid rgba(0, 217, 255, 0.18) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.15s ease !important;
+  }
+
+  ul.top-nav__main-menus > li:hover .top-nav--left__container,
+  ul.top-nav__main-menus > li.top-nav__dropdown:hover > a .top-nav--left__container {
+    background: rgba(0, 217, 255, 0.14) !important;
+    border-color: rgba(0, 217, 255, 0.5) !important;
+    box-shadow:
+      0 2px 10px rgba(0, 217, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* Dropdowns de las tabs */
+
+  .top-nav__dropdown > ul {
+    overflow: visible !important;
+  }
+
+  ul.top-nav__main-menus > li.top-nav__dropdown > ul {
+    position: absolute !important;
+    top: 100% !important;
+    bottom: auto !important;
+    left: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  /* ── Bloque de perfil a la derecha ── */
+
+  .top-nav__icon-bar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    position: absolute !important;
+    top: 4px !important;
+    bottom: 4px !important;
+    right: 14px !important;
+    height: auto !important;
+    z-index: 5 !important;
+    padding: 6px 12px !important;
+    border-radius: 12px !important;
+    background: rgba(6, 14, 24, 0.7) !important;
+    border: 1px solid rgba(0, 217, 255, 0.22) !important;
+    box-shadow:
+      0 2px 10px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+  }
+
+  .top-nav--right__icon-link {
+    font-size: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 8px !important;
+    background: rgba(0, 217, 255, 0.05) !important;
+    border: 1px solid rgba(0, 217, 255, 0.15) !important;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.15s ease !important;
+  }
+
+  .top-nav--right__icon-link:hover {
+    background: rgba(0, 217, 255, 0.16) !important;
+    border-color: rgba(0, 217, 255, 0.55) !important;
+    box-shadow: 0 2px 10px rgba(0, 217, 255, 0.25) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .top-nav__profile-image {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(0, 217, 255, 0.4) !important;
+    box-shadow: 0 0 8px rgba(0, 217, 255, 0.3) !important;
+  }
+
+  .top-nav__icon-bar .top-nav__dropdown {
+    position: relative !important;
+  }
+
+  .top-nav__icon-bar .top-nav__dropdown > ul {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    margin: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .top-nav__icon-bar .top-nav__dropdown::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: -20px;
+    right: -20px;
+    height: 16px;
+    z-index: 4;
+  }
+
+  /* ── Fila 2: estadísticas y buscador ── */
+
+  .top-nav__right {
+    order: 5 !important;
+    flex-basis: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+  }
+
+  .top-nav__ratio-bar {
+    order: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    font-size: 14px !important;
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .top-nav__ratio-bar li {
+    flex: 0 0 auto !important;
+  }
+
+  .top-nav__ratio-bar i {
+    font-size: 14px !important;
+  }
+
+  /* Buscador: 4px más abajo y 6px más alto */
+
+  .quick-search {
+    order: 6 !important;
+    flex: 0 0 700px !important;
+    width: 340px !important;
+    max-width: 340px !important;
+    min-width: 0 !important;
+    margin-left: -12px !important;
+    align-self: center !important;
+    transform: translateY(-12px) !important;
+  }
+
+  .quick-search__inputs {
+    width: 100% !important;
+  }
+
+  .quick-search__input {
+    width: 100% !important;
+    min-width: 160px !important;
+    font-size: 15px !important;
+    padding: 16px !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    background: rgba(10, 16, 26, 0.85) !important;
+    border: 1px solid rgba(0, 217, 255, 0.35) !important;
+    box-shadow:
+      0 2px 10px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease !important;
+  }
+
+  .quick-search__input:focus {
+    border-color: rgba(0, 217, 255, 0.75) !important;
+    box-shadow:
+      0 2px 14px rgba(0, 217, 255, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    outline: none !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1400px) {
+  .top-nav__ratio-bar {
+    font-size: 12px !important;
+    gap: 9px !important;
   }
 }
