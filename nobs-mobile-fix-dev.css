@@ -1030,8 +1030,3 @@
     flex-direction: column !important;
   }
 }
-
-  .top-nav__icon-bar .top-nav__dropdown ul li ul {
-    display: none !important;
-  }
-  .top-nav__icon-bar .top-nav__dropdown ul li:focus-within ul,
