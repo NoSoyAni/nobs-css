@@ -962,8 +962,8 @@ nav.top-nav ul.top-nav__main-menus > li {
 .quick-search {
   order: 6 !important;
   flex: 0 0 700px !important;
-  width: 250px !important;
-  max-width: 250px !important;
+  width: 240px !important;
+  max-width: 240px !important;
   min-width: 0 !important;
   margin-left: -12px !important;
   margin-right: 0 !important;
