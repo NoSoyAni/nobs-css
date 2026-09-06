@@ -297,16 +297,20 @@ ul.top-nav__main-menus > li.top-nav__dropdown:hover > a .top-nav--left__containe
   transform: translateY(-1px) !important;
 }
 
-/* --- Icon-bar de perfil: fijo arriba a la derecha --- */
+/* --- Icon-bar de perfil: fijo a la derecha, ocupando la altura
+   completa de ambas filas (fila 1: logo/Arcade/tabs; fila 2:
+   ratio-bar/search), para que nunca quede tapado ni tape nada */
 .top-nav__icon-bar {
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
   position: absolute !important;
-  top: 6px !important;
+  top: 4px !important;
+  bottom: 4px !important;
   right: 14px !important;
+  height: auto !important;
   z-index: 5 !important;
-  padding: 6px 10px !important;
+  padding: 6px 12px !important;
   border-radius: 12px !important;
   background: rgba(6, 14, 24, 0.7) !important;
   border: 1px solid rgba(0, 217, 255, 0.22) !important;
@@ -409,8 +413,9 @@ ul.top-nav__main-menus > li.top-nav__dropdown:hover > a .top-nav--left__containe
   order: 6 !important;
   flex: 1 1 260px !important;
   min-width: 200px !important;
-  max-width: 520px !important;
+  max-width: 400px !important;
   margin-left: 16px !important;
+  margin-right: 230px !important;
   align-self: center !important;
   transform: translateY(-10px) !important;
 }
