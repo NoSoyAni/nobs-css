@@ -791,14 +791,14 @@ ul.top-nav__main-menus {
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 5px !important;
   flex: 0 0 auto !important;
   margin-left: 4px !important;
   margin-right: 210px !important;
   white-space: nowrap !important;
 }
 .top-nav--left__container {
-  font-size: 13px !important;
+  font-size: 7px !important;
   padding: 7px 14px !important;
   white-space: nowrap !important;
 }
@@ -915,8 +915,8 @@ ul.top-nav__main-menus {
    coloca de forma independiente en el flex de nav.top-nav. */
 .quick-search {
   order: 6 !important;
-  flex: 0 0 700px !important;
-  width: 700px !important;
+  flex: 0 0 1500px !important;
+  width: 1500px !important;
   max-width: 700px !important;
   min-width: 0 !important;
   margin-left: -12px !important;
