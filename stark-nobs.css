@@ -721,3 +721,287 @@ tbody tr:hover { transform: translateX(2px) !important; }
     animation: none !important;
   }
 }
+
+/* ============================================
+   PARCHE v7 FUSIONADO — escritorio (901px+)
+   Cards + layout de navegación + dropdowns
+   ============================================ */
+
+@media (min-width: 901px) {
+
+  .user-tag.top-nav__username--highresolution {
+    display: none !important;
+  }
+
+  nav.top-nav {
+    position: relative !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    padding: 6px 14px !important;
+    gap: 6px 14px !important;
+    overflow: visible !important;
+  }
+
+  /* ── Fila 1: logo, Arcade y menú ── */
+
+  .top-nav__left {
+    display: contents !important;
+  }
+
+  .top-nav__branding {
+    order: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    flex: 0 0 auto !important;
+  }
+
+  .top-nav__branding img {
+    height: 34px !important;
+  }
+
+  .top-nav__site-logo {
+    font-size: 1rem !important;
+    letter-spacing: 0.09em !important;
+  }
+
+  a[href*="/gaming"] {
+    order: 3 !important;
+    padding: 5px 14px !important;
+    font-size: 1.3rem !important;
+    flex: 0 0 auto !important;
+  }
+
+  a[href*="/gaming"] i {
+    font-size: 1.1rem !important;
+  }
+  /* ── Cards: Torrents, Comunidad, Soporte, Otro y Donar ── */
+
+ul.top-nav__main-menus {
+  order: 4 !important;
+  display: flex !important;
+  width: max-content !important;
+  flex: 0 0 max-content !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  margin: 0 0 0 -6px !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  transform: translateX(-12px) !important;
+}
+
+/* El tema añade separación por margen, no por gap */
+nav.top-nav ul.top-nav__main-menus > li,
+nav.top-nav ul.top-nav__main-menus > li.top-nav--left__list-item,
+nav.top-nav ul.top-nav__main-menus > li.top-nav__dropdown {
+  margin-inline: 0 !important;
+}
+
+nav.top-nav ul.top-nav__main-menus > li > a {
+  margin-inline: 0 !important;
+}
+/* Reduce el espacio reservado por el tema entre cards */
+nav.top-nav ul.top-nav__main-menus > li:not(:last-child) {
+  margin-right: -15px !important;
+}
+
+/* Solo el <li>: no tocar el <a>, para no romper dropdowns */
+nav.top-nav ul.top-nav__main-menus > li {
+  position: relative !important;
+  margin: 0 0 0 -18px !important;
+  padding: 0 !important;
+  flex: 0 0 auto !important;
+}
+
+.top-nav--left__container {
+  font-size: 9px !important;
+  padding: 8px 14px !important;
+  white-space: nowrap !important;
+  border-radius: 8px !important;
+  background: rgba(0, 217, 255, 0.05) !important;
+  border: 1px solid rgba(0, 217, 255, 0.18) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
+}
+
+  ul.top-nav__main-menus > li:hover .top-nav--left__container,
+  ul.top-nav__main-menus > li.top-nav__dropdown:hover > a .top-nav--left__container {
+    background: rgba(0, 217, 255, 0.14) !important;
+    border-color: rgba(0, 217, 255, 0.5) !important;
+    box-shadow:
+      0 2px 10px rgba(0, 217, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* Dropdowns de las tabs */
+
+  .top-nav__dropdown > ul {
+    overflow: visible !important;
+  }
+
+  ul.top-nav__main-menus > li.top-nav__dropdown > ul {
+    position: absolute !important;
+    top: 100% !important;
+    bottom: auto !important;
+    left: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  /* ── Bloque de perfil a la derecha ── */
+
+  .top-nav__icon-bar {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    position: absolute !important;
+    top: 4px !important;
+    bottom: 4px !important;
+    right: 14px !important;
+    height: auto !important;
+    z-index: 5 !important;
+    padding: 6px 12px !important;
+    border-radius: 12px !important;
+    background: rgba(6, 14, 24, 0.7) !important;
+    border: 1px solid rgba(0, 217, 255, 0.22) !important;
+    box-shadow:
+      0 2px 10px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+  }
+
+  .top-nav--right__icon-link {
+    font-size: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 8px !important;
+    background: rgba(0, 217, 255, 0.05) !important;
+    border: 1px solid rgba(0, 217, 255, 0.15) !important;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      transform 0.15s ease !important;
+  }
+
+  .top-nav--right__icon-link:hover {
+    background: rgba(0, 217, 255, 0.16) !important;
+    border-color: rgba(0, 217, 255, 0.55) !important;
+    box-shadow: 0 2px 10px rgba(0, 217, 255, 0.25) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .top-nav__profile-image {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(0, 217, 255, 0.4) !important;
+    box-shadow: 0 0 8px rgba(0, 217, 255, 0.3) !important;
+  }
+
+  .top-nav__icon-bar .top-nav__dropdown {
+    position: relative !important;
+  }
+
+  .top-nav__icon-bar .top-nav__dropdown > ul {
+    position: absolute !important;
+    top: 100% !important;
+    right: 0 !important;
+    left: auto !important;
+    margin: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  .top-nav__icon-bar .top-nav__dropdown::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: -20px;
+    right: -20px;
+    height: 16px;
+    z-index: 4;
+  }
+
+  /* ── Fila 2: estadísticas y buscador ── */
+
+  .top-nav__right {
+    order: 5 !important;
+    flex-basis: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+  }
+
+  .top-nav__ratio-bar {
+    order: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    font-size: 14px !important;
+    flex: 0 0 auto !important;
+    min-width: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .top-nav__ratio-bar li {
+    flex: 0 0 auto !important;
+  }
+
+  .top-nav__ratio-bar i {
+    font-size: 14px !important;
+  }
+
+  /* Buscador: 4px más abajo y 6px más alto */
+.quick-search {
+  order: 6 !important;
+  flex: 0 0 700px !important;
+  width: 250px !important;
+  max-width: 250px !important;
+  min-width: 0 !important;
+  margin-left: -12px !important;
+  margin-right: 0 !important;
+  align-self: center !important;
+  transform: translateY(-14px) !important;
+}
+
+  .quick-search__inputs {
+    width: 100% !important;
+  }
+
+  .quick-search__input {
+    width: 100% !important;
+    min-width: 160px !important;
+    font-size: 15px !important;
+    padding: 12px 16px !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    background: rgba(10, 16, 26, 0.85) !important;
+    border: 1px solid rgba(0, 217, 255, 0.35) !important;
+    box-shadow:
+      0 2px 10px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease !important;
+  }
+
+  .quick-search__input:focus {
+    border-color: rgba(0, 217, 255, 0.75) !important;
+    box-shadow:
+      0 2px 14px rgba(0, 217, 255, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    outline: none !important;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1400px) {
+  .top-nav__ratio-bar {
+    font-size: 12px !important;
+    gap: 9px !important;
+  }
+}
