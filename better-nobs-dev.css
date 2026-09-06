@@ -386,6 +386,7 @@ ul.top-nav__main-menus > li.top-nav__dropdown:hover > a .top-nav--left__containe
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
+  justify-content: flex-start !important;
   flex: 0 0 auto !important;
   min-width: 0 !important;
 }
@@ -416,9 +417,10 @@ ul.top-nav__main-menus > li.top-nav__dropdown:hover > a .top-nav--left__containe
    coloca de forma independiente en el flex de nav.top-nav. */
 .quick-search {
   order: 6 !important;
-  flex: 0 0 auto !important;
+  flex: 0 0 380px !important;
   width: 380px !important;
-  min-width: 200px !important;
+  max-width: 380px !important;
+  min-width: 0 !important;
   margin-left: 8px !important;
   align-self: center !important;
   transform: translateY(-16px) !important;
