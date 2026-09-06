@@ -980,3 +980,36 @@ ul.top-nav__main-menus > li.top-nav__dropdown > ul {
 }
 
 } /* fin @media (min-width: 901px) */
+@media (min-width: 901px) {
+  nav.top-nav {
+    position: relative !important;
+    min-height: 164px !important;
+  }
+
+  /* Tabs: primera fila, justo después de Arcade */
+  nav.top-nav > ul.top-nav__main-menus {
+    position: absolute !important;
+    top: 8px !important;
+    left: 600px !important;
+
+    display: flex !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: auto !important;
+    max-width: calc(100% - 820px) !important;
+    flex: none !important;
+    flex-basis: auto !important;
+    flex-wrap: nowrap !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 8px !important;
+    white-space: nowrap !important;
+    z-index: 10 !important;
+  }
+
+  nav.top-nav > ul.top-nav__main-menus > li {
+    position: relative !important;
+    flex: 0 0 auto !important;
+  }
+}
