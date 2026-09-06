@@ -446,7 +446,7 @@ tbody tr:hover { transform: translateX(2px) !important; }
     min-width: 0 !important;
     margin-left: -12px !important;
     align-self: center !important;
-    transform: translateY(-20px) !important;
+    transform: translateY(-16px) !important;
   }
 
   .quick-search__inputs {
