@@ -67,7 +67,7 @@ Dado que el proyecto se encuentra en **fase BETA**, si encuentras algún fallo v
 
 1. Dirígete a la pestaña de [**GitHub Issues**](../../issues) en este repositorio.
 2. Abre una nueva entrada (*New Issue*).
-3. Adjunta una captura de pantalla del problema junto con el navegador y modelo de teléfono que estás utilizando.
+3. Adjunta una captura de pantalla del problema junto con el navegador y modelo de teléfono/pc que estás utilizando.
 ---
 
 <div align="center">
