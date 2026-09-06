@@ -800,7 +800,7 @@ tbody tr:hover { transform: translateX(2px) !important; }
   }
 
   .top-nav--left__container {
-    font-size: 13px !important;
+    font-size: 7px !important;
     padding: 7px 9px !important;
     white-space: nowrap !important;
     border-radius: 8px !important;
