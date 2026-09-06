@@ -791,7 +791,7 @@ ul.top-nav__main-menus {
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 0px !important;
   flex: 0 0 auto !important;
   margin-left: 10px !important;
   margin-right: 210px !important;
@@ -916,8 +916,8 @@ ul.top-nav__main-menus {
 .quick-search {
   order: 6 !important;
   flex: 0 0 1500px !important;
-  width: 200px !important;
-  max-width: 200px !important;
+  width: 250px !important;
+  max-width: 250px !important;
   min-width: 0 !important;
   margin-left: -12px !important;
   align-self: center !important;
