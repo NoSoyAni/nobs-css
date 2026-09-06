@@ -602,11 +602,6 @@
     .nav-tab-menu__items li a:active {
         background: rgba(255,255,255,0.06) !important;
     }
-    .top-nav__icon-bar .top-nav__dropdown *,
-    .top-nav__main-menus.mobile .top-nav__dropdown *,
-    .nav-tab-menu * {
-        position: static !important;
-    }
 @media (max-width: 768px) {
     .nav-tab-menu:hover>.nav-tab-menu__items,
     .nav-tab-menu:focus-within>.nav-tab-menu__items {
@@ -958,45 +953,76 @@
         pointer-events: none !important;
     }
 /* NOBS: submenús principales dentro del drawer, nunca laterales */
-    @media (max-width: 768px) {
-  /* Cada dropdown ocupa altura real en el drawer */
-  .top-nav__main-menus.mobile > li.top-nav__dropdown,
-  .top-nav__icon-bar > li.top-nav__dropdown {
-    display: block !important;
-    position: relative !important;
-    width: 100% !important;
-    height: auto !important;
-    overflow: visible !important;
-  }
+@media (max-width: 768px) {
+    /* Menús principales */
+    .top-nav__main-menus.mobile {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+    }
 
-  /* Nunca lateral: el <ul> queda dentro del flujo vertical */
-  .top-nav__main-menus.mobile > li.top-nav__dropdown > ul,
-  .top-nav__icon-bar > li.top-nav__dropdown > ul {
-    position: relative !important;
-    inset: auto !important;
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    bottom: auto !important;
-    float: none !important;
-    transform: none !important;
-    z-index: auto !important;
+    .top-nav__main-menus.mobile > li.top-nav__dropdown {
+        display: block !important;
+        position: relative !important;
+        flex: 0 0 auto !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
 
-    display: none !important;
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
-    margin: 6px 0 12px !important;
-  }
+    .top-nav__main-menus.mobile > li.top-nav__dropdown > ul {
+        position: static !important;
+        display: none !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        margin: 6px 0 12px !important;
+        transform: none !important;
+        float: none !important;
+        clear: both !important;
+        overflow: visible !important;
+    }
 
-  /* Estado real al pulsar los disparadores de NOBS */
-  .top-nav__main-menus.mobile > li.top-nav__dropdown:focus-within > ul,
-  .top-nav__main-menus.mobile > li.top-nav__dropdown.open > ul,
-  .top-nav__main-menus.mobile > li.top-nav__dropdown > a:focus + ul,
-  .top-nav__icon-bar > li.top-nav__dropdown:focus-within > ul,
-  .top-nav__icon-bar > li.top-nav__dropdown.open > ul,
-  .top-nav__icon-bar > li.top-nav__dropdown > a:focus + ul {
-    display: flex !important;
-    flex-direction: column !important;
-  }
+    /* Mantiene abierto el menú mientras cualquier elemento tenga el foco */
+    .top-nav__main-menus.mobile:has(> li.top-nav__dropdown:focus-within) {
+        display: flex !important;
+    }
+
+    .top-nav__main-menus.mobile > li.top-nav__dropdown:focus-within > ul,
+    .top-nav__main-menus.mobile > li.top-nav__dropdown.open > ul {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    /* Perfil: ocupa una fila completa y despliega debajo */
+    .top-nav__icon-bar > li.top-nav__dropdown {
+        display: block !important;
+        position: relative !important;
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .top-nav__icon-bar > li.top-nav__dropdown > ul {
+        position: static !important;
+        display: none !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        margin: 6px 0 4px !important;
+        transform: none !important;
+        float: none !important;
+        overflow: visible !important;
+    }
+
+    .top-nav__icon-bar > li.top-nav__dropdown:focus-within > ul,
+    .top-nav__icon-bar > li.top-nav__dropdown.open > ul {
+        display: flex !important;
+        flex-direction: column !important;
+    }
 }
