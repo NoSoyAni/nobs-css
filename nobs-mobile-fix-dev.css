@@ -960,29 +960,39 @@
 }
 /* ============ FIX- DROPDOWNS EN MENÚ HAMBURGUESA SE DESPLIEGAN SUPERPONIENDOSE Y HACIA LA DERECHA, AHORA HACIA ABAJO Y EMPUJANDO ============*/
 @media (max-width: 768px) {
-  .top-nav__icon-bar .top-nav__dropdown.open,
-  .top-nav__icon-bar .top-nav__dropdown:focus-within,
-  .top-nav__main-menus.mobile .top-nav__dropdown.open,
-  .top-nav__main-menus.mobile .top-nav__dropdown:focus-within {
+  .top-nav__right .top-nav__dropdown,
+  .top-nav__right .top-nav__dropdown li,
+  .top-nav__right .top-nav__dropdown.open,
+  .top-nav__right .top-nav__dropdown:focus-within {
     position: static !important;
+    float: none !important;
+    width: 100% !important;
   }
 
-  .top-nav__icon-bar .top-nav__dropdown.open *,
-  .top-nav__icon-bar .top-nav__dropdown:focus-within *,
-  .top-nav__main-menus.mobile .top-nav__dropdown.open *,
-  .top-nav__main-menus.mobile .top-nav__dropdown:focus-within * {
+  .top-nav__right .top-nav__dropdown ul {
+    position: static !important;
+    display: none !important;
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    inset: auto !important;
+    transform: none !important;
+    box-sizing: border-box !important;
+    margin: 4px 0 !important;
+  }
+
+  .top-nav__right .top-nav__dropdown.open > ul,
+  .top-nav__right .top-nav__dropdown:focus-within > ul {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .top-nav__right .top-nav__dropdown * {
     position: static !important;
     float: none !important;
     transform: none !important;
-    inset: auto !important;
-  }
-
-  .top-nav__icon-bar .top-nav__dropdown.open > ul,
-  .top-nav__icon-bar .top-nav__dropdown:focus-within > ul,
-  .top-nav__main-menus.mobile .top-nav__dropdown.open > ul,
-  .top-nav__main-menus.mobile .top-nav__dropdown:focus-within > ul {
-    display: flex !important;
-    flex-direction: column !important;
-    width: 100% !important;
   }
 }
