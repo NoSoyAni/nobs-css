@@ -800,7 +800,7 @@ tbody tr:hover { transform: translateX(2px) !important; }
   }
 
   .top-nav--left__container {
-    font-size: 7px !important;
+    font-size: 10px !important;
     padding: 7px 9px !important;
     white-space: nowrap !important;
     border-radius: 8px !important;
@@ -951,8 +951,8 @@ tbody tr:hover { transform: translateX(2px) !important; }
   .quick-search {
     order: 6 !important;
     flex: 0 0 700px !important;
-    width: 340px !important;
-    max-width: 340px !important;
+    width: 250px !important;
+    max-width: 250px !important;
     min-width: 0 !important;
     margin-left: -12px !important;
     align-self: center !important;
