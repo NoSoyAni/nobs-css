@@ -801,6 +801,10 @@ nav.top-nav ul.top-nav__main-menus > li.top-nav__dropdown {
 nav.top-nav ul.top-nav__main-menus > li > a {
   margin-inline: 0 !important;
 }
+/* Reduce el espacio reservado por el tema entre cards */
+nav.top-nav ul.top-nav__main-menus > li:not(:last-child) {
+  margin-right: -26px !important;
+}
 
 /* Solo el <li>: no tocar el <a>, para no romper dropdowns */
 nav.top-nav ul.top-nav__main-menus > li {
