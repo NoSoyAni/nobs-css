@@ -958,52 +958,45 @@
         pointer-events: none !important;
     }
 /* NOBS: submenús principales dentro del drawer, nunca laterales */
-@media (max-width: 768px) {
-  .top-nav.mobile > .top-nav__main-menus.mobile {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-
-  .top-nav.mobile > .top-nav__main-menus.mobile > li.top-nav__dropdown {
+    @media (max-width: 768px) {
+  /* Cada dropdown ocupa altura real en el drawer */
+  .top-nav__main-menus.mobile > li.top-nav__dropdown,
+  .top-nav__icon-bar > li.top-nav__dropdown {
     display: block !important;
     position: relative !important;
     width: 100% !important;
     height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
     overflow: visible !important;
-    flex: 0 0 auto !important;
   }
 
-  .top-nav.mobile > .top-nav__main-menus.mobile > li.top-nav__dropdown > ul {
+  /* Nunca lateral: el <ul> queda dentro del flujo vertical */
+  .top-nav__main-menus.mobile > li.top-nav__dropdown > ul,
+  .top-nav__icon-bar > li.top-nav__dropdown > ul {
     position: relative !important;
     inset: auto !important;
-    top: auto !important;
-    right: auto !important;
-    bottom: auto !important;
     left: auto !important;
-    z-index: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
     float: none !important;
-    clear: both !important;
     transform: none !important;
+    z-index: auto !important;
 
     display: none !important;
-    flex-direction: column !important;
     width: 100% !important;
     height: auto !important;
     max-height: none !important;
-    overflow: visible !important;
-    box-sizing: border-box !important;
     margin: 6px 0 12px !important;
   }
 
-  .top-nav.mobile > .top-nav__main-menus.mobile > li.top-nav__dropdown:focus-within > ul,
-  .top-nav.mobile > .top-nav__main-menus.mobile > li.top-nav__dropdown.open > ul {
+  /* Estado real al pulsar los disparadores de NOBS */
+  .top-nav__main-menus.mobile > li.top-nav__dropdown:focus-within > ul,
+  .top-nav__main-menus.mobile > li.top-nav__dropdown.open > ul,
+  .top-nav__main-menus.mobile > li.top-nav__dropdown > a:focus + ul,
+  .top-nav__icon-bar > li.top-nav__dropdown:focus-within > ul,
+  .top-nav__icon-bar > li.top-nav__dropdown.open > ul,
+  .top-nav__icon-bar > li.top-nav__dropdown > a:focus + ul {
     display: flex !important;
+    flex-direction: column !important;
   }
 }
