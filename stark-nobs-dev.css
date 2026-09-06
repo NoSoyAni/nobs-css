@@ -793,7 +793,7 @@ ul.top-nav__main-menus {
   align-items: center !important;
   gap: 0px !important;
   flex: 0 0 auto !important;
-  margin-left: 10px !important;
+  margin-left: 4px !important;
   margin-right: 210px !important;
   white-space: nowrap !important;
 }
@@ -915,7 +915,7 @@ ul.top-nav__main-menus {
    coloca de forma independiente en el flex de nav.top-nav. */
 .quick-search {
   order: 6 !important;
-  flex: 0 0 1500px !important;
+  flex: 0 0 700px !important;
   width: 250px !important;
   max-width: 250px !important;
   min-width: 0 !important;
