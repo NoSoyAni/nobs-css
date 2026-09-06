@@ -785,7 +785,7 @@ tbody tr:hover { transform: translateX(2px) !important; }
   flex-wrap: nowrap !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  gap: 6px !important;
+  gap: 3px !important;
   margin: 0 0 0 -6px !important;
   padding: 0 !important;
   white-space: nowrap !important;
