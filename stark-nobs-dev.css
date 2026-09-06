@@ -786,15 +786,24 @@ a[href*="/gaming"] i { font-size: 1.1rem !important; }
 /* Torrents/Comunidad/Soporte/Otro: fila 1, a la derecha de Arcade,
    pero dejando hueco a la izquierda del icon-bar de perfil (que está
    en position:absolute a la derecha del todo) para que no se solapen */
+/* Tabs junto al botón Arcade, en la primera fila */
 ul.top-nav__main-menus {
   order: 4 !important;
   display: flex !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  flex: 0 1 auto !important;
+  flex-basis: auto !important;
   flex-wrap: nowrap !important;
   align-items: center !important;
+
   gap: 8px !important;
-  flex: 0 0 auto !important;
-  margin-left: 4px !important;
-  margin-right: 210px !important;
+  margin: 0 210px 0 4px !important; /* espacio para iconos de la derecha */
+  padding: 0 !important;
   white-space: nowrap !important;
 }
 .top-nav--left__container {
