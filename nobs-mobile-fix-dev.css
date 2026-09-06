@@ -958,53 +958,45 @@
         pointer-events: none !important;
     }
 }
-/* Dropdowns del menú móvil: se abren hacia abajo y reservan espacio */
+/* Menú móvil: el contenido largo debe crecer y permitir scroll */
 @media (max-width: 768px) {
   .top-nav.mobile,
   .top-nav:has(> .top-nav__main-menus.mobile) {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
     overflow-y: auto !important;
+    overflow-x: hidden !important;
+    overscroll-behavior: contain !important;
   }
 
-  .top-nav__main-menus.mobile,
-  .top-nav__icon-bar {
+  .top-nav__main-menus.mobile {
+    display: flex !important;
+    flex: 0 0 auto !important;
     height: auto !important;
     max-height: none !important;
     overflow: visible !important;
-    flex: 0 0 auto !important;
   }
 
-  .top-nav__main-menus.mobile > li.top-nav__dropdown,
-  .top-nav__icon-bar > li.top-nav__dropdown {
+  .top-nav__main-menus.mobile > li.top-nav__dropdown {
     display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
     flex: 0 0 auto !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
-  /* El submenú deja de ser absoluto: ocupa espacio real dentro del <li> */
-  .top-nav__main-menus.mobile > li.top-nav__dropdown > ul,
-  .top-nav__icon-bar > li.top-nav__dropdown > ul {
+  .top-nav__main-menus.mobile > li.top-nav__dropdown > ul {
     position: static !important;
-    inset: auto !important;
     display: none !important;
     width: 100% !important;
     height: auto !important;
     max-height: none !important;
+    overflow: visible !important;
     margin: 6px 0 12px !important;
     transform: none !important;
-    float: none !important;
-    clear: both !important;
-    overflow: visible !important;
-    opacity: 1 !important;
-    visibility: visible !important;
   }
 
-  .top-nav__main-menus.mobile > li.top-nav__dropdown.open > ul,
   .top-nav__main-menus.mobile > li.top-nav__dropdown:focus-within > ul,
-  .top-nav__icon-bar > li.top-nav__dropdown.open > ul,
-  .top-nav__icon-bar > li.top-nav__dropdown:focus-within > ul {
+  .top-nav__main-menus.mobile > li.top-nav__dropdown.open > ul {
     display: flex !important;
     flex-direction: column !important;
   }
