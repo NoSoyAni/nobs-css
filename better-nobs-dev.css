@@ -417,9 +417,9 @@ ul.top-nav__main-menus > li.top-nav__dropdown:hover > a .top-nav--left__containe
    coloca de forma independiente en el flex de nav.top-nav. */
 .quick-search {
   order: 6 !important;
-  flex: 0 0 260px !important;
-  width: 260px !important;
-  max-width: 260px !important;
+  flex: 0 0 700px !important;
+  width: 700px !important;
+  max-width: 700px !important;
   min-width: 0 !important;
   margin-left: -12px !important;
   align-self: center !important;
