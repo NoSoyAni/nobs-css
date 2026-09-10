@@ -1064,6 +1064,8 @@ nav.top-nav ul.top-nav__main-menus > li {
 .quick-search__inputs {
   position: relative !important;
   width: 100% !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
 }
 
 .quick-search__inputs::after {
