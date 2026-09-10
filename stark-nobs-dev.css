@@ -1024,10 +1024,10 @@ nav.top-nav ul.top-nav__main-menus > li {
   }
 /* BONS: ancho acotado para todos; cifras largas se muestran con … */
 .top-nav__ratio-bar > .ratio-bar__points {
-  flex: 0 0 125px !important;
-  width: 125px !important;
+  flex: 0 0 80px !important;
+  width: 80px !important;
   min-width: 0 !important;
-  max-width: 125px !important;
+  max-width: 80px !important;
   overflow: hidden !important;
 }
 
