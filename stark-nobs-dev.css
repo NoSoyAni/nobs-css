@@ -1156,6 +1156,13 @@ nav.top-nav ul.top-nav__main-menus > li {
   padding: 8px 10px !important;
   color: rgba(205, 246, 255, 0.78) !important;
 }
+.quick-search__input,
+.quick-search__input:focus {
+  border-radius: 16px !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  background-clip: padding-box !important;
+}
 @media (min-width: 901px) and (max-width: 1400px) {
   .top-nav__ratio-bar {
     font-size: 12px !important;
