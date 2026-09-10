@@ -1046,8 +1046,18 @@ nav.top-nav ul.top-nav__main-menus > li {
 /* ── Search HUD ── */
 
 .quick-search {
+  order: 6 !important;
+  flex: 0 0 700px !important;
+  width: 250px !important;
+  max-width: 250px !important;
+  min-width: 0 !important;
+
   position: relative !important;
   z-index: 60 !important;
+  margin-left: -12px !important;
+  margin-right: 0 !important;
+  align-self: center !important;
+  transform: translateY(-14px) !important;
 }
 
 .quick-search__inputs {
