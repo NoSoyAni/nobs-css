@@ -1022,18 +1022,25 @@ nav.top-nav ul.top-nav__main-menus > li {
   .top-nav__ratio-bar i {
     font-size: 14px !important;
   }
-/* BONS: las cantidades gigantes no desplazan el buscador */
-.top-nav__ratio-bar .ratio-bar__points {
-  max-width: 140px !important;
+/* BONS: ancho acotado para todos; cifras largas se muestran con … */
+.top-nav__ratio-bar > .ratio-bar__points {
+  flex: 0 0 125px !important;
+  width: 125px !important;
   min-width: 0 !important;
+  max-width: 125px !important;
   overflow: hidden !important;
 }
 
-.top-nav__ratio-bar .ratio-bar__points > a {
+.top-nav__ratio-bar > .ratio-bar__points > a {
   display: block !important;
+  width: 100% !important;
   overflow: hidden !important;
   white-space: nowrap !important;
   text-overflow: ellipsis !important;
+}
+
+.top-nav__ratio-bar > .ratio-bar__points > a > i {
+  margin-right: 6px !important;
 }
    
   /* Buscador: 4px más abajo y 6px más alto */
@@ -1065,7 +1072,7 @@ nav.top-nav ul.top-nav__main-menus > li {
   letter-spacing: 0.04em !important;
 
   border: 1px solid rgba(0, 217, 255, 0.55) !important;
-  border-radius: 12px 4px 12px 4px !important;
+  border-radius: 14px !important;
   background:
     linear-gradient(135deg, rgba(0, 217, 255, 0.1), transparent 40%),
     rgba(5, 14, 25, 0.92) !important;
