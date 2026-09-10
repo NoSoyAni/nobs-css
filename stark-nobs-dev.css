@@ -1053,7 +1053,7 @@ nav.top-nav ul.top-nav__main-menus > li {
   min-width: 0 !important;
 
   position: relative !important;
-  z-index: 60 !important;
+  z-index: 1 !important;
   margin-left: -12px !important;
   margin-right: 0 !important;
   margin-top: : -9px !important;
