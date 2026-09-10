@@ -1058,7 +1058,7 @@ nav.top-nav ul.top-nav__main-menus > li {
   margin-right: 0 !important;
   margin-top: : -9px !important;
   align-self: center !important;
-  transform: translateY(-10px) !important;
+  transform: translateY(1px) !important;
 }
 
 .quick-search__inputs {
