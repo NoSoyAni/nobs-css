@@ -4,7 +4,7 @@
 @version        23.2.0
 @description    Drawer scoped to mobile, no duplicate avatar/ghost, home banner removed, edge-to-edge blocks, readable chat. FIX: banner side images visible.
 @author         NoSoyAni (Copyright (c) 2026)
-@license        Custom - Personal & Non-Commercial Use Only
+@license        AGPL-3.0-or-later
 ==/UserStyle== */
     
 @media (max-width: 768px) {
