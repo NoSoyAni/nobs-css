@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           NOBS MOBILE APP-LIKE REDESIGN
 @namespace      nobs.local
-@version        23.1.0
+@version        23.2.0
 @description    Drawer scoped to mobile, no duplicate avatar/ghost, home banner removed, edge-to-edge blocks, readable chat. FIX: banner side images visible.
 @author         NoSoyAni (Copyright (c) 2026)
 @license        Custom - Personal & Non-Commercial Use Only
@@ -133,12 +133,17 @@
         position: fixed !important;
         inset: 0 !important;
         height: 100vh !important;
+        height: 100dvh !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
         background: #0a0a0a !important;
         z-index: 9998 !important;
         display: flex !important;
         flex-direction: column !important;
+        /* FIX v23.2: sin esto hereda el flex-wrap:wrap de .top-nav; al abrir un
+           desplegable y pasar de 100vh, el bloque de menús salta a una segunda
+           columna fuera de pantalla ("desaparece todo el bloque"). */
+        flex-wrap: nowrap !important;
         align-items: stretch !important;
         padding: 0 0 40px 0 !important;
         box-sizing: border-box !important;
@@ -407,6 +412,11 @@
     .top-nav__main-menus.mobile > li {
         width: 100% !important;
         position: static !important;
+        /* FIX v23.2: el tracker fija cada li a 44px y en fila (arreglo del hover
+           de escritorio); así el ul abierto se desborda encima de los vecinos
+           en vez de empujarlos hacia abajo. */
+        height: auto !important;
+        display: block !important;
         border-bottom: 1px solid rgba(255,255,255,0.08) !important;
     }
     .top-nav__main-menus.mobile > li:last-child {
@@ -869,7 +879,7 @@
 
     /* ---------- MARCADOR DE VERSION ---------- */
     body::before {
-        content: "nobs-mobile-fix v23.1" !important;
+        content: "nobs-mobile-fix v23.2" !important;
         position: fixed !important;
         bottom: 4px !important;
         left: 4px !important;
