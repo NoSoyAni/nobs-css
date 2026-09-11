@@ -3,15 +3,8 @@
    NoSoyAni — N.O.B.S (UNIT3D v9.2.0)
    ============================================ */
 
-/* NOTA (RawSmoke, 2026-09-11) — import RELATIVO a propósito, no volver a la URL absoluta.
-   Resuelve al mismo fichero en GitHub Pages (misma carpeta) y en cualquier copia
-   alojada en otro sitio. Con la URL absoluta cada página hacía un segundo salto a
-   GitHub, y un CSS en el <head> bloquea el pintado: si Pages iba lento, la web se
-   quedaba en blanco.
-   PREVISTO: el mobile fix se va a integrar en el propio tracker. Cuando esté, este
-   @import sobra (aplicaría el arreglo dos veces) y se quita. Hablarlo con RawSmoke
-   antes de tocarlo. */
-@import url('nobs-mobile-fix.css');
+/* NOTA (2026-09-11): sin @import del mobile fix. La vista movil ya la hace el
+   propio tracker; nobs-mobile-fix.css queda como hoja aparte para quien la quiera. */
 
 /* Variables minimas para las animaciones */
 :root {
