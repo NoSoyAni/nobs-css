@@ -1,0 +1,428 @@
+/* ==UserStyle==
+@name           NOBS MOBILE APP-LIKE REDESIGN
+@namespace      nobs.local
+@version        23.1.0
+@description    Drawer scoped to mobile, no duplicate avatar/ghost, home banner removed, edge-to-edge blocks, readable chat. FIX: banner side images visible.
+@author         NoSoyAni (Copyright (c) 2026)
+@license        AGPL-3.0-or-later
+==/UserStyle== */
+    
+@media (max-width: 768px) {
+
+    /* ---------- BASE ---------- */
+    html, body {
+        overflow-x: hidden !important;
+    }
+    #nobs-fx {
+        display: none !important;
+    }
+    main, .panelV2, .footer__wrapper {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        box-sizing: border-box !important;
+    }
+    body {
+        padding-bottom: 60px !important;
+    }
+
+    /* ---------- BARRA SUPERIOR Y CAJON ----------
+       Integrado en el tracker el 2026-09-11 (layout/_top_nav_mobile.scss).
+       El original completo esta en deprecated/. No volver a meterlo aqui:
+       con los !important se pisaria con el del tracker. */
+
+    /* ---------- SECONDARY NAV / TABS ---------- */
+    .secondary-nav {
+        padding: 4px 8px !important;
+        overflow: visible !important;
+    }
+    .breadcrumbsV2 {
+        font-size: 0.75rem !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+    }
+    .nav-tabsV2 {
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: visible !important;
+        flex-wrap: nowrap !important;
+        gap: 0 !important;
+        width: 100% !important;
+    }
+    .nav-tab-menu {
+        position: relative !important;
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        min-height: 44px !important;
+        display: flex !important;
+        align-items: center !important;
+        font-size: 0.95rem !important;
+        border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+        padding: 0 8px !important;
+        box-sizing: border-box !important;
+    }
+    .nav-tab-menu:last-child {
+        border-bottom: none !important;
+    }
+    .nav-tab-menu::before {
+        content: "";
+        position: absolute !important;
+        right: 4px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 28px !important;
+        height: 28px !important;
+        border-radius: 8px !important;
+        background: rgba(255,255,255,0.05) !important;
+        pointer-events: none !important;
+    }
+    .nav-tab-menu::after {
+        content: "\f054";
+        font-family: "Font Awesome 5 Free", "Font Awesome 6 Free", FontAwesome;
+        font-weight: 900;
+        font-size: 0.75rem;
+        opacity: 0.55;
+        position: absolute !important;
+        right: 10px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        transition: transform 0.2s ease, opacity 0.2s ease !important;
+        pointer-events: none !important;
+    }
+    .nav-tab-menu:focus-within::before,
+    .nav-tab-menu.open::before {
+        background: rgba(255,255,255,0.1) !important;
+    }
+    .nav-tab-menu:focus-within::after,
+    .nav-tab-menu.open::after {
+        transform: translateY(-50%) rotate(90deg) !important;
+        opacity: 0.9 !important;
+    }
+    .nav-tab-menu > a {
+        display: inline-flex !important;
+        align-items: center !important;
+        width: auto !important;
+        max-width: calc(100% - 44px) !important;
+        padding: 12px 8px 12px 0 !important;
+        box-sizing: border-box !important;
+    }
+.nav-tab-menu__items {
+        display: none !important;
+    }
+    .nav-tab-menu:focus-within > .nav-tab-menu__items,
+    .nav-tab-menu.open > .nav-tab-menu__items {
+        display: flex !important;
+        flex-direction: column !important;
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin: 0 0 10px 0 !important;
+        padding: 6px !important;
+        background: rgba(255,255,255,0.045) !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+        border-radius: 10px !important;
+        box-shadow: none !important;
+    }
+    .nav-tab-menu__items li a:active {
+        background: rgba(255,255,255,0.06) !important;
+    }
+@media (max-width: 768px) {
+    .nav-tab-menu:hover>.nav-tab-menu__items,
+    .nav-tab-menu:focus-within>.nav-tab-menu__items {
+        display: flex !important;
+        flex-direction: column !important;
+        position: static !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        margin: 0 0 10px 0 !important;
+        padding: 6px !important;
+        background: rgba(255,255,255,0.045) !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+        border-radius: 10px !important;
+        box-shadow: none !important;
+    }
+}
+    .nav-tab-menu__items li:first-child {
+        border-top: none !important;
+    }
+    .nav-tab-menu__items li a {
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+        padding: 10px 8px !important;
+        font-size: 0.88rem !important;
+        opacity: 0.9 !important;
+        box-sizing: border-box !important;
+    }
+    .nav-tab-menu__items li a:active {
+        background: rgba(255,255,255,0.06) !important;
+    }
+    /* ---------- COUNTDOWN / EVENT BANNER ----------
+       FIX v23.1: se restauran las imágenes laterales
+       (antes ocultas con display:none en primer/último hijo).
+       Ahora se mantienen visibles, apiladas detrás/alrededor
+       del bloque central del cronómetro en layout de móvil. */
+    .special-event-alert {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: none !important;
+        min-height: auto !important;
+        border-radius: 10px !important;
+        position: relative !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+    }
+    .special-event-alert > div:first-child,
+    .special-event-alert > div:last-child {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: absolute !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 50% !important;
+        height: 100% !important;
+        z-index: 1 !important;
+    }
+    .special-event-alert > div:first-child {
+        left: 0 !important;
+    }
+    .special-event-alert > div:last-child {
+        right: 0 !important;
+    }
+    .special-event-alert > div:first-child img,
+    .special-event-alert > div:last-child img {
+        display: block !important;
+        visibility: visible !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .special-event-alert [x-data^="timer"] {
+        position: relative !important;
+        z-index: 2 !important;
+        padding: 14px 8px !important;
+        gap: 10px !important;
+        width: 100% !important;
+    }
+    .special-event-alert [x-data^="timer"] > div:first-child {
+        font-size: 0.95rem !important;
+        text-align: center !important;
+    }
+    .special-event-alert [x-data^="timer"] > div:nth-child(2) {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 6px !important;
+        width: 100% !important;
+    }
+    .special-event-alert [x-data^="timer"] > div:nth-child(2) > div {
+        min-width: 0 !important;
+        padding: 8px 4px !important;
+    }
+    .special-event-alert [x-data^="timer"] > div:nth-child(2) > div div:first-child {
+        font-size: 1.3rem !important;
+    }
+    .special-event-alert [x-data^="timer"] > div:nth-child(2) > div[style*="opacity"] {
+        display: none !important;
+    }
+
+    /* ---------- QUICK ACCESS GRID ---------- */
+    .nobs-quick-access {
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 8px !important;
+        margin: 10px 0 16px 0 !important;
+        padding: 0 4px !important;
+    }
+    .nobs-quick-access a {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 4px !important;
+        background: rgba(255,255,255,0.05) !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        border-radius: 10px !important;
+        padding: 10px 4px !important;
+        font-size: 0.68rem !important;
+        text-align: center !important;
+        color: inherit !important;
+        text-decoration: none !important;
+    }
+    .nobs-quick-access a i {
+        font-size: 1.1rem !important;
+    }
+
+    /* ---------- PANELS ---------- */
+    .panelV2 {
+        margin: 0 0 12px 0 !important;
+        border-radius: 8px !important;
+    }
+    .panel__heading, .panel__body {
+        padding: 10px !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* ---------- CHAT FIX ---------- */
+    .chatroom__messages {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    .chatbox-message {
+        display: block !important;
+        padding: 6px 4px !important;
+        border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+    }
+    .chatbox-message__header {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: baseline !important;
+        gap: 6px !important;
+        width: 100% !important;
+    }
+    .chatbox-message__address,
+    .user-tag__link {
+        white-space: nowrap !important;
+        overflow-wrap: normal !important;
+        word-break: keep-all !important;
+        flex: 0 0 auto !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    .chatbox-message__time {
+        font-size: 0.7rem !important;
+        opacity: 0.6 !important;
+        white-space: nowrap !important;
+        flex: 0 0 auto !important;
+    }
+    .chatbox-message__content,
+    .bot-message {
+        display: block !important;
+        width: 100% !important;
+        overflow-wrap: anywhere !important;
+        word-break: break-word !important;
+        white-space: normal !important;
+        font-size: 0.85rem !important;
+        margin-top: 2px !important;
+    }
+    .chatbox-message__aside,
+    .chatbox-message__figure {
+        display: none !important;
+    }
+    .chatbox__chatroom {
+        max-height: 340px !important;
+    }
+    .panel__tabs {
+        overflow-x: auto !important;
+        flex-wrap: nowrap !important;
+        white-space: nowrap !important;
+    }
+    #chatbox_header {
+        flex-wrap: wrap !important;
+    }
+    #chatbox_header .panel__actions {
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+    }
+
+    /* ---------- FORMS ---------- */
+    .form__select,
+    .form__text,
+    .form__textarea,
+    input[type="url"],
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        font-size: 0.9rem !important;
+    }
+    .form__fieldset {
+        padding: 8px !important;
+    }
+    .accent-swatches {
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+    .order__list {
+        font-size: 0.85rem !important;
+    }
+    .order__item {
+        padding: 10px 6px !important;
+    }
+
+    /* ---------- TABLES ---------- */
+    table {
+        display: block !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+        -webkit-overflow-scrolling: touch !important;
+        max-width: 100% !important;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer__wrapper {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+        gap: 16px !important;
+    }
+    .footer__section-list {
+        padding: 0 !important;
+    }
+    .footer__stats {
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        font-size: 0.75rem !important;
+        gap: 4px !important;
+    }
+    .footer__copyright {
+        font-size: 0.7rem !important;
+    }
+
+    /* ---------- BOTTOM APP NAV ---------- */
+    .nobs-bottom-nav {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 999 !important;
+        display: flex !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+        background: rgba(10,10,10,0.95) !important;
+        backdrop-filter: blur(8px) !important;
+        border-top: 1px solid rgba(255,255,255,0.1) !important;
+        padding: 8px 0 !important;
+    }
+    .nobs-bottom-nav a {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 2px !important;
+        font-size: 0.65rem !important;
+        color: inherit !important;
+        text-decoration: none !important;
+        opacity: 0.85 !important;
+    }
+    .nobs-bottom-nav a i {
+        font-size: 1.2rem !important;
+    }
+
+    /* ---------- MARCADOR DE VERSION ---------- */
+    body::before {
+        content: "nobs-mobile-fix vBETA24.6" !important;
+        position: fixed !important;
+        bottom: 4px !important;
+        left: 4px !important;
+        z-index: 99999 !important;
+        font-family: monospace !important;
+        font-size: 9px !important;
+        color: rgba(255,255,255,0.35) !important;
+        background: rgba(0,0,0,0.4) !important;
+        padding: 2px 5px !important;
+        border-radius: 3px !important;
+        pointer-events: none !important;
+    }
