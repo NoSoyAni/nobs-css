@@ -5,7 +5,15 @@
    del sitio (settings/general-edit page).
    ============================================ */
 
-@import url('https://nosoyani.github.io/nobs-css/nobs-mobile-fix.css');
+/* NOTA (RawSmoke, 2026-09-11) — import RELATIVO a propósito, no volver a la URL absoluta.
+   Resuelve al mismo fichero en GitHub Pages (misma carpeta) y en cualquier copia
+   alojada en otro sitio. Con la URL absoluta cada página hacía un segundo salto a
+   GitHub, y un CSS en el <head> bloquea el pintado: si Pages iba lento, la web se
+   quedaba en blanco.
+   PREVISTO: el mobile fix se va a integrar en el propio tracker. Cuando esté, este
+   @import sobra (aplicaría el arreglo dos veces) y se quita. Hablarlo con RawSmoke
+   antes de tocarlo. */
+@import url('nobs-mobile-fix.css');
 
 /* ── FUENTES AUTO-HOSPEDADAS (embebidas en base64) ──
    El sitio tiene font-src: 'self' data:  -- NO permite
